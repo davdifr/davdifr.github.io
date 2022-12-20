@@ -1,0 +1,95 @@
+/*
+ 
+- Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+*/
+
+:root {
+  --pale-blue: hsl(243, 100%, 93%);
+  --grayish-blue: hsl(229, 7%, 55%);
+  --dark-blue: hsl(228, 56%, 25%);
+  --very-dark-blue: hsl(229, 57%, 11%);
+  --white: hsl(0, 0%, 100%);
+
+  --fylo-item-padding: 3.2rem; /* also used to calc the border radius of the first item */
+}
+
+.wrapper,
+.fylo-data-storage-component {
+  display: grid;
+  gap: 2.4rem;
+}
+
+.wrapper {
+  height: 100vh;
+  place-items: center;
+}
+
+.wrapper-bg {
+  background-color: var(--very-dark-blue);
+  background-image: url("../images/bg-desktop.png");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.fylo-data-storage-component {
+  grid-template-columns: 1fr 2fr;
+  align-items: end;
+}
+
+.fylo-item,
+.capacity,
+.icons,
+.icon-box {
+  display: flex;
+}
+
+.fylo-item {
+  position: relative;
+  flex-direction: column;
+
+  background: var(--dark-blue);
+  padding: var(--fylo-item-padding);
+  border-radius: 1rem;
+  box-shadow: 0 2.4rem 6.4rem rgba(0, 0, 0, 0.3);
+}
+
+.fylo-item:first-child {
+  gap: 2.4rem;
+  border-top-right-radius: calc(var(--fylo-item-padding) * 2);
+}
+
+.fylo-item:last-child {
+  gap: 1.2rem;
+}
+
+.capacity {
+  justify-content: space-between;
+  transform: translateY(-0.6rem);
+}
+
+/* IMG */
+.logo {
+  max-width: 12rem;
+}
+
+.icons {
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.6rem;
+}
+.icon-box {
+  background: var(--very-dark-blue);
+  width: 4.8rem;
+  height: 4.8rem;
+
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+}
+.icon-box:hover img {
+  transform: scale(1.1);
+  cursor: pointer;
+}

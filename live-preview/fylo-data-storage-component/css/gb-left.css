@@ -1,0 +1,33 @@
+.gb-left {
+  width: 160px;
+  position: absolute;
+  right: 0;
+  top: -25%;
+
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+
+  margin-right: var(--fylo-item-padding);
+  padding: 0.8rem 1.6rem;
+
+  font-weight: 700;
+  border-radius: 10px;
+  background-color: #fff;
+  color: gray;
+}
+
+.gb-left strong {
+  font-size: 3.6rem;
+  color: black;
+}
+
+.gb-left::before {
+  content: "";
+  position: absolute;
+  top: 80%;
+  right: 0;
+  border-left: 3rem solid transparent;
+  border-bottom: 3rem solid transparent;
+  border-top: 3rem solid white;
+}

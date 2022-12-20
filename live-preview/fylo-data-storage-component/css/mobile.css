@@ -1,0 +1,24 @@
+@media (max-width: 800px) {
+  .wrapper {
+    padding: 2.4rem;
+  }
+  .wrapper-bg {
+    background-image: url("../images/bg-mobile.png");
+    background-size: cover;
+  }
+  .fylo-data-storage-component {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+  .fylo-data-storage-component:last-child {
+    text-align: center;
+  }
+  .gb-left {
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .gb-left::before {
+    display: none;
+  }
+}

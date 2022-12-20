@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <title>Frontend Mentor | Fylo data storage component</title>
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/progress-bar.css">
+    <link rel="stylesheet" href="css/gb-left.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+        .attribution {
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .attribution a {
+            color: hsl(228, 45%, 44%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper wrapper-bg grid">
+        <main class="fylo-data-storage-component grid">
+            <div class="fylo-item">
+                <img class="logo" src="./images/logo.svg" alt="Fylo Logo">
+                <div class="icons">
+                    <div class="icon-box">
+                        <img  src="images/icon-document.svg" alt="Document">
+                    </div>
+                    <div class="icon-box">
+                        <img  src="images/icon-folder.svg" alt="Folder">
+                    </div>
+                    <div class="icon-box">
+                        <img  src="images/icon-upload.svg" alt="Upload">
+                    </div>
+                </div>
+            </div>
+            <div class="fylo-item">
+                <div class="gb-left"><strong>185</strong> GB LEFT</div>
+                <p> You've used <strong>815 GB</strong> of your storage</p>
+                <div class="progress-bar">
+                    <div class="progress-status"></div>
+                </div>
+                <div class="capacity">
+                    <strong>0 GB</strong>
+                    <strong>1000 GB</strong>
+                </div>
+        </main>
+    </div>
+    <footer class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+        Coded by <a href="#">Davide Di Francesco</a>.
+    </footer>
+</body>
+
+</html>
