@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/general.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | NFT preview card component</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <main class="nft-preview-card-component">
+        <div class="nft-preview">
+          <img class="nft-img" src="./images/image-equilibrium.jpg" alt="NFT" />
+          <img class="view" src="images/icon-view.svg" alt="View" />
+        </div>
+
+        <h1 class="nft-name">
+          <a class="link" href="#">Equilibrium #3429</a>
+        </h1>
+
+        <p class="nft-desc">
+          Our Equilibrium collection promotes balance and calm.
+        </p>
+        <div class="nft-current-status">
+          <div class="detail">
+            <img src="./images/icon-ethereum.svg" alt="Ether" />
+            <p class="nft-price">0.041 ETH</p>
+          </div>
+          <div class="detail">
+            <img src="./images/icon-clock.svg" alt="Time remaining" />
+            <p>3 days left</p>
+          </div>
+        </div>
+        <hr class="line" />
+        <div class="nft-artist">
+          <img
+            class="nft-artist-pfp"
+            src="./images/image-avatar.png"
+            alt="Artist"
+          />
+          <p>
+            Creation of <a class="link artist-name" href="#">Jules Wyvern</a>
+          </p>
+        </div>
+      </main>
+    </div>
+    <footer class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by
+      <a href="https://www.frontendmentor.io/profile/davdifr"
+        >Davide Di Francesco</a
+      >.
+    </footer>
+  </body>
+</html>
