@@ -5,7 +5,7 @@ permalink: /resume/
 ---
 
 <h1>Davide Di Francesco</h1>
-<img align="right" width="150" height="150" src="/assets/qr-code.svg" />
+
 <table>
   <thead>
     <tr>
@@ -25,6 +25,7 @@ permalink: /resume/
   </tbody>
 </table>
 
+<img align="right" width="150" height="150" src="/assets/qr-code.svg" />
 <section id="SUMMARY">
   <div>
     <h3>SUMMARY</h3>
