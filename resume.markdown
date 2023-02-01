@@ -25,7 +25,7 @@ permalink: /resume/
 </table>
 
 <section id="SUMMARY">
-  <img align="right" width="120" height="120" src="/assets/qr-code.svg" />
+  <img align="right" width="150" height="150" src="/assets/qr-code.svg" />
   <div>
     <h3>SUMMARY</h3>
     <p>
