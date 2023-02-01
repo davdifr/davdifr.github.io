@@ -5,6 +5,7 @@ permalink: /resume/
 ---
 
 <h1>Davide Di Francesco</h1>
+<img align="right" width="150" height="150" src="/assets/qr-code.svg" />
 <table>
   <thead>
     <tr>
@@ -25,13 +26,12 @@ permalink: /resume/
 </table>
 
 <section id="SUMMARY">
-  <img align="right" width="150" height="150" src="/assets/qr-code.svg" />
   <div>
     <h3>SUMMARY</h3>
     <p>
       <strong>Web developer</strong> with experience in both front-end and back-end development. <br />
       Able to <strong>quickly learn</strong> new languages/frameworks to produce <strong>high-quality results</strong> 
-      with a strong attention to detail <br />
+      with a strong attention to detail. <br />
       Results-oriented and a <strong>passionate</strong> problem solver who enjoys overcoming challenges.
     </p>
   </div>
