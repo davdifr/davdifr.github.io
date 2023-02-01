@@ -4,28 +4,6 @@ title: Resume
 permalink: /resume/
 ---
 
-<h1>Davide Di Francesco</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>mail</th>
-      <th>phone</th>
-      <th>twitter</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <a href='mailto:info@davdifr.com' target='_blank' class='url'>info@davdifr.com</a>
-      </td>
-      <td>+39 339 8518813</td>
-      <td><a href='https://twitter.com/davdifr'>@davdifr</a></td>
-    </tr>
-  </tbody>
-</table>
-
-
 <section id="SUMMARY">
   <div>
     <h3>SUMMARY</h3>
