@@ -23,6 +23,13 @@ The NFTMetadata structure contains important information about the digital crede
 Additionally, it also stores the wallet address of the original recipient of the credential. 
 This allows for **easy identification** of whether or not the NFT has been transferred to a different wallet and thus, whether or not the current holder is the true and original recipient of the credential. 
 
+It is also possible to add a `referenceId` field that can be used to store the id of the certificate/credential already issued on a private storage system.
+```solidity
+...
+string referenceId,
+...
+```
+
 In this way, on-chain storage of the NFTMetadata ensures the **authenticity and integrity** of the digital credentials represented by the NFTs.
 
 ### Mapping token ID to metadata
