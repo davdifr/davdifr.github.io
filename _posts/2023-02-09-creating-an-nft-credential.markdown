@@ -22,7 +22,7 @@ Sharing the transaction details can also be sufficient to view the attributes of
 
 Of course, this is not a practical way to share the credential. It is **recommended to use the OpenSea** platform instead, which in addition to providing an address for viewing on their site, also provides an embed code.
 
-![transaction](https://davdifr.com/assets/images/demo/share.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![transaction](https://davdifr.com/assets/images/demo/share.jpeg){:style="display:block; margin-left:auto; margin-right:auto"}
 
 Moreover, it is possible to **build various web applications** using the **web3js library**, which allows interaction with smart contracts.
 
