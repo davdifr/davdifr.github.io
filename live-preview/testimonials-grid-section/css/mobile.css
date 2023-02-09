@@ -1,0 +1,16 @@
+@media (max-width: 800px) {
+  .wrapper {
+    height: 100%;
+  }
+
+  .testimonials-grid-section {
+    grid-template-columns: 1fr;
+  }
+
+  .double {
+    grid-column: auto;
+  }
+  .last {
+    grid-area: auto;
+  }
+}

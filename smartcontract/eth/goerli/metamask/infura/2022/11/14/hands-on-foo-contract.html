@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Hands-on Foo contract | Davide Di Francesco</title>
+<meta name="generator" content="Jekyll v3.9.2">
+<meta property="og:title" content="Hands-on Foo contract">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="This article aims to give a complete overview of how to compile, deploy and test a smart contract. All the required tools are presented step by step to illustrate the necessary development environment setup.">
+<meta property="og:description" content="This article aims to give a complete overview of how to compile, deploy and test a smart contract. All the required tools are presented step by step to illustrate the necessary development environment setup.">
+<link rel="canonical" href="https://davdifr.github.io/smartcontract/eth/goerli/metamask/infura/2022/11/14/hands-on-foo-contract.html">
+<meta property="og:url" content="https://davdifr.github.io/smartcontract/eth/goerli/metamask/infura/2022/11/14/hands-on-foo-contract.html">
+<meta property="og:site_name" content="Davide Di Francesco">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-11-14T17:50:26+00:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Hands-on Foo contract">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-11-14T17:50:26+00:00","datePublished":"2022-11-14T17:50:26+00:00","description":"This article aims to give a complete overview of how to compile, deploy and test a smart contract. All the required tools are presented step by step to illustrate the necessary development environment setup.","headline":"Hands-on Foo contract","mainEntityOfPage":{"@type":"WebPage","@id":"https://davdifr.github.io/smartcontract/eth/goerli/metamask/infura/2022/11/14/hands-on-foo-contract.html"},"url":"https://davdifr.github.io/smartcontract/eth/goerli/metamask/infura/2022/11/14/hands-on-foo-contract.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+<link type="application/atom+xml" rel="alternate" href="https://davdifr.github.io/feed.xml" title="Davide Di Francesco">
+</head>
+<body>
+<header class="site-header" role="banner">
+
+  <div class="wrapper">
+<a class="site-title" rel="author" href="/">Davide Di Francesco</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger">
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewbox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/resume/">Resume</a></div>
+      </nav>
+</div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Hands-on Foo contract</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-11-14T17:50:26+00:00" itemprop="datePublished">Nov 14, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>This article aims to give a complete overview of how to compile, deploy and test a smart contract. All the required tools are presented step by step to illustrate the necessary development environment setup.</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ul>
+  <li>sc-boilerplate (<a href="https://github.com/davdifr/sc-boilerplate">https://github.com/davdifr/sc-boilerplate</a>)</li>
+  <li>Node.js (<a href="https://nodejs.org/en/">https://nodejs.org/en/</a>)</li>
+</ul>
+
+<h3 id="index">Index</h3>
+
+<ol>
+  <li><a href="#creating-a-test-wallet">Creating a Test Wallet</a></li>
+  <li><a href="#installing-the-required-packages">Installing the required packages</a></li>
+  <li><a href="#foo-smart-contract">Foo Smart Contract</a></li>
+  <li><a href="#deployment-on-the-goerli-testnet">Deployment on the Goerli testnet</a></li>
+  <li><a href="#contract-verification-with-etherscan">Contract verification with Etherscan</a></li>
+</ol>
+
+<h2 id="creating-a-test-wallet">Creating a Test Wallet</h2>
+
+<p>MetaMask is a software wallet for cryptocurrencies used to interact with the Ethereum blockchain. It allows users to access their Ethereum wallet via a browser extension or mobile app, which can then be used to interact with decentralized applications.</p>
+
+<p>*<em>Note: If you already have your own MetaMask wallet, you should create a new one for security reasons.</em></p>
+
+<p>Using Google Chrome as a browser, Metamask is avaiable in the <a href="https://chrome.google.com/webstore/category/extensions">chrome web store</a>.
+Follow the instructions to create your wallet and write down the <strong>12 words</strong> that make up the <strong>secret recovery phrase</strong>, because they will be needed later for the deploy part.</p>
+
+<p>As a test, it shouldn’t be on the Ethereum mainnet, but on a testnet, specifically the Goerli testnet. The following part shows how to change the selected network:</p>
+
+<ul>
+  <li>
+    <p>On the top right of the MetaMark interface click on Ethreum Mainnet;</p>
+  </li>
+  <li>
+    <p>Click on Show/hide test networks;</p>
+  </li>
+</ul>
+
+<p><img src="https://davdifr.github.io/assets/images/foo-img/metamask-1.png" alt="MetaMask-1" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<ul>
+  <li>Enable “Show test networks”;</li>
+</ul>
+
+<p><img src="https://davdifr.github.io/assets/images/foo-img/metamask-2.png" alt="MetaMask-2" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<ul>
+  <li>Go back and select “Goerli test network”.</li>
+</ul>
+
+<p><img src="https://davdifr.github.io/assets/images/foo-img/metamask-3.png" alt="MetaMask-3" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p>Now the wallet is ready to interact with the Goerli test network. Since funds are required for each transaction, you can receive GoerliETH tokens through these links:</p>
+
+<ul>
+  <li>
+    <p><a href="https://goerlifaucet.com/">https://goerlifaucet.com/</a></p>
+  </li>
+  <li>
+    <p><a href="ttps://faucets.chain.link/">https://faucets.chain.link/</a></p>
+  </li>
+</ul>
+
+<p>Copy and paste the wallet address from MetaMask on one or both the previous website to get 0.2 or 0.1 GoerliETH.</p>
+
+<p><img src="https://davdifr.github.io/assets/images/foo-img/metamask-4.png" alt="MetaMask-4" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<h2 id="installing-the-required-packages">Installing the required packages</h2>
+
+<p>Thanks to Node.js the boilerplate can work properly with the required packages.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"@truffle/hdwallet-provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.5.1"</span><span class="err">,</span><span class="w">
+</span><span class="nl">"ganache-cli"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^6.12.2"</span><span class="err">,</span><span class="w">
+</span><span class="nl">"mocha"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^9.1.2"</span><span class="err">,</span><span class="w">
+</span><span class="nl">"solc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^0.8.9"</span><span class="err">,</span><span class="w">
+</span><span class="nl">"web3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.6.0"</span><span class="w">
+</span></code></pre></div></div>
+
+<p>🚨 All packages can be installed automatically with <code class="language-plaintext highlighter-rouge">npm install</code> in the project folder, because they are already specified in the package.json.</p>
+
+<p>Required packages are listed below with a brief description:</p>
+
+<ul>
+  <li>
+    <p><strong>@truffle/hdwallet-provider</strong> - HD Wallet-enabled Web3 provider.
+It is necessary to use the wallet in the <code class="language-plaintext highlighter-rouge">deploy.js</code> file. The first <code class="language-plaintext highlighter-rouge">""</code> must be filled with the <strong>12 words</strong> that form the <strong>secret recovery phrase</strong> of the MetaMask wallet, the second with the Infura endpoints, which will be explained later.</p>
+
+    <div class="language-js highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HDWalletProvider</span><span class="p">(</span>
+  <span class="dl">""</span><span class="p">,</span> <span class="c1">// Wallet secret recovery phrase</span>
+  <span class="dl">""</span> <span class="c1">// Infura endpoints</span>
+<span class="p">);</span>
+</code></pre></div>    </div>
+
+    <p>The hdwallet-provider also allows you to select which wallet account should be used to perform the action.</p>
+
+    <div class="language-js highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+<span class="kd">const</span> <span class="nx">accounts</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">getAccounts</span><span class="p">();</span> <span class="c1">// Get all the accounts in the wallet</span>
+<span class="p">...</span>
+    <span class="p">.</span><span class="nx">send</span><span class="p">({</span> <span class="na">gas</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1000000</span><span class="dl">"</span><span class="p">,</span> <span class="na">from</span><span class="p">:</span> <span class="nx">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">});</span> <span class="c1">// Send the transaction from the first account</span>
+<span class="p">...</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>ganache-cli</strong> - Ganache CLI uses ethereumjs to <strong>simulate full client</strong> behavior and make Ethereum application development faster, easier, and more secure. Ganache CLI is needed to test the smart contract without deploying it on a real blockchain (test or mainnet). Required in <code class="language-plaintext highlighter-rouge">test/Foo.test.js</code> .</p>
+
+    <div class="language-js highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">assert</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">ganache</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">ganache-cli</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">Web3</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">web3</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">web3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Web3</span><span class="p">(</span><span class="nx">ganache</span><span class="p">.</span><span class="nx">provider</span><span class="p">());</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>mocha</strong> - Mocha is a feature-rich JavaScript <strong>test framework</strong> running on Node.js and in the browser, making asynchronous testing <em>simple</em>. Mocha provide the following functions (used in <code class="language-plaintext highlighter-rouge">test/Foo.test.js</code>):</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">Function</th>
+          <th style="text-align: center">Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">it</td>
+          <td style="text-align: center">Run a test and make an assertion.</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">describe</td>
+          <td style="text-align: center">Groups togheter ‘it’ functions.</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">beforeEach</td>
+          <td style="text-align: center">Execute some general setup code before each test.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><strong>solc</strong> - JavaScript bindings for the <a href="https://github.com/ethereum/solidity">Solidity compiler</a>.</p>
+  </li>
+  <li>
+    <p><strong>web3</strong> - Web3.js is a collection of libraries which allow you to interact with a local or remote ethereum node, using a HTTP or IPC connection.</p>
+  </li>
+</ul>
+
+<h2 id="foo-smart-contract">Foo Smart Contract</h2>
+
+<p>The boilerplate contains a simple smart contract named <code class="language-plaintext highlighter-rouge">Foo.sol</code> with the following code:</p>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// SPDX-License-Identifier: MIT
+</span>
+<span class="k">pragma</span> <span class="n">solidity</span> <span class="o">^</span><span class="mf">0.8</span><span class="p">.</span><span class="mi">9</span><span class="p">;</span>
+
+<span class="k">contract</span> <span class="n">Foo</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="k">public</span> <span class="n">message</span><span class="p">;</span>
+
+    <span class="k">constructor</span><span class="p">(</span><span class="kt">string</span> <span class="k">memory</span> <span class="n">defaultMessage</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">defaultMessage</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">function</span> <span class="n">setMessage</span><span class="p">(</span><span class="kt">string</span> <span class="k">memory</span> <span class="n">newMessage</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">newMessage</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>As we can see, this smart contract is really simple and clear, it contains a string that we set with the constructor function when we deploy the contract, and a function that allows us to change the string. A basic smart contract like this is clearly good for understanding the process of deploying and testing.</p>
+
+<h3 id="local-deployment">Local deployment</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">Foo.test.js</code> first simulates the deployment in a local Ethereum chain (thanks to Ganache) with the string value <code class="language-plaintext highlighter-rouge">"This is a real foo contract, not smart at all."</code> passed in the constructor:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">beforeEach</span><span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">accounts</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">getAccounts</span><span class="p">();</span>
+  <span class="nx">foo</span> <span class="o">=</span> <span class="k">await</span> <span class="k">new</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">abi</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">deploy</span><span class="p">({</span>
+      <span class="na">data</span><span class="p">:</span> <span class="nx">evm</span><span class="p">.</span><span class="nx">bytecode</span><span class="p">.</span><span class="nx">object</span><span class="p">,</span>
+      <span class="na">arguments</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">This is a real foo contract, not smart at all.</span><span class="dl">"</span><span class="p">],</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">send</span><span class="p">({</span> <span class="na">from</span><span class="p">:</span> <span class="nx">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="na">gas</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1000000</span><span class="dl">"</span> <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><a href="#deploy-details">deploy details…</a></p>
+
+<p>And then (using Mocha) tests if the contract is successfully deployed, the default message is present as expected, and also tests the <code class="language-plaintext highlighter-rouge">setMessage</code> function by passing another string to check if it changes correctly.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">Foo</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">Contract deployed successfully.</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span><span class="p">(</span><span class="nx">foo</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
+  <span class="p">});</span>
+  <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">Default message correctly setted.</span><span class="dl">"</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">message</span><span class="p">().</span><span class="nx">call</span><span class="p">();</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="dl">"</span><span class="s2">This is a real foo contract, not smart at all.</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">});</span>
+  <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">setMessage function works properly.</span><span class="dl">"</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">methods</span>
+      <span class="p">.</span><span class="nx">setMessage</span><span class="p">(</span><span class="dl">"</span><span class="s2">The foo has been changed.</span><span class="dl">"</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">send</span><span class="p">({</span> <span class="na">from</span><span class="p">:</span> <span class="nx">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">});</span>
+    <span class="kd">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">message</span><span class="p">().</span><span class="nx">call</span><span class="p">();</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="dl">"</span><span class="s2">The foo has been changed.</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>In the project folder, a test can be run with <code class="language-plaintext highlighter-rouge">npm run test</code> and the output will look like the following:</p>
+
+<p><img src="https://davdifr.github.io/assets/images/foo-img/foo-testrun.png" alt="Foo Test" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p>If the three tests are passed, the smart contract works as expected and can be deployed in a real blockchain (test or mainnet).</p>
+
+<h2 id="deployment-on-the-goerli-testnet">Deployment on the Goerli testnet</h2>
+
+<p>After testing, the contract is ready to be deployed on the Goerli test network. To accomplish this task, we need a provider instead of Ganache that will allow us to communicate and interact with the real blockchain. After an account is created on <a href="https://www.infura.io/">https://www.infura.io/</a>, a new key can be generated.</p>
+
+<p><img src="https://davdifr.github.io/assets/images/foo-img/infura-1.png" alt="Infura-1" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p>Next, Goerli testnet can be selected and finally a url endpoint can be received for deployment.</p>
+
+<p><img src="https://davdifr.github.io/assets/images/foo-img/infura-2.png" alt="Infura-2" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p>The endpoint must be inserted in the <code class="language-plaintext highlighter-rouge">deploy.js</code> file, as previously described:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HDWalletProvider</span><span class="p">(</span>
+  <span class="dl">"</span><span class="s2">birth hour hundred tuna confirm stove busy laugh initial spy sock start</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Wallet secret recovery phrase</span>
+  <span class="dl">"</span><span class="s2">https://goerli.infura.io/v3/ca6a6e33f51643fca72535c93625932a</span><span class="dl">"</span> <span class="c1">// Infura endpoints</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>Finally, the Foo smart contract can be deployed by running <code class="language-plaintext highlighter-rouge">node deploy.js</code>, displaying the contract address as in the following image:
+<img src="https://davdifr.github.io/assets/images/foo-img/deploy.png" alt="Deploy" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p>Once you have received the address of the smart contract, the process is complete and the contract is actually on the chain.</p>
+
+<h2 id="contract-verification-with-etherscan">Contract verification with Etherscan</h2>
+
+<p>The Foo Smart Contract is located in the Goerli test network and is visible to everyone via the blockchain explorer <a href="https://goerli.etherscan.io">https://goerli.etherscan.io</a>.</p>
+
+<p><img src="https://davdifr.github.io/assets/images/foo-img/etherscan-1.png" alt="Etherscan-1" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p>The source code can be viewed by clicking on the “<strong>Contract</strong>” section;</p>
+
+<p><img src="https://davdifr.github.io/assets/images/foo-img/etherscan-2.png" alt="Etherscan-2" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p>The “<strong>Read Contract</strong>” section contains the message that was set in the deployment phase;</p>
+
+<p><img src="https://davdifr.github.io/assets/images/foo-img/etherscan-3.png" alt="Etherscan-3" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p>And the “<strong>Write Contract</strong>” section allows (through connection with MetaMask) the use of the setMessage function.
+<img src="https://davdifr.github.io/assets/images/foo-img/etherscan-4.png" alt="Etherscan-4" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<h2 id="deploy-details">Deploy details</h2>
+
+<p>The deploy function also requires the bytecode (<code class="language-plaintext highlighter-rouge">evm.bytecode.object</code>) of the smart contract generated by solc (the Solidity compiler) to be interpreted by the Ethereum Virtual Machine. Obviously the bytecode isn’t human readable, for clarity and better understanding of the compilation process a <code class="language-plaintext highlighter-rouge">console.log(module.exports);</code> can be added to the end of the <code class="language-plaintext highlighter-rouge">compile.js</code> file. After running <code class="language-plaintext highlighter-rouge">node compile</code>, the ABI (which defines the methods and structures for interacting with the binary contract) and the bytecode can be viewed and look like this:</p>
+
+<p><img src="https://davdifr.github.io/assets/images/foo-img/abi.png" alt="ABI" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p><img src="https://davdifr.github.io/assets/images/foo-img/bytecode.png" alt="bytecode" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p>After the <code class="language-plaintext highlighter-rouge">deploy()</code> function, there is a <code class="language-plaintext highlighter-rouge">send()</code> function.</p>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+	<span class="p">.</span><span class="nb">send</span><span class="p">({</span> <span class="n">from</span><span class="o">:</span> <span class="n">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">gas</span><span class="o">:</span> <span class="s">"1000000"</span> <span class="p">});</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>Since each Ethereum transaction requires computational resources to be executed, there is a fee. Gas refers to the fee required to successfully complete a transaction on Ethereum and is expressed in Gwei. The <code class="language-plaintext highlighter-rouge">gas</code> parameter <strong>sets a limit of Gwei</strong> that the sender allows to process the transaction.</p>
+
+<p>Wei is the smallest denomination of ether in Etheruem. One ether is one quintillion or 10^18 weis. The following table is a list of the named denominations and their value in wei:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Unit</th>
+      <th style="text-align: left">Wei Value</th>
+      <th style="text-align: center">Wei</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">wei</td>
+      <td style="text-align: left">1 wei</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Kwei (babbage)</td>
+      <td style="text-align: left">10^3 wei</td>
+      <td style="text-align: center">1,000</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Mwei (lovelace)</td>
+      <td style="text-align: left">10^6 wei</td>
+      <td style="text-align: center">1,000,000</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Gwei (shannon)</td>
+      <td style="text-align: left">10^9 wei</td>
+      <td style="text-align: center">1,000,000,000</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">microether (szabo)</td>
+      <td style="text-align: left">10^12 wei</td>
+      <td style="text-align: center">1,000,000,000,000</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">milliether (finney)</td>
+      <td style="text-align: left">10^15 wei</td>
+      <td style="text-align: center">1,000,000,000,000,000</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ether</td>
+      <td style="text-align: left">10^18 wei</td>
+      <td style="text-align: center">1,000,000,000,000,000,000</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li>
+<a href="https://www.udemy.com/course/ethereum-and-solidity-the-complete-developers-guide/">Ethereum and Solidity: The Complete Developer’s Guide</a> - Created by Stephen Grider</li>
+</ul>
+
+  </div>
+<a class="u-url" href="/smartcontract/eth/goerli/metamask/infura/2022/11/14/hands-on-foo-contract.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Davide Di Francesco</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Davide Di Francesco</li>
+<li><a class="u-email" href="mailto:info@davdifr.com">info@davdifr.com</a></li>
+</ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+<ul class="social-media-list">
+<li><a href="https://github.com/davdifr"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">davdifr</span></a></li>
+<li><a href="https://www.twitter.com/davdifr"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">davdifr</span></a></li>
+</ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Student @ University of L'Aquila, Italy.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

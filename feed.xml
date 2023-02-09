@@ -1,0 +1,1182 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://davdifr.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://davdifr.github.io/" rel="alternate" type="text/html" /><updated>2023-02-09T15:04:47+00:00</updated><id>https://davdifr.github.io/feed.xml</id><title type="html">Davide Di Francesco</title><subtitle>Student @ University of L'Aquila, Italy.</subtitle><entry><title type="html">Creating an NFT Credential</title><link href="https://davdifr.github.io/digitalcredentials/nfts/smartcontract/2023/02/09/creating-an-nft-credential.html" rel="alternate" type="text/html" title="Creating an NFT Credential" /><published>2023-02-09T10:38:26+00:00</published><updated>2023-02-09T10:38:26+00:00</updated><id>https://davdifr.github.io/digitalcredentials/nfts/smartcontract/2023/02/09/creating-an-nft-credential</id><content type="html" xml:base="https://davdifr.github.io/digitalcredentials/nfts/smartcontract/2023/02/09/creating-an-nft-credential.html">&lt;p&gt;The NFTs created in the proposed solution are compliant with the ERC721 standard and can be &lt;strong&gt;created directly through Etherscan&lt;/strong&gt; (the official Ethereum blockchain explorer).
+Additionally, like any other NFT of this standard, they can be viewed and read on &lt;strong&gt;any platform&lt;/strong&gt; that interacts with these smart contracts.
+The creation of a new digital credential through Etherscan appears as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.com/assets/images/demo/etherscan-mint.png&quot; alt=&quot;etherscan-mint&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point, it is not necessary to have any coding experience to proceed.
+All you need to do is &lt;strong&gt;connect the contract owner’s wallet&lt;/strong&gt; and fill out the form to &lt;strong&gt;create and send&lt;/strong&gt; the recipient their digital credential.&lt;/p&gt;
+
+&lt;p&gt;Once the token is released, the recipient can &lt;strong&gt;share their wallet address&lt;/strong&gt;, allowing it to be easily found using &lt;strong&gt;various blockchain exploration tools&lt;/strong&gt;, including Etherscan, where information about the token can be viewed.&lt;/p&gt;
+
+&lt;p&gt;Sharing the transaction details can also be sufficient to view the attributes of the issued NFT.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.com/assets/images/demo/transaction.png&quot; alt=&quot;transaction&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Of course, this is not a practical way to share the credential. It is &lt;strong&gt;recommended to use the OpenSea&lt;/strong&gt; platform instead, which in addition to providing an address for viewing on their site, also provides an embed code.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.com/assets/images/demo/share.jpeg&quot; alt=&quot;transaction&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Moreover, it is possible to &lt;strong&gt;build various web applications&lt;/strong&gt; using the &lt;strong&gt;web3js library&lt;/strong&gt;, which allows interaction with smart contracts.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.com/assets/images/demo/mint.png&quot; alt=&quot;dapp-mint&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A possible example, which will be demonstrated in the form of a demo, is the potential use of these credentials as a form of login to a platform.&lt;/p&gt;
+
+&lt;h2 id=&quot;potential-use-as-login-demo&quot;&gt;Potential use as Login [DEMO]&lt;/h2&gt;
+
+&lt;h4 id=&quot;1-checking-user-address&quot;&gt;1. Checking User Address&lt;/h4&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;web3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Web3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;https://goerli.infura.io/v3/22a66e24f1fb47599e326320feb4b424&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tokenContractAddress&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;0x6c3C2C3ad1D11B518e132Ea794c6c796D51af2Ee&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Creating an &lt;strong&gt;instance of the Web3 class&lt;/strong&gt; and connecting to an Infura node and we are defining a constant variable for the smart contract address that we will be interacting with.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;userAddress&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkUserAddress&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ethereum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;userAddress&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ethereum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;enable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create a variable called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userAddress&lt;/code&gt; and initialize it as an empty string.&lt;/p&gt;
+
+&lt;p&gt;Next, we have an asynchronous function called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;checkUserAddress&lt;/code&gt;. This function first checks if the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ethereum&lt;/code&gt; object is available, and if it is, it enables access to wallet information using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ethereum.enable()&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;The first account in the resulting array is then assigned to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userAddress&lt;/code&gt; variable.
+&lt;em&gt;If an error occurs, it will be logged in the console.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Upon opening the page, &lt;strong&gt;the user will be prompted to connect their wallet&lt;/strong&gt; first, thanks to this code.&lt;/p&gt;
+
+&lt;h4 id=&quot;2-logging-into-the-platform-via-contract-interaction&quot;&gt;2. Logging into the platform via contract interaction&lt;/h4&gt;
+
+&lt;p&gt;We manage a login interface that handles &lt;strong&gt;two scenarios&lt;/strong&gt;: the wallet owner &lt;strong&gt;doesn’t have any tokens&lt;/strong&gt; issued by our contract, and the owner &lt;strong&gt;has one or multiple tokens&lt;/strong&gt;, the details of which are also displayed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.com/assets/images/demo/login.png&quot; alt=&quot;login&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When the button is clicked, it performs the following actions:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tokenContract&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;web3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;eth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Contract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;abi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tokenContractAddress&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;balance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tokenContract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;balanceOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;userAddress&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;balance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;There is at least one NFT in your wallet from this contract&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+		&lt;span class=&quot;nx&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;There are no NFTs in your wallet created by this contract&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Creates a new instance of a smart contract using the Ethereum JavaScript library web3.js and its Contract object.&lt;/li&gt;
+  &lt;li&gt;Calls the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;balanceOf&lt;/code&gt; method on the smart contract instance and checks if the returned balance is greater than 0.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If the balance is equal to or less than 0, the “msg” element is set to “There are no NFTs in your wallet created by this contract”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.com/assets/images/demo/not-owner.png&quot; alt=&quot;not-owner&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If the balance is greater than 0, the “msg” element is set to “There is at least one NFT in your wallet from this contract”.&lt;/p&gt;
+
+&lt;p&gt;Additionally:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tokens&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tokenContract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;walletOfOwner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;userAddress&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tokenMetadataPromises&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tokens&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tokenId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tokenContract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tokenMetadatas&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tokenMetadataPromises&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;tokenMetadatas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;metadata&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Calls the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;walletOfOwner&lt;/code&gt; method on the smart contract instance to get an array of tokens owned by a specific user address.&lt;/li&gt;
+  &lt;li&gt;Maps over the array of tokens and calls the metadata method on the smart contract instance for each token to retrieve its metadata.&lt;/li&gt;
+  &lt;li&gt;Waits for all metadata requests to complete and stores the results in an array.&lt;/li&gt;
+  &lt;li&gt;Iterates over the array of metadata, creating HTML elements for the owner name, title, and description of each token and appending them to the “details” element.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.com/assets/images/demo/owner.png&quot; alt=&quot;owner&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-a-graphic-appearance&quot;&gt;Creating a Graphic Appearance&lt;/h2&gt;
+
+&lt;p&gt;NFTs commonly come with an image that serves as a visual representation. However, the current on-chain metadata structure doesn’t support the inclusion of images. Fortunately, we can utilize an off-chain solution through IPFS to resolve this limitation.&lt;/p&gt;
+
+&lt;p&gt;IPFS (&lt;strong&gt;InterPlanetary File System&lt;/strong&gt;) is a decentralized and distributed file storage system that is designed to enhance the speed, safety, and openness of the web. Unlike traditional server-based file storage, IPFS leverages a peer-to-peer network of computers to store and access files, leading to faster and more resilient file sharing. This technology is often integrated with blockchain technology to build decentralized applications and to store and transfer digital assets such as NFTs.&lt;/p&gt;
+
+&lt;p&gt;Two files will need to be stored using an IPFS service: &lt;strong&gt;the image&lt;/strong&gt; we want to assign to the token, and &lt;strong&gt;the JSON file&lt;/strong&gt; containing the desired metadata.&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Digital Credential&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;On-chain Digital Credentials through NFTs.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;image&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ipfs://QmNgdypgjW79BNj1aADctMakZGJqbjiTbKDyWC97smcXg8&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The JSON file will in turn have the IPFS link that has been assigned to the image inside it.&lt;/p&gt;
+
+&lt;p&gt;The final step is to call the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setBaseURI&lt;/code&gt; function of the contract, providing the IPFS address of the JSON file as input. From this moment on, the graphical representation of the token will be visible on any platform. Here is an example on OpenSea:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.com/assets/images/demo/opensea.png&quot; alt=&quot;etherscan-mind&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="digitalcredentials" /><category term="nfts" /><category term="smartcontract" /><summary type="html">The NFTs created in the proposed solution are compliant with the ERC721 standard and can be created directly through Etherscan (the official Ethereum blockchain explorer). Additionally, like any other NFT of this standard, they can be viewed and read on any platform that interacts with these smart contracts. The creation of a new digital credential through Etherscan appears as follows:</summary></entry><entry><title type="html">On-chain Digital Credentials through NFTs</title><link href="https://davdifr.github.io/smartcontract/eth/goerli/erc721/digitalcredentials/2023/01/11/on-chain-digital-credentials-through-nfts.html" rel="alternate" type="text/html" title="On-chain Digital Credentials through NFTs" /><published>2023-01-11T10:57:26+00:00</published><updated>2023-01-11T10:57:26+00:00</updated><id>https://davdifr.github.io/smartcontract/eth/goerli/erc721/digitalcredentials/2023/01/11/on-chain-digital-credentials-through-nfts</id><content type="html" xml:base="https://davdifr.github.io/smartcontract/eth/goerli/erc721/digitalcredentials/2023/01/11/on-chain-digital-credentials-through-nfts.html">&lt;p&gt;The proposed contract is &lt;strong&gt;built on the ERC721&lt;/strong&gt; standard, which allows for the creation of unique, non-fungible tokens (NFTs) on the Ethereum blockchain.&lt;/p&gt;
+
+&lt;p&gt;The goal of this implementation is to &lt;strong&gt;create NFTs that represent digital credentials&lt;/strong&gt;, with all aspects of these credentials being implemented on the blockchain. 
+To achieve this, a custom data structure called NFTMetadata was implemented.&lt;/p&gt;
+
+&lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NFTMetadata&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wallet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The NFTMetadata structure contains important information about the digital credential, such as the name, title, and description of the credential. 
+Additionally, it also stores the wallet address of the original recipient of the credential. 
+This allows for &lt;strong&gt;easy identification&lt;/strong&gt; of whether or not the NFT has been transferred to a different wallet and thus, whether or not the current holder is the true and original recipient of the credential.&lt;/p&gt;
+
+&lt;p&gt;It is also possible to add a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;referenceId&lt;/code&gt; field that can be used to store the id of the certificate/credential already issued on a private storage system.&lt;/p&gt;
+&lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;referenceId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In this way, on-chain storage of the NFTMetadata ensures the &lt;strong&gt;authenticity and integrity&lt;/strong&gt; of the digital credentials represented by the NFTs.&lt;/p&gt;
+
+&lt;h3 id=&quot;mapping-token-id-to-metadata&quot;&gt;Mapping token ID to metadata&lt;/h3&gt;
+
+&lt;p&gt;In addition to the NFTMetadata structure, the contract also uses a mapping to associate each individual NFT with its corresponding metadata. The mapping is declared as follows:&lt;/p&gt;
+
+&lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;mapping&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NFTMetadata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This creates a mapping from token ID to NFTMetadata.&lt;/p&gt;
+
+&lt;p&gt;Each NFT is identified by a &lt;strong&gt;unique token ID&lt;/strong&gt;, which is of the type uint256. This ID is used as the key in the mapping to access the metadata associated with that particular NFT.&lt;/p&gt;
+
+&lt;p&gt;When a new NFT is created and minted, an entry is added to the mapping with the token ID as the key and an instance of the NFTMetadata structure as the value. This allows the contract to easily look up the metadata associated with a given NFT, simply by using its token ID as the key in the mapping.&lt;/p&gt;
+
+&lt;p&gt;This is how the contract links the data stored on the NFT with the metadata that allow the verification and understanding of the NFT.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;For example if someone want to access the metadata of the NFT, with id equals to 100, it can just access the metadata[100].&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;the-mint-function&quot;&gt;The mint function&lt;/h3&gt;
+
+&lt;p&gt;The mint function is a crucial part of our NFT contract, and it allows the creation of new non-fungible tokens and their assignment to a specific recipient.&lt;/p&gt;
+
+&lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;memory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;memory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;memory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_description&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_recipient&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onlyOwner&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;supply&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;totalSupply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;supply&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;paused&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NFTMetadata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_description&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_recipient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;_safeMint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_recipient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;First, only the contract owner has the permission to execute this function, this is achieved by using the keyword &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onlyOwner&lt;/code&gt;. This measure guarantees that &lt;strong&gt;only authorized parties can create new NFTs&lt;/strong&gt;, providing a higher level of security.&lt;/p&gt;
+
+&lt;p&gt;The function receives four parameters: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_name&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_title&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_description&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_recipient&lt;/code&gt;, these parameters are used to create an instance of the NFTMetadata struct, which stores the metadata associated with the NFT, including information such as name, title and description, and the address of the recipient.&lt;/p&gt;
+
+&lt;p&gt;The metadata is then associated with the tokenId generated, which is calculated as the totalSupply + 1. 
+This provides a &lt;strong&gt;unique and incremental tokenId for each NFT minted&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Additionally, the function contains a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;require(!paused)&lt;/code&gt; statement, which ensures that the creation of new NFTs can only take place when the contract is not paused, this is an important security measure.&lt;/p&gt;
+
+&lt;p&gt;Finally, the function uses the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_safeMint&lt;/code&gt; function, which is a helper function that guarantees that the NFT is minted and assigned to the correct recipient, avoiding security vulnerabilities.&lt;/p&gt;
+
+&lt;p&gt;Overall, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mint&lt;/code&gt; function is a robust and secure mechanism for creating new NFTs and assigning them to specific recipients, by using this function, we have ensured that the NFTs minted by our contract are unique, incremental, and properly assigned to their intended recipients, providing a high degree of trust and transparency.&lt;/p&gt;</content><author><name></name></author><category term="smartcontract" /><category term="eth" /><category term="goerli" /><category term="erc721" /><category term="digitalcredentials" /><summary type="html">The proposed contract is built on the ERC721 standard, which allows for the creation of unique, non-fungible tokens (NFTs) on the Ethereum blockchain.</summary></entry><entry><title type="html">Hands-on Foo contract</title><link href="https://davdifr.github.io/smartcontract/eth/goerli/metamask/infura/2022/11/14/hands-on-foo-contract.html" rel="alternate" type="text/html" title="Hands-on Foo contract" /><published>2022-11-14T17:50:26+00:00</published><updated>2022-11-14T17:50:26+00:00</updated><id>https://davdifr.github.io/smartcontract/eth/goerli/metamask/infura/2022/11/14/hands-on-foo-contract</id><content type="html" xml:base="https://davdifr.github.io/smartcontract/eth/goerli/metamask/infura/2022/11/14/hands-on-foo-contract.html">&lt;p&gt;This article aims to give a complete overview of how to compile, deploy and test a smart contract. All the required tools are presented step by step to illustrate the necessary development environment setup.&lt;/p&gt;
+
+&lt;h3 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;sc-boilerplate (&lt;a href=&quot;https://github.com/davdifr/sc-boilerplate&quot;&gt;https://github.com/davdifr/sc-boilerplate&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Node.js (&lt;a href=&quot;https://nodejs.org/en/&quot;&gt;https://nodejs.org/en/&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;#creating-a-test-wallet&quot;&gt;Creating a Test Wallet&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#installing-the-required-packages&quot;&gt;Installing the required packages&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#foo-smart-contract&quot;&gt;Foo Smart Contract&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#deployment-on-the-goerli-testnet&quot;&gt;Deployment on the Goerli testnet&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#contract-verification-with-etherscan&quot;&gt;Contract verification with Etherscan&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;creating-a-test-wallet&quot;&gt;Creating a Test Wallet&lt;/h2&gt;
+
+&lt;p&gt;MetaMask is a software wallet for cryptocurrencies used to interact with the Ethereum blockchain. It allows users to access their Ethereum wallet via a browser extension or mobile app, which can then be used to interact with decentralized applications.&lt;/p&gt;
+
+&lt;p&gt;*&lt;em&gt;Note: If you already have your own MetaMask wallet, you should create a new one for security reasons.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Using Google Chrome as a browser, Metamask is avaiable in the &lt;a href=&quot;https://chrome.google.com/webstore/category/extensions&quot;&gt;chrome web store&lt;/a&gt;.
+Follow the instructions to create your wallet and write down the &lt;strong&gt;12 words&lt;/strong&gt; that make up the &lt;strong&gt;secret recovery phrase&lt;/strong&gt;, because they will be needed later for the deploy part.&lt;/p&gt;
+
+&lt;p&gt;As a test, it shouldn’t be on the Ethereum mainnet, but on a testnet, specifically the Goerli testnet. The following part shows how to change the selected network:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;On the top right of the MetaMark interface click on Ethreum Mainnet;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click on Show/hide test networks;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/metamask-1.png&quot; alt=&quot;MetaMask-1&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Enable “Show test networks”;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/metamask-2.png&quot; alt=&quot;MetaMask-2&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Go back and select “Goerli test network”.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/metamask-3.png&quot; alt=&quot;MetaMask-3&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now the wallet is ready to interact with the Goerli test network. Since funds are required for each transaction, you can receive GoerliETH tokens through these links:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://goerlifaucet.com/&quot;&gt;https://goerlifaucet.com/&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;ttps://faucets.chain.link/&quot;&gt;https://faucets.chain.link/&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Copy and paste the wallet address from MetaMask on one or both the previous website to get 0.2 or 0.1 GoerliETH.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/metamask-4.png&quot; alt=&quot;MetaMask-4&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;installing-the-required-packages&quot;&gt;Installing the required packages&lt;/h2&gt;
+
+&lt;p&gt;Thanks to Node.js the boilerplate can work properly with the required packages.&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nl&quot;&gt;&quot;@truffle/hdwallet-provider&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^1.5.1&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;ganache-cli&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^6.12.2&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;mocha&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^9.1.2&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;solc&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^0.8.9&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;web3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^1.6.0&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;🚨 All packages can be installed automatically with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm install&lt;/code&gt; in the project folder, because they are already specified in the package.json.&lt;/p&gt;
+
+&lt;p&gt;Required packages are listed below with a brief description:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;@truffle/hdwallet-provider&lt;/strong&gt; - HD Wallet-enabled Web3 provider.
+It is necessary to use the wallet in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deploy.js&lt;/code&gt; file. The first &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;&quot;&lt;/code&gt; must be filled with the &lt;strong&gt;12 words&lt;/strong&gt; that form the &lt;strong&gt;secret recovery phrase&lt;/strong&gt; of the MetaMask wallet, the second with the Infura endpoints, which will be explained later.&lt;/p&gt;
+
+    &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;provider&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;HDWalletProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;dl&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Wallet secret recovery phrase&lt;/span&gt;
+  &lt;span class=&quot;dl&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Infura endpoints&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;The hdwallet-provider also allows you to select which wallet account should be used to perform the action.&lt;/p&gt;
+
+    &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;accounts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;web3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;eth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAccounts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Get all the accounts in the wallet&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;gas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;accounts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Send the transaction from the first account&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;ganache-cli&lt;/strong&gt; - Ganache CLI uses ethereumjs to &lt;strong&gt;simulate full client&lt;/strong&gt; behavior and make Ethereum application development faster, easier, and more secure. Ganache CLI is needed to test the smart contract without deploying it on a real blockchain (test or mainnet). Required in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test/Foo.test.js&lt;/code&gt; .&lt;/p&gt;
+
+    &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;assert&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ganache&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ganache-cli&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Web3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;web3&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;web3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Web3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ganache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;mocha&lt;/strong&gt; - Mocha is a feature-rich JavaScript &lt;strong&gt;test framework&lt;/strong&gt; running on Node.js and in the browser, making asynchronous testing &lt;em&gt;simple&lt;/em&gt;. Mocha provide the following functions (used in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test/Foo.test.js&lt;/code&gt;):&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;Function&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;Purpose&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;it&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;Run a test and make an assertion.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;describe&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;Groups togheter ‘it’ functions.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;beforeEach&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;Execute some general setup code before each test.&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;solc&lt;/strong&gt; - JavaScript bindings for the &lt;a href=&quot;https://github.com/ethereum/solidity&quot;&gt;Solidity compiler&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;web3&lt;/strong&gt; - Web3.js is a collection of libraries which allow you to interact with a local or remote ethereum node, using a HTTP or IPC connection.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;foo-smart-contract&quot;&gt;Foo Smart Contract&lt;/h2&gt;
+
+&lt;p&gt;The boilerplate contains a simple smart contract named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Foo.sol&lt;/code&gt; with the following code:&lt;/p&gt;
+
+&lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// SPDX-License-Identifier: MIT
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;pragma&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solidity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;contract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Foo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;memory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;defaultMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;defaultMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;memory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As we can see, this smart contract is really simple and clear, it contains a string that we set with the constructor function when we deploy the contract, and a function that allows us to change the string. A basic smart contract like this is clearly good for understanding the process of deploying and testing.&lt;/p&gt;
+
+&lt;h3 id=&quot;local-deployment&quot;&gt;Local deployment&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Foo.test.js&lt;/code&gt; first simulates the deployment in a local Ethereum chain (thanks to Ganache) with the string value &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;This is a real foo contract, not smart at all.&quot;&lt;/code&gt; passed in the constructor:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;beforeEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;accounts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;web3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;eth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getAccounts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;web3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;eth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Contract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;abi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;evm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bytecode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;This is a real foo contract, not smart at all.&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;accounts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;gas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;#deploy-details&quot;&gt;deploy details…&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;And then (using Mocha) tests if the contract is successfully deployed, the default message is present as expected, and also tests the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setMessage&lt;/code&gt; function by passing another string to check if it changes correctly.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;describe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Contract deployed successfully.&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ok&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Default message correctly setted.&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;This is a real foo contract, not smart at all.&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;setMessage function works properly.&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;methods&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;The foo has been changed.&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;accounts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;The foo has been changed.&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In the project folder, a test can be run with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm run test&lt;/code&gt; and the output will look like the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/foo-testrun.png&quot; alt=&quot;Foo Test&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If the three tests are passed, the smart contract works as expected and can be deployed in a real blockchain (test or mainnet).&lt;/p&gt;
+
+&lt;h2 id=&quot;deployment-on-the-goerli-testnet&quot;&gt;Deployment on the Goerli testnet&lt;/h2&gt;
+
+&lt;p&gt;After testing, the contract is ready to be deployed on the Goerli test network. To accomplish this task, we need a provider instead of Ganache that will allow us to communicate and interact with the real blockchain. After an account is created on &lt;a href=&quot;https://www.infura.io/&quot;&gt;https://www.infura.io/&lt;/a&gt;, a new key can be generated.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/infura-1.png&quot; alt=&quot;Infura-1&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, Goerli testnet can be selected and finally a url endpoint can be received for deployment.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/infura-2.png&quot; alt=&quot;Infura-2&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The endpoint must be inserted in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deploy.js&lt;/code&gt; file, as previously described:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;provider&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;HDWalletProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;birth hour hundred tuna confirm stove busy laugh initial spy sock start&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Wallet secret recovery phrase&lt;/span&gt;
+  &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;https://goerli.infura.io/v3/ca6a6e33f51643fca72535c93625932a&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Infura endpoints&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, the Foo smart contract can be deployed by running &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;node deploy.js&lt;/code&gt;, displaying the contract address as in the following image:
+&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/deploy.png&quot; alt=&quot;Deploy&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you have received the address of the smart contract, the process is complete and the contract is actually on the chain.&lt;/p&gt;
+
+&lt;h2 id=&quot;contract-verification-with-etherscan&quot;&gt;Contract verification with Etherscan&lt;/h2&gt;
+
+&lt;p&gt;The Foo Smart Contract is located in the Goerli test network and is visible to everyone via the blockchain explorer &lt;a href=&quot;https://goerli.etherscan.io&quot;&gt;https://goerli.etherscan.io&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/etherscan-1.png&quot; alt=&quot;Etherscan-1&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The source code can be viewed by clicking on the “&lt;strong&gt;Contract&lt;/strong&gt;” section;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/etherscan-2.png&quot; alt=&quot;Etherscan-2&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The “&lt;strong&gt;Read Contract&lt;/strong&gt;” section contains the message that was set in the deployment phase;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/etherscan-3.png&quot; alt=&quot;Etherscan-3&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And the “&lt;strong&gt;Write Contract&lt;/strong&gt;” section allows (through connection with MetaMask) the use of the setMessage function.
+&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/etherscan-4.png&quot; alt=&quot;Etherscan-4&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;deploy-details&quot;&gt;Deploy details&lt;/h2&gt;
+
+&lt;p&gt;The deploy function also requires the bytecode (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;evm.bytecode.object&lt;/code&gt;) of the smart contract generated by solc (the Solidity compiler) to be interpreted by the Ethereum Virtual Machine. Obviously the bytecode isn’t human readable, for clarity and better understanding of the compilation process a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;console.log(module.exports);&lt;/code&gt; can be added to the end of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compile.js&lt;/code&gt; file. After running &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;node compile&lt;/code&gt;, the ABI (which defines the methods and structures for interacting with the binary contract) and the bytecode can be viewed and look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/abi.png&quot; alt=&quot;ABI&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/foo-img/bytecode.png&quot; alt=&quot;bytecode&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deploy()&lt;/code&gt; function, there is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;send()&lt;/code&gt; function.&lt;/p&gt;
+
+&lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;accounts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1000000&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Since each Ethereum transaction requires computational resources to be executed, there is a fee. Gas refers to the fee required to successfully complete a transaction on Ethereum and is expressed in Gwei. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gas&lt;/code&gt; parameter &lt;strong&gt;sets a limit of Gwei&lt;/strong&gt; that the sender allows to process the transaction.&lt;/p&gt;
+
+&lt;p&gt;Wei is the smallest denomination of ether in Etheruem. One ether is one quintillion or 10^18 weis. The following table is a list of the named denominations and their value in wei:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Unit&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Wei Value&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Wei&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;wei&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;1 wei&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Kwei (babbage)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;10^3 wei&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1,000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Mwei (lovelace)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;10^6 wei&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1,000,000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Gwei (shannon)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;10^9 wei&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1,000,000,000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;microether (szabo)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;10^12 wei&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1,000,000,000,000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;milliether (finney)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;10^15 wei&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1,000,000,000,000,000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;ether&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;10^18 wei&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1,000,000,000,000,000,000&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.udemy.com/course/ethereum-and-solidity-the-complete-developers-guide/&quot;&gt;Ethereum and Solidity: The Complete Developer’s Guide&lt;/a&gt; - Created by Stephen Grider&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="smartcontract" /><category term="eth" /><category term="goerli" /><category term="metamask" /><category term="infura" /><summary type="html">This article aims to give a complete overview of how to compile, deploy and test a smart contract. All the required tools are presented step by step to illustrate the necessary development environment setup.</summary></entry><entry><title type="html">Blockchain introduction</title><link href="https://davdifr.github.io/blockchain/ethereum/bitcoin/2022/10/24/blockchain-introduction.html" rel="alternate" type="text/html" title="Blockchain introduction" /><published>2022-10-24T16:36:00+00:00</published><updated>2022-10-24T16:36:00+00:00</updated><id>https://davdifr.github.io/blockchain/ethereum/bitcoin/2022/10/24/blockchain-introduction</id><content type="html" xml:base="https://davdifr.github.io/blockchain/ethereum/bitcoin/2022/10/24/blockchain-introduction.html">&lt;p&gt;&lt;em&gt;On October 31, 2008, Satoshi Nakamoto published a white paper entitled “&lt;a href=&quot;https://bitcoin.org/bitcoin.pdf&quot;&gt;Bitcoin: A peer-to-peer electronic cash system&lt;/a&gt;”, in which he described a system that would enable P2P payments without a financial intermediary.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The blockchain is a &lt;strong&gt;P2P transaction model&lt;/strong&gt; that enables two parties to transact in a &lt;strong&gt;temper-resistant&lt;/strong&gt; and &lt;strong&gt;cryptographically proven&lt;/strong&gt; way. Essentially, it relies on three pillars: peer-to-peer networks, cryptography, and a consensus mechanism.&lt;/p&gt;
+
+&lt;p&gt;Each computer participating in this P2P network is called a &lt;strong&gt;node&lt;/strong&gt;. Each node stores records of transactions in multiple &lt;strong&gt;consecutive blocks&lt;/strong&gt;. Once all nodes in the network have stored and verified a transaction, it is impossible to change the transaction without changing all subsequent and previous blocks. For this reason, blockchain transactions are &lt;strong&gt;irreversible&lt;/strong&gt;, as blockchain transactions and their data are only appended.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/chain-of-blocks.svg&quot; alt=&quot;chain-of-blocks&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Blocks are connected by a link (also called a &lt;strong&gt;chain&lt;/strong&gt;). The link between two blocks &lt;em&gt;(Figure 1)&lt;/em&gt; is implemented by recording the previous block’s cryptographic hash so that it can be visited in reverse chronological order.&lt;/p&gt;
+
+&lt;p&gt;The following table shows the data structure for a &lt;strong&gt;block header&lt;/strong&gt; (in Bitcoin):&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Field&lt;/th&gt;
+      &lt;th&gt;Purpose&lt;/th&gt;
+      &lt;th&gt;Updated when…&lt;/th&gt;
+      &lt;th&gt;Size (Bytes)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Version&lt;/td&gt;
+      &lt;td&gt;Block version number&lt;/td&gt;
+      &lt;td&gt;You upgrade the software&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;hashPrevBlock&lt;/td&gt;
+      &lt;td&gt;256-bit hash of the previous block header&lt;/td&gt;
+      &lt;td&gt;A new block comes in&lt;/td&gt;
+      &lt;td&gt;32&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;hashMerkleRoot&lt;/td&gt;
+      &lt;td&gt;256-bit hash based on all of the transactions in the block&lt;/td&gt;
+      &lt;td&gt;A transaction is accepted&lt;/td&gt;
+      &lt;td&gt;32&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Time&lt;/td&gt;
+      &lt;td&gt;Current timestamp as seconds&lt;/td&gt;
+      &lt;td&gt;Every few seconds&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Bits&lt;/td&gt;
+      &lt;td&gt;Current target in compact format&lt;/td&gt;
+      &lt;td&gt;The difficulty is adjusted&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Nonce&lt;/td&gt;
+      &lt;td&gt;32-bit number (starts at 0)&lt;/td&gt;
+      &lt;td&gt;A hash is tried (increments)&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In particular, hashPrevBlock refers to the 256-bit hash value of the previous block, and hashMerkleRoot is the hash Merkle root of all transactions in the block, including coinable transactions. And the nonce is the magic number that miners must find so that the SHA-256 hash value of the block header is smaller than or equal to the blockchain-defined specific target.&lt;/p&gt;
+
+&lt;h2 id=&quot;transaction-process-overview&quot;&gt;Transaction process overview&lt;/h2&gt;
+
+&lt;p&gt;Assuming user A wants to buy something from user B &lt;em&gt;(Figure 2)&lt;/em&gt; and agrees to pay B 10 Bitcoins (BTC), the transaction proceeds as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/transaction-a-b.svg&quot; alt=&quot;transaction-a-b&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Create blockchain transactions:&lt;/strong&gt; A transaction is a transfer of value between two parties. When A sends 10 BTC to B, a transaction is created with one or more inputs and outputs, where the inputs reflect A’s account and the outputs reflect the accounts A wants to transfer. The transaction is digitally signed with A’s private key and broadcasted to the P2P network. The recipient uses the digital signature to verify ownership of A’s funds.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Validate the transactions and add them to the transaction pool:&lt;/strong&gt; Once the transaction is submitted to the blockchain network, the bookkeeper node (a node that receives the transactions) validates it according to the business and technical rules set by the blockchain network. If the transaction is valid, the bookkeeper adds it to the transaction pool and forwards the transaction to peers on the network.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Create the candidate blocks:&lt;/strong&gt; Transactions in the transaction pool are collected into a block at regular intervals. In a Bitcoin network, every 10 minutes a subset of network nodes called &lt;strong&gt;mining nodes&lt;/strong&gt; (or miners) collect all valid transactions from the transaction pool and create the candidate blocks.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Mining the new block:&lt;/strong&gt; Once the block candidate is created, the race begins for the chance to add new blocks and win the rewards. The process of such a race is called &lt;strong&gt;mining&lt;/strong&gt;. The winner of the race is determined by the consensus mechanism (in this case the PoW mechanism, which will be described in the next part). The miners keep trying to find a random number, the nonce in the block header structure, until the hash meets certain demanding conditions. For example, one of these conditions is that &lt;em&gt;the resulting block hash is less than a target number&lt;/em&gt;, or in some cases, the &lt;em&gt;hash has a few leading zeros&lt;/em&gt;. In practice, any random number has an equal chance of winning the race, so you can practically just start a loop from 1 to 2^32 until you find such a nonce. It takes a tremendous CPU hashing effort to find such a nonce. The challenging condition, called difficulty, can be adjusted based on the target count or bits in the block header structure. The difficulty of winning the race grows exponentially with the smaller target number or fewer bits in the block header structure.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Add a new block to the blockchain:&lt;/strong&gt; The first winning node will announce the new block to the rest of the network for verification. Once the block is verified and approved by the majority of the network’s miners, it will be accepted and form the new top of the chain. Since all blocks are chained together by linking the hash value to the previous block, any change to the ledger becomes impossible as it requires PoW for all previous transitions.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;consensus-mechanism&quot;&gt;Consensus mechanism&lt;/h2&gt;
+
+&lt;p&gt;Consensus in a blockchain is the process by which a network of mutually distrustful nodes reaches an agreement on the global state of the blockchain. In a blockchain, transactions or data are shared and distributed across the network and each node has the same copy of the blockchain data. Consensus allows all network nodes to follow the same rules when validating transactions and adding new blocks to the chain, ensuring uniformity across all copies of a blockchain.
+A consensus algorithm is a formal procedure or computer program for solving a consensus problem based on performing a series of specific actions. It is designed to be feasible on a network with multiple nodes. Consensus algorithms ensure that the next block in a blockchain is fully validated and secured. Currently, there are several types of consensus algorithms, each with different basic procedures. The two most popular algorithms are as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Proof of Work (PoW)&lt;/strong&gt;: This consensus algorithm was introduced by Satoshi and has been widely adopted by many other blockchain systems. The PoW is the mining process aimed at finding an answer to a cryptographic hashing problem. To do this, the miner must follow the block selection rules to find the previous block and use the hash of the previous block header along with the Merkle root of the current transactions in the new block to solve the hashing problem. This requires significant computation and hashing power. Any number between 0 and 2^32 has an equal chance of solving the puzzle. The loop solution to satisfy the criteria is shown in the diagram below:&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/pow-flowchart.svg&quot; alt=&quot;pow-flowchart&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;After notification, the other nodes of the network automatically check if the results are valid. If the results are valid, they add the block to their copies of the blockchain, stop the ongoing mining, and proceed to the next block.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Proof of Stake (PoS)&lt;/strong&gt;: This consensus algorithm aims to select miners based on various combinations of random choices based on miners’ wealth or age (stake). Rather than miners competing with each other to solve energy-consuming cryptographic hash functions, the network will instead use a pool of validators. &lt;strong&gt;Validators&lt;/strong&gt; are nodes (which can run on a regular laptop) that are willing to stake their cryptocurrency on the transaction blocks they claim should be added to the public blockchain. Staking makes it easier for individuals to participate in securing the network and promotes decentralization.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;forks&quot;&gt;Forks&lt;/h2&gt;
+
+&lt;p&gt;A fork in the blockchain occurs when there are two different ways to proceed, and can be intentional or accidental. An intentional fork occurs when the blockchain software or rules are to be updated/changed, and an accidental fork occurs when two or more miners find a block almost simultaneously. Each time a fork occurs, miners must “choose” which direction to take, meaning each miner votes on what is the right decision for the entire chain. A fork is resolved when more blocks are added and one of the chains becomes longer than the other(s) &lt;em&gt;(Figure 4)&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/blockchain-fork.svg&quot; alt=&quot;blockchain-fork&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The network abandons the blocks that are not in the longest chain (they are called orphan blocks) and continues. The blockchain works with a democratic policy, which means that it is always the majority that decides which way to go. The only way a breach can occur is if there is an attack, called a 51% attack, where the majority of nodes are compromised or choose to act maliciously.&lt;/p&gt;
+
+&lt;h2 id=&quot;ethereum&quot;&gt;Ethereum&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Proposed by Vitalik Buterin in “&lt;a href=&quot;https://ethereum.org/669c9e2e2027310b6b3cdce6e1c52962/Ethereum_Whitepaper_-_Buterin_2014.pdf&quot;&gt;Ethereum: A Next-Generation Smart Contract and Decentralized Application Platform&lt;/a&gt;“.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Ethereum is an implementation of the blockchain and is an open source, public, and decentralized computing platform. Public means that anyone can view the account balance and transaction history of any wallet at any time by simply accessing the public Ethereum blockchain through a block explorer. Ethereum became popular thanks to the implementation of &lt;strong&gt;smart contracts&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Smart contracts are small programs (written in the Solidity language) in which developers can define the rules of the trust they intend to code. One of the most amazing features of smart contracts is their immutability.
+Once implemented on the blockchain, their code cannot be changed. This immutable property makes it very difficult to program smart contracts and detect errors in advance, and that is the reason why &lt;strong&gt;testnets&lt;/strong&gt; exist.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Testnets are the replica of the mainnet Ethereum blockchain where developers can deploy their contracts. If the contracts work properly on testnets then they will work perfectly on the mainnet.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Ethereum also introduced the concept of world state and account. The world state includes a mapping of all accounts and their public addresses. To facilitate both state transactions and decentralized computing, Ethereum introduces two types of accounts: &lt;strong&gt;Externally Owned Accounts (EOAs)&lt;/strong&gt;, which are controlled by private keys, and &lt;strong&gt;Contract Accounts (CA)&lt;/strong&gt;, which are controlled by their contract code. Without CAs, Ethereum would be limited to the mere transfer of value between parties, as with Bitcoin.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://bitcoin.org/bitcoin.pdf&quot;&gt;Bitcoin: A peer-to-peer electronic cash system&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.bitcoin.it/wiki/Block&quot;&gt;https://en.bitcoin.it/wiki/Block&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ethereum.org/669c9e2e2027310b6b3cdce6e1c52962/Ethereum_Whitepaper_-_Buterin_2014.pdf&quot;&gt;Ethereum Whitepaper&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Mastering-Blockchain-Programming-Solidity-production-ready/dp/1839218266&quot;&gt;Mastering Blockchain Programming with Solidity&lt;/a&gt; - Jitendra Chittoda&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Learn-Ethereum-decentralized-applications-contracts/dp/1789954118/ref=sr_1_1?crid=1R4FU0HKYPRVR&amp;amp;keywords=learn+ethereum&amp;amp;qid=1665334863&amp;amp;qu=eyJxc2MiOiIwLjYyIiwicXNhIjoiMC41NyIsInFzcCI6IjAuNzcifQ%3D%3D&amp;amp;s=books&amp;amp;sprefix=learn+ethereum%2Cstripbooks-intl-ship%2C263&amp;amp;sr=1-1&quot;&gt;Learn Ethereum&lt;/a&gt; - Xun Wu, Zhihong Zou and Dongying Song&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="blockchain" /><category term="ethereum" /><category term="bitcoin" /><summary type="html">On October 31, 2008, Satoshi Nakamoto published a white paper entitled “Bitcoin: A peer-to-peer electronic cash system”, in which he described a system that would enable P2P payments without a financial intermediary.</summary></entry><entry><title type="html">Non-Fungible Tokens explained</title><link href="https://davdifr.github.io/nfts/erc721/2022/10/10/nfts-explained.html" rel="alternate" type="text/html" title="Non-Fungible Tokens explained" /><published>2022-10-10T16:01:00+00:00</published><updated>2022-10-10T16:01:00+00:00</updated><id>https://davdifr.github.io/nfts/erc721/2022/10/10/nfts-explained</id><content type="html" xml:base="https://davdifr.github.io/nfts/erc721/2022/10/10/nfts-explained.html">&lt;p&gt;A &lt;strong&gt;non-fungible token&lt;/strong&gt; (NFT) refers to a class of blockchain-based tokens that are intended to be &lt;strong&gt;unique&lt;/strong&gt;, as opposed to cryptocurrencies where all tokens are exchangeable. NFTs are typically used to &lt;strong&gt;prove ownership&lt;/strong&gt; and can represent virtually any asset, whether physical or digital. However, the most common NFT assets are digital art, digital collectibles, content such as video or audio, and event tickets.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;“NFT Art gives anyone a stake in something that they feel is significant and culturally relevant. Valuable Art is something the 1% has had a monopoly on. NFT art allows the 99% to become involved.” — Kevin Godfrey, Fabriik CTO&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Nowadays the market for NFTs is growing rapidly especially in the collector sector with the trend of profile pictures (PFPs), which are attracting a lot of interest. Even major platforms like Instagram and Twitter are introducing them, which is undoubtedly remarkable. Mainstream interest in non-fungible tokens reached a fever pitch in late 2021, when the market grew 21,000% to $17.6 billion, according to &lt;a href=&quot;https://nonfungible.com&quot;&gt;nonfungible.com&lt;/a&gt; and &lt;a href=&quot;https://atelier.net/&quot;&gt;L’Atelier&lt;/a&gt;. The most widely used store for buying NFTs (&lt;a href=&quot;https://opensea.io/&quot;&gt;OpenSea&lt;/a&gt;) saw record sales of $2 billion in January 2022 alone. The huge USD volume traded in 2022 is shown in the following pie chart by interest category:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/nfts-usd-volume.svg&quot; alt=&quot;nfts-usd-volume&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Some collections, such as the &lt;a href=&quot;https://opensea.io/collection/boredapeyachtclub&quot;&gt;Bored Ape Yacht Club&lt;/a&gt; (BAYC), have become nothing less than status symbols. Although they were originally intended as a joke, to this day they are no longer normal NFTs, and owning one of them is no less than owning a Ferrari. Steph Curry (a famous basketball player) bought the Bored Ape #7990 NFT in 2021 for $180,000. Other celebrities like Eminem, Snoop Dogg, Serena Williams, and Neymar own some of the most expensive PFPs out there, and they use them on their social networks.&lt;/p&gt;
+
+&lt;p&gt;The following table provides some information on 5 of the most profitable NFTs sold in Q2 2022:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;NFT&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Project&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Days since purchase&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Purchase Price (USD)&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Resale Price (USD)&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Profit (USD)&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Profit (%)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;![CryptoPunk #7756](https://img.seadn.io/files/5d3d2b859d0d5ab0de7e5d4359349a23.png?fit=max&amp;amp;w=80)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;[CryptoPunks](https://opensea.io/collection/cryptopunks)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;583&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$9,337&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$3,261,857&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3,252,519&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;34,833%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;![OtherSide #59906](https://img.seadn.io/files/d002e8dfa01bf4364cd286f2b933b4cd.jpg?fit=max&amp;amp;w=80)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;[Otherdeed for Otherside](https://opensea.io/collection/otherdeed)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;7&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$5,905&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$1,647,788&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1,641,883&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;27,806%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;![Ape #6388](https://img.seadn.io/files/80616debe1ec357bb98e96dd2024b57d.png?fit=max&amp;amp;w=80)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;[Bored Ape Yacht Club](https://opensea.io/collection/boredapeyachtclub)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;377&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$107,000&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$1,083,512&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$976,512&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;913%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;![Ape #7537](https://img.seadn.io/files/898e79d4a38391abf25a3ba64118980c.png?fit=max&amp;amp;w=80)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;[Bored Ape Yacht Club](https://opensea.io/collection/boredapeyachtclub)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;85&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$298,001&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$1,222,922&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$924,921&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;310%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;![Moonbirds #3904](https://img.seadn.io/files/7d858d568b20f301f61a71a0ee3e9a3f.png?fit=max&amp;amp;w=80)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;[Moonbirds](https://opensea.io/collection/proof-moonbirds)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;7&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$7,554&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$902,498&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$894,944&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;11,847%&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;This kind of value enhancement is possible thanks to the great interest that NFTs experience on the Internet.
+Every day, more and more companies are trying to incorporate NFTs into their marketing strategies, and this has also happened in the fashion industry. Luxury brands such as Dolce &amp;amp; Gabbana, Gucci, Louis Vuitton and Burberry have actively ventured into the digital space, looking for ways to incorporate NFTs into their product range and marketing efforts.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Please note that this article isn’t intended as financial advice. The previous part was intended to show and appreciate the worldwide interest in this technology, and there’s no intention to suggest a financial investment.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;technical-details&quot;&gt;Technical details&lt;/h2&gt;
+
+&lt;p&gt;For a better understanding of the following explanations, some key terms are defined here in a simplified way:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Smart contract&lt;/strong&gt; - A smart contract is an application that runs on the blockchain. Every smart contract has some functions, some state and an address.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ERCs&lt;/strong&gt; - ERCs (Ethereum Request for Comments) are technical documents used by smart contract developers at Ethereum. They define a set of rules required to implement tokens for the Ethereum ecosystem.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Wallet Address&lt;/strong&gt; - A wallet address is a string of letters and numbers (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0x04600C3E...ff49628&lt;/code&gt;) from which cryptocurrencies or NFTs can be sent to and from.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ethereum was the first blockchain to support NFTs with its inheritable standard &lt;strong&gt;ERC-721&lt;/strong&gt;. This means that developers can create new ERC-721-compliant contracts by copying a &lt;a href=&quot;https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol&quot;&gt;reference implementation&lt;/a&gt; that provides core methods for tracking the owner of a unique identifier and a way for the owner to transfer the asset to others.&lt;/p&gt;
+
+&lt;p&gt;There are many standards in Ethereum; ERC20, for example, is the most popular token standard used to create fungible tokens like coins that have economic value.&lt;/p&gt;
+
+&lt;p&gt;Here are some differences between the ERC20 and the ERC721 standard:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Property&lt;/th&gt;
+      &lt;th&gt;ERC20 token standard&lt;/th&gt;
+      &lt;th&gt;ERC721 NFT standard&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Fungibility&lt;/td&gt;
+      &lt;td&gt;Tokens are fungible up to the decimal places specified in the contract.&lt;/td&gt;
+      &lt;td&gt;Tokens are not fungible. Each token itself represents 1 asset that cannot be subdivided.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Ownership&lt;/td&gt;
+      &lt;td&gt;Token ownership is not directly linked to an account, and only the token balances are tracked.&lt;/td&gt;
+      &lt;td&gt;Ownership of each token is tied to an individual account address.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Uniqueness&lt;/td&gt;
+      &lt;td&gt;There is no difference in each token.&lt;/td&gt;
+      &lt;td&gt;Each token is different from every other token included in the same contract.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The main feature of ERC-721 is that each token is unique. When an ERC-721 token is created, there is only one copy. These tokens, as NFTs, have spread the idea and application of &lt;strong&gt;unique assets&lt;/strong&gt; on Ethereum.&lt;/p&gt;
+
+&lt;p&gt;The following figure &lt;em&gt;(Figure 1)&lt;/em&gt; helps to better understand what it means that ERC20 maps addresses to amounts and ERC721 maps unique IDs to owners.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/anatomy-erc20-erc721.svg&quot; alt=&quot;erc20-erc721&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The descriptive information of a particular ERC721 token is provided by its &lt;strong&gt;metadata&lt;/strong&gt; and might look something like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Token #1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;image&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://example.org/1.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;This is the token n.1&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There are two options for representing metadata: On-chain and off-chain.
+In the on-chain approach, metadata is stored permanently with the token and persists beyond the lifecycle of a particular application. Moreover, they can change according to the on-chain logic. Despite these benefits, most projects store their metadata off-chain &lt;em&gt;(Figure 2)&lt;/em&gt; simply due to the current storage limitations of the Ethereum blockchain.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/off-chain-metadata.svg&quot; alt=&quot;off-chain-metadata&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The ERC721 standard includes (in an optional interface called ERC721Metadata) a function called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tokenURI&lt;/code&gt; that developers can implement to tell applications where to find the metadata for a given item.&lt;/p&gt;
+
+&lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenURI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tokenURI&lt;/code&gt; returns the Uniform Resource Identifier (URI) as data type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;string&lt;/code&gt;. This in turn returns a JSON file that conforms to the ERC721 metadata schema.&lt;/p&gt;
+
+&lt;h2 id=&quot;an-in-depth-insight-into-erc-721&quot;&gt;An in-depth insight into ERC-721&lt;/h2&gt;
+
+&lt;p&gt;Each ERC721 token must implement nine mandatory functions and is defined as follows:&lt;/p&gt;
+
+&lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ERC721&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;event&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Transfer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;indexed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;indexed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;indexed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;event&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Approval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;indexed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;indexed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_approved&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;indexed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;event&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ApprovalForAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;indexed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;indexed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_operator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_approved&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;balanceOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;external&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ownerOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;external&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;safeTransferFrom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bytes&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;external&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;payable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;safeTransferFrom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;external&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;payable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;transferFrom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;external&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;payable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;approve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_approved&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;external&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;payable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setApprovalForAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_operator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_approved&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;external&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getApproved&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;external&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isApprovedForAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_operator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;external&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;balanceOf()&lt;/code&gt; function in the following code returns the total number of tokens for the specified address:&lt;/p&gt;
+
+    &lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;balanceOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_ownedTokensCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;Anyone is allowed to call this function, as it is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;view&lt;/code&gt; function, to read the value for off-chain calculation as well.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ownerOf()&lt;/code&gt; function finds the provided &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tokenId&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_tokenOwner&lt;/code&gt; map and returns the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;address&lt;/code&gt; of its &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;owner&lt;/code&gt;:&lt;/p&gt;
+
+    &lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ownerOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_tokenOwner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;If the specified &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tokenId&lt;/code&gt; does not exist in the mapping, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;address(0)&lt;/code&gt; is assigned to the local variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;owner&lt;/code&gt; and the function call fails.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approve()&lt;/code&gt; function approves permission from another entity to transfer a token on behalf of the owner. The function requires that the sender of the message is the owner of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tokenId&lt;/code&gt;. The approved token is stored in the mapping shop of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tokenApprovals&lt;/code&gt;:&lt;/p&gt;
+
+    &lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;approve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ownerOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isApproveForAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;_tokenApprovals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;emit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Approval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approve()&lt;/code&gt; function can also be called by the operator (who has rights to the owner’s tokens). The operator can also grant approvals to another account. There are two &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;require&lt;/code&gt; checks, the one &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;require(to != owner)&lt;/code&gt; ensures that the operator cannot grant any other approvals to the token &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;owner&lt;/code&gt;. The second &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;require&lt;/code&gt; ensures that the sender is either the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;owner&lt;/code&gt; or has operator rights. After these checks are made, the token approval is issued to the address &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;to&lt;/code&gt; for the specified &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tokenId&lt;/code&gt;. Finally, an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Approval&lt;/code&gt; event is issued along with the approval data.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getApproved()&lt;/code&gt; function verifies and makes sure that the transaction senders are the owners of the token and that the token transfer gets approved:&lt;/p&gt;
+
+    &lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getApproved&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_tokenApprovals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;The function calls an internal &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_exists()&lt;/code&gt; function to ensure that the given &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tokenId&lt;/code&gt; exists and that it has been assigned to a non-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;address(0)&lt;/code&gt; owner, otherwise, the function call fails.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setApprovalForAll&lt;/code&gt; function enables or disables the approval of a third party (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;operator&lt;/code&gt;) to manage all of the assets for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;msg.sender&lt;/code&gt;:&lt;/p&gt;
+
+    &lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setApprovalForAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;approved&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;_operatorApprovals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;approved&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;emit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ApprovalForAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;approved&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;The argument &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approved&lt;/code&gt; is a boolean value that specifies whether the approval should be granted or revoked.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isApprovedForAll()&lt;/code&gt; function checks that the given operator has operator rights on the given owner’s tokens:&lt;/p&gt;
+
+    &lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isApprovedForAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;operator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_operatorApprovals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;operator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;It fetches the read-only data from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_operatorApprovals&lt;/code&gt; mapping.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transferFrom()&lt;/code&gt; function transfers ownership of an NFT:&lt;/p&gt;
+
+    &lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;transferFrom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_isApprovedOrOwner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;_transferFrom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;The function first validates that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;msg.sender&lt;/code&gt; (function caller) has the necessary permissions to transfer the given &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tokenId&lt;/code&gt;. Once it is verified, the internal call to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_transferFrom()&lt;/code&gt; function transfers the token from the owner’s account to the recipient’s account.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;safeTransferFrom()&lt;/code&gt; function is used to safely transfer the NFT from the owner’s account to the recipient’s account:&lt;/p&gt;
+
+    &lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;safeTransferFroom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bytes&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;memory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;transferFrom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_checkOnERC721Received&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;Safely transfer here means that if the recipient is a contract, you must ensure that the “recipient contract” has registered callbacks so that the “receiver contract” gets a notification when the ERC721 token transfer is successful.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;There is another function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;safeTransferFrom()&lt;/code&gt; which is used when the recipient of the NFT is an &lt;strong&gt;Externally Owned Account (EOA)&lt;/strong&gt; and not a contract account:&lt;/p&gt;
+
+    &lt;div class=&quot;language-solidity highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;safeTransferFrom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint256&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;safeTransferFrom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The standard interface discussed is taken from the EIP standard document at &lt;a href=&quot;https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md&quot;&gt;https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Non-fungible_token&quot;&gt;Non-fungible token&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://eips.ethereum.org&quot;&gt;Ethereum Improvement Proposals&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://nonfungible.com&quot;&gt;nonfungible.com&lt;/a&gt; - 2022 NFT Market report Q2&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://atelier.net/news/report-17.6-billion-in-nft-trades-during-2021&quot;&gt;Report: $17.6 billion in NFT trades during 2021&lt;/a&gt; - L’Atelier&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://opensea.io/blog/guides/non-fungible-tokens/&quot;&gt;The Non-Fungible Token Bible: Everything you need to know about NFTs&lt;/a&gt; - Devin Finzer&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Mastering-Blockchain-Programming-Solidity-production-ready/dp/1839218266&quot;&gt;Mastering Blockchain Programming with Solidity&lt;/a&gt; - Jitendra Chittoda&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Learn-Ethereum-decentralized-applications-contracts/dp/1789954118/ref=sr_1_1?crid=1R4FU0HKYPRVR&amp;amp;keywords=learn+ethereum&amp;amp;qid=1665334863&amp;amp;qu=eyJxc2MiOiIwLjYyIiwicXNhIjoiMC41NyIsInFzcCI6IjAuNzcifQ%3D%3D&amp;amp;s=books&amp;amp;sprefix=learn+ethereum%2Cstripbooks-intl-ship%2C263&amp;amp;sr=1-1&quot;&gt;Learn Ethereum&lt;/a&gt; - Xun Wu, Zhihong Zou and Dongying Song&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="nfts" /><category term="erc721" /><summary type="html">A non-fungible token (NFT) refers to a class of blockchain-based tokens that are intended to be unique, as opposed to cryptocurrencies where all tokens are exchangeable. NFTs are typically used to prove ownership and can represent virtually any asset, whether physical or digital. However, the most common NFT assets are digital art, digital collectibles, content such as video or audio, and event tickets.</summary></entry><entry><title type="html">NFTs as credentials (?)</title><link href="https://davdifr.github.io/digitalcredentials/nfts/2022/10/07/nfts-as-credentials.html" rel="alternate" type="text/html" title="NFTs as credentials (?)" /><published>2022-10-07T17:00:00+00:00</published><updated>2022-10-07T17:00:00+00:00</updated><id>https://davdifr.github.io/digitalcredentials/nfts/2022/10/07/nfts-as-credentials</id><content type="html" xml:base="https://davdifr.github.io/digitalcredentials/nfts/2022/10/07/nfts-as-credentials.html">&lt;p&gt;As we saw in the &lt;a href=&quot;https://davdifr.github.io/digitalcredentials/2022/09/22/exploring-digital-credentials.html&quot;&gt;previous article&lt;/a&gt;, there are different implementations and standards in the world of digital credentials. The idea of certifying one’s identity and competence with the digital signature of the issuer is undoubtedly very effective, especially when accompanied by a graphic aspect in the form of a recognition medal.&lt;/p&gt;
+
+&lt;p&gt;However, the use of a verification tool (which cannot be universal given the different implementations) is essential and preservation also requires the use of third-party applications.&lt;/p&gt;
+
+&lt;p&gt;So we might ask: &lt;strong&gt;What if we used NFTs as credentials?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Something belonging to an entity can be identified by either an NFT or a VC. The records of both are immutable (therefore secure), but there are significant differences. VCs use public-key infrastructure and digital signatures to prove a claim; they are not publicly viewable but are selectively shared with verifying parties as needed.&lt;/p&gt;
+
+&lt;p&gt;In a post titled “&lt;a href=&quot;https://vitalik.ca/general/2022/06/12/nonfin.html&quot;&gt;Where to use a blockchain in non-financial applications&lt;/a&gt;” Vitalik Buterin (Ethereum co-founder) said:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;With off-chain claims, you can do *positive* reputation, because it’s in the interest of the recipient of a claim to show it to appear more reputable (or make a ZK-proof about it), but you can’t do *negative* reputation, because someone can always choose to only show the claims that make them look good and leave out all the others.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Some situations may benefit from this kind of transparency, and NFTs provide these specifics due to the fact that they are blockchain-based and time-stamped. The digital ownership and the origin of a token can be easily verified, and if you know the wallet address, you can see all the NFTs that someone owns and has ever owned.&lt;/p&gt;
+
+&lt;p&gt;Currently, VCs are the most practical technology to digitize our credentials and allow people to establish their identity on the Internet. While privacy and the lack of financial speculation are two major benefits of using VCs for digital identity, both factors have limited the social reach and adoption of the concept.
+As we can see, the search volume for NFTs is several orders of magnitude higher than for VCs.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Keywords&lt;/th&gt;
+      &lt;th&gt;Monthly search volume&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;nft&lt;/td&gt;
+      &lt;td&gt;1.830.000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;non fungible tokens&lt;/td&gt;
+      &lt;td&gt;60.500&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;verifiable credentials&lt;/td&gt;
+      &lt;td&gt;8.100&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;w3c verifiable credentials&lt;/td&gt;
+      &lt;td&gt;90&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The great interest in this technology could prepare the ground for a real spread of digital credentials.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://vitalik.ca/general/2022/06/12/nonfin.html&quot;&gt;Where to use a blockchain in non-financial applications&lt;/a&gt; - Vitalik Buterin&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://tools.wordstream.com/&quot;&gt;WordStream&lt;/a&gt; used for keywords results&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="digitalcredentials" /><category term="nfts" /><summary type="html">As we saw in the previous article, there are different implementations and standards in the world of digital credentials. The idea of certifying one’s identity and competence with the digital signature of the issuer is undoubtedly very effective, especially when accompanied by a graphic aspect in the form of a recognition medal.</summary></entry><entry><title type="html">Exploring digital credentials</title><link href="https://davdifr.github.io/digitalcredentials/2022/09/22/exploring-digital-credentials.html" rel="alternate" type="text/html" title="Exploring digital credentials" /><published>2022-09-22T10:38:26+00:00</published><updated>2022-09-22T10:38:26+00:00</updated><id>https://davdifr.github.io/digitalcredentials/2022/09/22/exploring-digital-credentials</id><content type="html" xml:base="https://davdifr.github.io/digitalcredentials/2022/09/22/exploring-digital-credentials.html">&lt;p&gt;When it comes to digital credentials, there are several alternatives we can consider and, in most cases, we will hear about &lt;strong&gt;Verifiable Credentials&lt;/strong&gt; (VCs), &lt;strong&gt;Open Badges&lt;/strong&gt; and &lt;strong&gt;Blockcerts&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Their goal is to provide a trustable &lt;strong&gt;record of achievements&lt;/strong&gt; that can be shared on the Web, simplifying the interaction between three entities - issuer, holder and verifier - in a model called the &lt;strong&gt;triangle of trusts&lt;/strong&gt; &lt;em&gt;(Figure 1)&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/triangle-of-trusts.svg&quot; alt=&quot;triangle-of-trusts&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once digital credentials are issued, the holder needs a &lt;strong&gt;specific application as a vault&lt;/strong&gt; to store them. This application can reside on a user’s device, can be hosted on a server, or could be a combination of both.&lt;/p&gt;
+
+&lt;p&gt;The purpose of this article is to analyze said alternatives individually to discover their peculiarities.&lt;/p&gt;
+
+&lt;h2 id=&quot;verifiable-credentials&quot;&gt;Verifiable Credentials&lt;/h2&gt;
+
+&lt;p&gt;VCs are an open standard defined by &lt;a href=&quot;https://www.w3.org/TR/vc-data-model/&quot;&gt;W3C Verifiable Credentials Data Model&lt;/a&gt;, which provides a mechanism to express credentials in a way that is &lt;strong&gt;cryptographically secure&lt;/strong&gt;, &lt;strong&gt;privacy respecting&lt;/strong&gt; and &lt;strong&gt;tamper-evident&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Information is encrypted and protected by digital signatures hence &lt;strong&gt;not readily visible&lt;/strong&gt; to everyone. Those in possess of the &lt;strong&gt;public key&lt;/strong&gt; can verify the authenticity of the issuer and the holder.&lt;/p&gt;
+
+&lt;p&gt;VCs feature three main components: metadata, claims and issuer proof &lt;em&gt;(Figure 2)&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/vc-components.svg&quot; alt=&quot;vc-components&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;metadata&lt;/strong&gt; is used to describe properties like issuer, expiry date, representative image, and so on; a &lt;strong&gt;claim&lt;/strong&gt; is a name-value statement about a subject (typically a person, but it could also be a thing) and the &lt;strong&gt;issuer proof&lt;/strong&gt; is used to verify the integrity of a credential expressed as a digital signature (made with the private key of the issuer).&lt;/p&gt;
+
+&lt;p&gt;Here is an example:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;@context&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;e9ea3429-b32f-44ad-b481-b9929370bb90&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;VerifiableCredential&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;DegreeCredential&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;issuer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;did:example:2d28bb79-87a9-4224-8c63-d28b29716b67&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;issuanceDate&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2022-01-01T00:00:00Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;credentialSubject&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;did:example:7564cb9c-165c-4857-a887-bfc2460af867&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;degree&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;BachelorDegree&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Bachelor of Computer Science&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;proof&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The code illustrates how the structure of the JSON is mapped to the components above. The Claim section, which begins with ‘credentialSubject’, indicates that the user has a computer science degree. The Issuer Proof part, not shown for space reasons, contains the cryptographic signature suite used to generate the signature (RSA, JWS, GPG, etc.) and its value.&lt;/p&gt;
+
+&lt;p&gt;An entity called &lt;strong&gt;Verifiable Data Registry&lt;/strong&gt; (VDR) acts as an arbitrator and mediates the generation and verification of identifiers, keys, and other data &lt;em&gt;(Figure 3)&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/vdr-flows.svg&quot; alt=&quot;vdr-flows&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;VDR ensures that other entities respect the defined rules and this includes that: the credential conforms to the specification; the proof method is satisfied; and, if present, the status check succeeds. Otherwise, their requests will be denied.
+Different ecosystems will have different VDRs with different sets of rules, which might mean that they are &lt;u&gt;unable to interoperate&lt;/u&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;open-badges&quot;&gt;Open Badges&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://openbadges.org&quot;&gt;IMS Global Learning Consortium&lt;/a&gt; currently maintains the Open Badges standard (initially developed by the &lt;a href=&quot;https://foundation.mozilla.org/en/&quot;&gt;Mozilla Foundation&lt;/a&gt;), which describes a method to incorporate non-visible metadata in PNG or SVG image files &lt;em&gt;(Figure 4)&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/open-badges.svg&quot; alt=&quot;open-badges&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;An Open Badge image may contain a variety of data, including the badge’s name, issuer, and description. All of this information is baked into the image, so only &lt;u&gt;Open Badge-compatible applications&lt;/u&gt; can show it. Because of this visual representation, Open badges are &lt;strong&gt;highly portable&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Various organisations can implement Open Badges in their own way, subject to some mandatory properties that must be present to comply with the standard. Since there might be some variations in the implementation, the verification process is &lt;strong&gt;dependent on the Issuer&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The verification process can be done in two ways:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.imsglobal.org/sites/default/files/Badges/OBv2p0Final/index.html#HostedBadge&quot;&gt;Hosted Verification&lt;/a&gt; — One of the metadata properties of an Open Badge is the assertion id, a URL that host the metadata in a .json file. If this URL cannot be found, the badge is not verifiable.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.imsglobal.org/sites/default/files/Badges/OBv2p0Final/index.html#SignedBadge&quot;&gt;Signed Verification&lt;/a&gt; — Information is encrypted to ensure that the data has not been altered and that the issuer is the one who generated it. The public key used to sign the badge must be traceable to the issuer.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;em&gt;Verifying Open Badges may require extra expenses such as a subscription/payment to use the verification tool and reliance on third-party providers.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;A badge that can be confirmed via the hosted verification process looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;@context&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://w3id.org/openbadges/v2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Assertion&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://example.org/assertion.json&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;recipient&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;email&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;identity&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;johndoe@example.org&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;image&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://example.org/badge.png&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;issuedOn&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2022-01-01T00:00:00Z&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;badge&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://example.org/type-of-badge-awarded.json&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;verification&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;hosted&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Personal information (PII) included in Open Badge metadata may include last name, email address (like above), phone number and evidence. Most badge platforms do not display this data publicly, and the achievements can be secured through an authorization login. However, an Open Badge image file contains this information and can be opened and viewed.&lt;/p&gt;
+
+&lt;p&gt;In 2018, Mozilla recognized that badges alone do not attract users unless they are strongly linked to learning program offerings. For these reasons, they created the &lt;strong&gt;Open Badge Infrastructure&lt;/strong&gt; (OBI), which allows developers to integrate badge services within existing applications, websites, or social networks through open APIs; enabling them to support third-party endorsements on issuer badges or personal badges.&lt;/p&gt;
+
+&lt;h2 id=&quot;blockcerts&quot;&gt;Blockcerts&lt;/h2&gt;
+
+&lt;p&gt;Blockcerts is an open standard offered by &lt;a href=&quot;https://www.media.mit.edu&quot;&gt;MIT Media Lab&lt;/a&gt; used to digitally express a certificate and store it in a &lt;strong&gt;blockchain&lt;/strong&gt; so that it can be always verified without the need to contact the issuing institution or platform &lt;em&gt;(Figure 5)&lt;/em&gt;. Blockcerts aim to give individuals full control over their educational and professional credentials and provide institutions with a secure, tamper-proof way to issue and verify them.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://davdifr.github.io/assets/images/blockcert-workflow.svg&quot; alt=&quot;blockcert-workflow&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The blockchain contains the document’s digital fingerprint (&lt;a href=&quot;https://en.wikipedia.org/wiki/Cryptographic_hash_function&quot;&gt;hash&lt;/a&gt;) and does &lt;strong&gt;not store any private information&lt;/strong&gt;. The information recorded in the blockchain cannot be used to deduce the contents of the certificate but only the integrity.
+Only the certificate’s owner can choose to communicate the information on it with a third party, such as a potential employer.&lt;/p&gt;
+
+&lt;p&gt;Three repositories make up the architecture:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/blockchain-certificates/cert-schema&quot;&gt;Cert-schema&lt;/a&gt; — Describes the data standard for digital certificates. The schema was kept close to the Open Badge specification intentionally (forked from &lt;a href=&quot;https://github.com/IMSGlobal/cert-schema&quot;&gt;IMSGlobal/cert-schema&lt;/a&gt;).&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/blockchain-certificates/cert-issuer&quot;&gt;Cert-issuer&lt;/a&gt; — Creates a hash of a certificate, issues it, and broadcasts a Bitcoin transaction from the issuer’s address to a recipient’s address, embedding it in the &lt;a href=&quot;https://en.bitcoin.it/wiki/OP_RETURN&quot;&gt;OP_RETURN&lt;/a&gt; field.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/blockchain-certificates/cert-verifier&quot;&gt;Cert-viewer&lt;/a&gt; — This allows users to view and verify digital certificates after they have been issued. The viewer code also allows users to request certificates and create new Bitcoin identities.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The verification process can take place both on the platforms that adopt the standard and via the default tool &lt;a href=&quot;https://www.blockcerts.org&quot;&gt;Blockcerts Universal Verifier&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Storing data on the blockchain may require a large amount of computing power and financial costs. To increase the level of security and reduce the cost of these information processing operations, the standard aggregates all certificates issued that day and stores the electronic fingerprints as a single record by linking them mathematically (&lt;a href=&quot;https://en.wikipedia.org/wiki/Merkle_tree&quot;&gt;Merkle Tree&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;In 2016, an article on &lt;a href=&quot;https://medium.com&quot;&gt;medium.com&lt;/a&gt; published by MIT Media Lab stated:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The blockchain is not a simple solution that will fix everything that is wrong with today’s credentials. But it does offer some possibilities for improving the system we have today–and that’s what we are excited to explore.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;comparison&quot;&gt;Comparison&lt;/h2&gt;
+
+&lt;p&gt;Based on the previous observations, we can make a comparison table between the listed standards and thus get a more general view and a clearer picture of the situation.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Feature&lt;/th&gt;
+      &lt;th&gt;Verifiable Credentials&lt;/th&gt;
+      &lt;th&gt;Open Badges&lt;/th&gt;
+      &lt;th&gt;Blockcerts&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Organization that governs the standards&lt;/td&gt;
+      &lt;td&gt;W3C&lt;/td&gt;
+      &lt;td&gt;IMS Global and Mozilla Foundation&lt;/td&gt;
+      &lt;td&gt;MIT Media Lab&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Applications&lt;/td&gt;
+      &lt;td&gt;Wide range of fields from healthcare to travel&lt;/td&gt;
+      &lt;td&gt;Mostly in education and employment to some extent&lt;/td&gt;
+      &lt;td&gt;Mostly in education&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;File Format&lt;/td&gt;
+      &lt;td&gt;JSON - Human and machine readable&lt;/td&gt;
+      &lt;td&gt;PNG/SVG - Fixed image format&lt;/td&gt;
+      &lt;td&gt;JSON - Machine readable and human readable with viewer&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Tamper-evident&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;No - Display could be changed, since data hosted elsewhere&lt;/td&gt;
+      &lt;td&gt;Yes - Blockchain-enabled verification&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Verification&lt;/td&gt;
+      &lt;td&gt;Built-in through digital signatures&lt;/td&gt;
+      &lt;td&gt;Requires third-party tools that could entail additional costs and dependencies&lt;/td&gt;
+      &lt;td&gt;Requires a tool that can be implemented on platforms or found on the main page&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Everyone can see the benefits of reliable digital credentials, especially when they protect privacy and improve convenience for everyone involved. However, it is up to us whether those records will be accessible and verifiable independent of a particular vendor’s infrastructure.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.w3.org/TR/vc-data-model/&quot;&gt;W3C Verifiable Credentials Data Model&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.imsglobal.org/spec/ob/v2p1/&quot;&gt;Open Badges Specification&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.blockcerts.org/guide/quick-start.html&quot;&gt;Blockcerts - Quick start&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/read-write-participate/an-update-on-badges-and-backpack-5a06fab252ea&quot;&gt;An Update on Badges and Backpack&lt;/a&gt; - Mark Surman, Executive Director, Mozilla&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://academy.affinidi.com/compare-and-contrast-openbadges-vs-verifiable-credentials-d504c054d5db&quot;&gt;Compare and Contrast: OpenBadges vs Verifiable Credentials&lt;/a&gt; - Affinidi Pte. Ltd.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://kayaelle.medium.com/in-the-w3c-vc-edu-call-on-june7-2021-we-discussed-open-badges-asserted-as-w3c-verifiable-90391cb9a7b7&quot;&gt;Open Badges as Verifiable Credentials&lt;/a&gt; - Kerri Lemoie&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/w3c/vc-data-model/issues/738&quot;&gt;Clarification of the Verifiable Data Registry (VDR)&lt;/a&gt; (GitHub issue)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.ubisecure.com/identity-management/verifiable-credentials-understanding-key-principles/&quot;&gt;Verifiable Credentials - how does it work? Understanding key VC principles&lt;/a&gt; - Petteri Stenius&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dajbelshaw.medium.com/blockcerts-are-friends-of-open-badges-4a331fea3f47&quot;&gt;Blockcerts are friends of Open Badges&lt;/a&gt; - Doug Belshaw&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/mit-media-lab/what-we-learned-from-designing-an-academic-certificates-system-on-the-blockchain-34ba5874f196#.4m4bmwcm0&quot;&gt;What we learned from designing an academic certificates system on the blockchain&lt;/a&gt; - MIT Media Lab&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="digitalcredentials" /><summary type="html">When it comes to digital credentials, there are several alternatives we can consider and, in most cases, we will hear about Verifiable Credentials (VCs), Open Badges and Blockcerts.</summary></entry></feed>

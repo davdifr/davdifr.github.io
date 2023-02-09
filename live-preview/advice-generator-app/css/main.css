@@ -1,0 +1,80 @@
+:root {
+  --light-cyan: hsl(193, 38%, 86%);
+  --neon-green: hsl(150, 100%, 66%);
+  --grayish-blue: hsl(217, 19%, 38%);
+  --dark-grayish-blue: hsl(217, 19%, 24%);
+  --dark-blue: hsl(218, 23%, 16%);
+}
+
+.wrapper {
+  height: 100vh;
+  background: var(--dark-blue);
+  display: grid;
+  place-content: center;
+  padding: 4.2rem;
+}
+
+.advice-generator-app {
+  width: 600px;
+  position: relative;
+  display: grid;
+  gap: 3.2rem;
+
+  justify-items: center;
+  text-align: center;
+
+  background: var(--dark-grayish-blue);
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.2);
+  padding: 3.2rem 3.2rem 6.4rem 3.2rem;
+  border-radius: 3rem;
+}
+
+.advice-generator-app img {
+  width: 100%;
+}
+.advice-number {
+  font-size: 2rem;
+  letter-spacing: 0.8px;
+  color: var(--neon-green);
+}
+.dice {
+  position: absolute;
+
+  background-color: var(--neon-green);
+  width: 6.8rem;
+  height: 6.8rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+
+  bottom: 0;
+  transform: translateY(50%);
+}
+
+.dice:hover {
+  box-shadow: 0 0 3rem var(--neon-green);
+  cursor: pointer;
+}
+.dice img {
+  width: 50%;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 1.8rem;
+  }
+  .advice-generator-app {
+    width: 33rem;
+    gap: 2.6rem;
+    padding: 2.6rem 2.6rem 5.2rem 2.6rem;
+  }
+  .advice-number {
+    font-size: 1.3rem;
+  }
+  .dice {
+    width: 5rem;
+    height: 5rem;
+  }
+}

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Non-Fungible Tokens explained | Davide Di Francesco</title>
+<meta name="generator" content="Jekyll v3.9.2">
+<meta property="og:title" content="Non-Fungible Tokens explained">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="A non-fungible token (NFT) refers to a class of blockchain-based tokens that are intended to be unique, as opposed to cryptocurrencies where all tokens are exchangeable. NFTs are typically used to prove ownership and can represent virtually any asset, whether physical or digital. However, the most common NFT assets are digital art, digital collectibles, content such as video or audio, and event tickets.">
+<meta property="og:description" content="A non-fungible token (NFT) refers to a class of blockchain-based tokens that are intended to be unique, as opposed to cryptocurrencies where all tokens are exchangeable. NFTs are typically used to prove ownership and can represent virtually any asset, whether physical or digital. However, the most common NFT assets are digital art, digital collectibles, content such as video or audio, and event tickets.">
+<link rel="canonical" href="https://davdifr.github.io/nfts/erc721/2022/10/10/nfts-explained.html">
+<meta property="og:url" content="https://davdifr.github.io/nfts/erc721/2022/10/10/nfts-explained.html">
+<meta property="og:site_name" content="Davide Di Francesco">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-10-10T16:01:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Non-Fungible Tokens explained">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-10T16:01:00+00:00","datePublished":"2022-10-10T16:01:00+00:00","description":"A non-fungible token (NFT) refers to a class of blockchain-based tokens that are intended to be unique, as opposed to cryptocurrencies where all tokens are exchangeable. NFTs are typically used to prove ownership and can represent virtually any asset, whether physical or digital. However, the most common NFT assets are digital art, digital collectibles, content such as video or audio, and event tickets.","headline":"Non-Fungible Tokens explained","mainEntityOfPage":{"@type":"WebPage","@id":"https://davdifr.github.io/nfts/erc721/2022/10/10/nfts-explained.html"},"url":"https://davdifr.github.io/nfts/erc721/2022/10/10/nfts-explained.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+<link type="application/atom+xml" rel="alternate" href="https://davdifr.github.io/feed.xml" title="Davide Di Francesco">
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<header class="site-header" role="banner">
+
+  <div class="wrapper">
+<a class="site-title" rel="author" href="/">Davide Di Francesco</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger">
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewbox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/resume/">Resume</a></div>
+      </nav>
+</div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Non-Fungible Tokens explained</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-10-10T16:01:00+00:00" itemprop="datePublished">Oct 10, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>A <strong>non-fungible token</strong> (NFT) refers to a class of blockchain-based tokens that are intended to be <strong>unique</strong>, as opposed to cryptocurrencies where all tokens are exchangeable. NFTs are typically used to <strong>prove ownership</strong> and can represent virtually any asset, whether physical or digital. However, the most common NFT assets are digital art, digital collectibles, content such as video or audio, and event tickets.</p>
+
+<blockquote>
+  <p><em>“NFT Art gives anyone a stake in something that they feel is significant and culturally relevant. Valuable Art is something the 1% has had a monopoly on. NFT art allows the 99% to become involved.” — Kevin Godfrey, Fabriik CTO</em></p>
+</blockquote>
+
+<p>Nowadays the market for NFTs is growing rapidly especially in the collector sector with the trend of profile pictures (PFPs), which are attracting a lot of interest. Even major platforms like Instagram and Twitter are introducing them, which is undoubtedly remarkable. Mainstream interest in non-fungible tokens reached a fever pitch in late 2021, when the market grew 21,000% to $17.6 billion, according to <a href="https://nonfungible.com">nonfungible.com</a> and <a href="https://atelier.net/">L’Atelier</a>. The most widely used store for buying NFTs (<a href="https://opensea.io/">OpenSea</a>) saw record sales of $2 billion in January 2022 alone. The huge USD volume traded in 2022 is shown in the following pie chart by interest category:</p>
+
+<p><img src="https://davdifr.github.io/assets/images/nfts-usd-volume.svg" alt="nfts-usd-volume" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p>Some collections, such as the <a href="https://opensea.io/collection/boredapeyachtclub">Bored Ape Yacht Club</a> (BAYC), have become nothing less than status symbols. Although they were originally intended as a joke, to this day they are no longer normal NFTs, and owning one of them is no less than owning a Ferrari. Steph Curry (a famous basketball player) bought the Bored Ape #7990 NFT in 2021 for $180,000. Other celebrities like Eminem, Snoop Dogg, Serena Williams, and Neymar own some of the most expensive PFPs out there, and they use them on their social networks.</p>
+
+<p>The following table provides some information on 5 of the most profitable NFTs sold in Q2 2022:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">NFT</th>
+      <th style="text-align: center">Project</th>
+      <th style="text-align: center">Days since purchase</th>
+      <th style="text-align: center">Purchase Price (USD)</th>
+      <th style="text-align: center">Resale Price (USD)</th>
+      <th style="text-align: center">Profit (USD)</th>
+      <th style="text-align: center">Profit (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="https://img.seadn.io/files/5d3d2b859d0d5ab0de7e5d4359349a23.png?fit=max&w=80" alt="CryptoPunk #7756"></td>
+      <td style="text-align: center"><a href="https://opensea.io/collection/cryptopunks">CryptoPunks</a></td>
+      <td style="text-align: center">583</td>
+      <td style="text-align: center">$9,337</td>
+      <td style="text-align: center">$3,261,857</td>
+      <td style="text-align: center">3,252,519</td>
+      <td style="text-align: center">34,833%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><img src="https://img.seadn.io/files/d002e8dfa01bf4364cd286f2b933b4cd.jpg?fit=max&w=80" alt="OtherSide #59906"></td>
+      <td style="text-align: center"><a href="https://opensea.io/collection/otherdeed">Otherdeed for Otherside</a></td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">$5,905</td>
+      <td style="text-align: center">$1,647,788</td>
+      <td style="text-align: center">1,641,883</td>
+      <td style="text-align: center">27,806%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><img src="https://img.seadn.io/files/80616debe1ec357bb98e96dd2024b57d.png?fit=max&w=80" alt="Ape #6388"></td>
+      <td style="text-align: center"><a href="https://opensea.io/collection/boredapeyachtclub">Bored Ape Yacht Club</a></td>
+      <td style="text-align: center">377</td>
+      <td style="text-align: center">$107,000</td>
+      <td style="text-align: center">$1,083,512</td>
+      <td style="text-align: center">$976,512</td>
+      <td style="text-align: center">913%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><img src="https://img.seadn.io/files/898e79d4a38391abf25a3ba64118980c.png?fit=max&w=80" alt="Ape #7537"></td>
+      <td style="text-align: center"><a href="https://opensea.io/collection/boredapeyachtclub">Bored Ape Yacht Club</a></td>
+      <td style="text-align: center">85</td>
+      <td style="text-align: center">$298,001</td>
+      <td style="text-align: center">$1,222,922</td>
+      <td style="text-align: center">$924,921</td>
+      <td style="text-align: center">310%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><img src="https://img.seadn.io/files/7d858d568b20f301f61a71a0ee3e9a3f.png?fit=max&w=80" alt="Moonbirds #3904"></td>
+      <td style="text-align: center"><a href="https://opensea.io/collection/proof-moonbirds">Moonbirds</a></td>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">$7,554</td>
+      <td style="text-align: center">$902,498</td>
+      <td style="text-align: center">$894,944</td>
+      <td style="text-align: center">11,847%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This kind of value enhancement is possible thanks to the great interest that NFTs experience on the Internet.
+Every day, more and more companies are trying to incorporate NFTs into their marketing strategies, and this has also happened in the fashion industry. Luxury brands such as Dolce &amp; Gabbana, Gucci, Louis Vuitton and Burberry have actively ventured into the digital space, looking for ways to incorporate NFTs into their product range and marketing efforts.</p>
+
+<p><em>Please note that this article isn’t intended as financial advice. The previous part was intended to show and appreciate the worldwide interest in this technology, and there’s no intention to suggest a financial investment.</em></p>
+
+<h2 id="technical-details">Technical details</h2>
+
+<p>For a better understanding of the following explanations, some key terms are defined here in a simplified way:</p>
+
+<ol>
+  <li>
+<strong>Smart contract</strong> - A smart contract is an application that runs on the blockchain. Every smart contract has some functions, some state and an address.</li>
+  <li>
+<strong>ERCs</strong> - ERCs (Ethereum Request for Comments) are technical documents used by smart contract developers at Ethereum. They define a set of rules required to implement tokens for the Ethereum ecosystem.</li>
+  <li>
+<strong>Wallet Address</strong> - A wallet address is a string of letters and numbers (<code class="language-plaintext highlighter-rouge">0x04600C3E...ff49628</code>) from which cryptocurrencies or NFTs can be sent to and from.</li>
+</ol>
+
+<p>Ethereum was the first blockchain to support NFTs with its inheritable standard <strong>ERC-721</strong>. This means that developers can create new ERC-721-compliant contracts by copying a <a href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol">reference implementation</a> that provides core methods for tracking the owner of a unique identifier and a way for the owner to transfer the asset to others.</p>
+
+<p>There are many standards in Ethereum; ERC20, for example, is the most popular token standard used to create fungible tokens like coins that have economic value.</p>
+
+<p>Here are some differences between the ERC20 and the ERC721 standard:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>ERC20 token standard</th>
+      <th>ERC721 NFT standard</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Fungibility</td>
+      <td>Tokens are fungible up to the decimal places specified in the contract.</td>
+      <td>Tokens are not fungible. Each token itself represents 1 asset that cannot be subdivided.</td>
+    </tr>
+    <tr>
+      <td>Ownership</td>
+      <td>Token ownership is not directly linked to an account, and only the token balances are tracked.</td>
+      <td>Ownership of each token is tied to an individual account address.</td>
+    </tr>
+    <tr>
+      <td>Uniqueness</td>
+      <td>There is no difference in each token.</td>
+      <td>Each token is different from every other token included in the same contract.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The main feature of ERC-721 is that each token is unique. When an ERC-721 token is created, there is only one copy. These tokens, as NFTs, have spread the idea and application of <strong>unique assets</strong> on Ethereum.</p>
+
+<p>The following figure <em>(Figure 1)</em> helps to better understand what it means that ERC20 maps addresses to amounts and ERC721 maps unique IDs to owners.</p>
+
+<p><img src="https://davdifr.github.io/assets/images/anatomy-erc20-erc721.svg" alt="erc20-erc721" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p>The descriptive information of a particular ERC721 token is provided by its <strong>metadata</strong> and might look something like this:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Token #1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.org/1.png"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the token n.1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>There are two options for representing metadata: On-chain and off-chain.
+In the on-chain approach, metadata is stored permanently with the token and persists beyond the lifecycle of a particular application. Moreover, they can change according to the on-chain logic. Despite these benefits, most projects store their metadata off-chain <em>(Figure 2)</em> simply due to the current storage limitations of the Ethereum blockchain.</p>
+
+<p><img src="https://davdifr.github.io/assets/images/off-chain-metadata.svg" alt="off-chain-metadata" style="display:block; margin-left:auto; margin-right:auto"></p>
+
+<p>The ERC721 standard includes (in an optional interface called ERC721Metadata) a function called <code class="language-plaintext highlighter-rouge">tokenURI</code> that developers can implement to tell applications where to find the metadata for a given item.</p>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">tokenURI</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_tokenId</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The function <code class="language-plaintext highlighter-rouge">tokenURI</code> returns the Uniform Resource Identifier (URI) as data type <code class="language-plaintext highlighter-rouge">string</code>. This in turn returns a JSON file that conforms to the ERC721 metadata schema.</p>
+
+<h2 id="an-in-depth-insight-into-erc-721">An in-depth insight into ERC-721</h2>
+
+<p>Each ERC721 token must implement nine mandatory functions and is defined as follows:</p>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">interface</span> <span class="n">ERC721</span> <span class="p">{</span>
+    <span class="k">event</span> <span class="n">Transfer</span><span class="p">(</span><span class="kt">address</span> <span class="k">indexed</span> <span class="n">_from</span><span class="p">,</span> <span class="kt">address</span> <span class="k">indexed</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="k">indexed</span> <span class="n">_tokenId</span><span class="p">);</span>
+    <span class="k">event</span> <span class="n">Approval</span><span class="p">(</span><span class="kt">address</span> <span class="k">indexed</span> <span class="n">_owner</span><span class="p">,</span> <span class="kt">address</span> <span class="k">indexed</span> <span class="n">_approved</span><span class="p">,</span> <span class="kt">uint256</span> <span class="k">indexed</span> <span class="n">_tokenId</span><span class="p">);</span>
+    <span class="k">event</span> <span class="n">ApprovalForAll</span><span class="p">(</span><span class="kt">address</span> <span class="k">indexed</span> <span class="n">_owner</span><span class="p">,</span> <span class="kt">address</span> <span class="k">indexed</span> <span class="n">_operator</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">_approved</span><span class="p">);</span>
+
+    <span class="k">function</span> <span class="n">balanceOf</span><span class="p">(</span><span class="kt">address</span> <span class="n">_owner</span><span class="p">)</span> <span class="k">external</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+    <span class="k">function</span> <span class="n">ownerOf</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_tokenId</span><span class="p">)</span> <span class="k">external</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">address</span><span class="p">);</span>
+    <span class="k">function</span> <span class="n">safeTransferFrom</span><span class="p">(</span><span class="kt">address</span> <span class="n">_from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_tokenId</span><span class="p">,</span> <span class="kt">bytes</span> <span class="n">data</span><span class="p">)</span> <span class="k">external</span> <span class="k">payable</span><span class="p">;</span>
+    <span class="k">function</span> <span class="n">safeTransferFrom</span><span class="p">(</span><span class="kt">address</span> <span class="n">_from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_tokenId</span><span class="p">)</span> <span class="k">external</span> <span class="k">payable</span><span class="p">;</span>
+    <span class="k">function</span> <span class="n">transferFrom</span><span class="p">(</span><span class="kt">address</span> <span class="n">_from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_tokenId</span><span class="p">)</span> <span class="k">external</span> <span class="k">payable</span><span class="p">;</span>
+    <span class="k">function</span> <span class="n">approve</span><span class="p">(</span><span class="kt">address</span> <span class="n">_approved</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_tokenId</span><span class="p">)</span> <span class="k">external</span> <span class="k">payable</span><span class="p">;</span>
+    <span class="k">function</span> <span class="n">setApprovalForAll</span><span class="p">(</span><span class="kt">address</span> <span class="n">_operator</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">_approved</span><span class="p">)</span> <span class="k">external</span><span class="p">;</span>
+    <span class="k">function</span> <span class="n">getApproved</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_tokenId</span><span class="p">)</span> <span class="k">external</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">address</span><span class="p">);</span>
+    <span class="k">function</span> <span class="n">isApprovedForAll</span><span class="p">(</span><span class="kt">address</span> <span class="n">_owner</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_operator</span><span class="p">)</span> <span class="k">external</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">balanceOf()</code> function in the following code returns the total number of tokens for the specified address:</p>
+
+    <div class="language-solidity highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">balanceOf</span><span class="p">(</span><span class="kt">address</span> <span class="n">_owner</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nb">require</span><span class="p">(</span><span class="n">owner</span> <span class="o">!=</span> <span class="kt">address</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+	<span class="k">return</span> <span class="n">_ownedTokensCount</span><span class="p">[</span><span class="n">owner</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <p>Anyone is allowed to call this function, as it is a <code class="language-plaintext highlighter-rouge">public</code> and <code class="language-plaintext highlighter-rouge">view</code> function, to read the value for off-chain calculation as well.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">ownerOf()</code> function finds the provided <code class="language-plaintext highlighter-rouge">tokenId</code> in the <code class="language-plaintext highlighter-rouge">_tokenOwner</code> map and returns the <code class="language-plaintext highlighter-rouge">address</code> of its <code class="language-plaintext highlighter-rouge">owner</code>:</p>
+
+    <div class="language-solidity highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">ownerOf</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">tokenId</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">address</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">address</span> <span class="n">owner</span> <span class="o">=</span> <span class="n">_tokenOwner</span><span class="p">[</span><span class="n">tokenId</span><span class="p">];</span>
+	<span class="nb">require</span><span class="p">(</span><span class="n">owner</span> <span class="o">!=</span> <span class="kt">address</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+	<span class="k">return</span> <span class="n">owner</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <p>If the specified <code class="language-plaintext highlighter-rouge">tokenId</code> does not exist in the mapping, <code class="language-plaintext highlighter-rouge">address(0)</code> is assigned to the local variable <code class="language-plaintext highlighter-rouge">owner</code> and the function call fails.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">approve()</code> function approves permission from another entity to transfer a token on behalf of the owner. The function requires that the sender of the message is the owner of <code class="language-plaintext highlighter-rouge">tokenId</code>. The approved token is stored in the mapping shop of <code class="language-plaintext highlighter-rouge">tokenApprovals</code>:</p>
+
+    <div class="language-solidity highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">approve</span><span class="p">(</span><span class="kt">address</span> <span class="n">to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">tokenId</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span>
+	<span class="kt">address</span> <span class="n">owner</span> <span class="o">=</span> <span class="n">ownerOf</span><span class="p">(</span><span class="n">tokenId</span><span class="p">);</span>
+	<span class="nb">require</span><span class="p">(</span><span class="n">to</span> <span class="o">!=</span> <span class="n">owner</span><span class="p">);</span>
+	<span class="nb">require</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">sender</span> <span class="o">==</span> <span class="n">owner</span> <span class="o">||</span> <span class="n">isApproveForAll</span><span class="p">(</span><span class="n">owner</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="n">sender</span><span class="p">));</span>
+
+	<span class="n">_tokenApprovals</span><span class="p">[</span><span class="n">tokenId</span><span class="p">]</span> <span class="o">=</span> <span class="n">to</span><span class="p">;</span>
+	<span class="k">emit</span> <span class="n">Approval</span><span class="p">(</span><span class="n">owner</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">tokenId</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <p>The <code class="language-plaintext highlighter-rouge">approve()</code> function can also be called by the operator (who has rights to the owner’s tokens). The operator can also grant approvals to another account. There are two <code class="language-plaintext highlighter-rouge">require</code> checks, the one <code class="language-plaintext highlighter-rouge">require(to != owner)</code> ensures that the operator cannot grant any other approvals to the token <code class="language-plaintext highlighter-rouge">owner</code>. The second <code class="language-plaintext highlighter-rouge">require</code> ensures that the sender is either the <code class="language-plaintext highlighter-rouge">owner</code> or has operator rights. After these checks are made, the token approval is issued to the address <code class="language-plaintext highlighter-rouge">to</code> for the specified <code class="language-plaintext highlighter-rouge">tokenId</code>. Finally, an <code class="language-plaintext highlighter-rouge">Approval</code> event is issued along with the approval data.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">getApproved()</code> function verifies and makes sure that the transaction senders are the owners of the token and that the token transfer gets approved:</p>
+
+    <div class="language-solidity highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">getApproved</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">tokenId</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">address</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nb">require</span><span class="p">(</span><span class="n">_exists</span><span class="p">(</span><span class="n">tokenId</span><span class="p">));</span>
+	<span class="k">return</span> <span class="n">_tokenApprovals</span><span class="p">[</span><span class="n">tokenId</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <p>The function calls an internal <code class="language-plaintext highlighter-rouge">_exists()</code> function to ensure that the given <code class="language-plaintext highlighter-rouge">tokenId</code> exists and that it has been assigned to a non-<code class="language-plaintext highlighter-rouge">address(0)</code> owner, otherwise, the function call fails.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">setApprovalForAll</code> function enables or disables the approval of a third party (<code class="language-plaintext highlighter-rouge">operator</code>) to manage all of the assets for <code class="language-plaintext highlighter-rouge">msg.sender</code>:</p>
+
+    <div class="language-solidity highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">setApprovalForAll</span><span class="p">(</span><span class="kt">address</span> <span class="n">to</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">approved</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span>
+	<span class="nb">require</span><span class="p">(</span><span class="n">to</span> <span class="o">!=</span> <span class="n">msg</span><span class="p">.</span><span class="n">sender</span><span class="p">);</span>
+	<span class="n">_operatorApprovals</span><span class="p">[</span><span class="n">msg</span><span class="p">.</span><span class="n">sender</span><span class="p">][</span><span class="n">to</span><span class="p">]</span> <span class="o">=</span> <span class="n">approved</span><span class="p">;</span>
+	<span class="k">emit</span> <span class="n">ApprovalForAll</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">sender</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">approved</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <p>The argument <code class="language-plaintext highlighter-rouge">approved</code> is a boolean value that specifies whether the approval should be granted or revoked.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">isApprovedForAll()</code> function checks that the given operator has operator rights on the given owner’s tokens:</p>
+
+    <div class="language-solidity highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">isApprovedForAll</span><span class="p">(</span><span class="kt">address</span> <span class="n">owner</span><span class="p">,</span> <span class="kt">address</span> <span class="n">operator</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="n">_operatorApprovals</span><span class="p">[</span><span class="n">owner</span><span class="p">][</span><span class="n">operator</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <p>It fetches the read-only data from the <code class="language-plaintext highlighter-rouge">_operatorApprovals</code> mapping.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">transferFrom()</code> function transfers ownership of an NFT:</p>
+
+    <div class="language-solidity highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">transferFrom</span><span class="p">(</span><span class="kt">address</span> <span class="n">from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">tokenId</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span>
+	<span class="nb">require</span><span class="p">(</span><span class="n">_isApprovedOrOwner</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">sender</span><span class="p">,</span> <span class="n">tokenId</span><span class="p">));</span>
+	<span class="n">_transferFrom</span><span class="p">(</span><span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">tokenId</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <p>The function first validates that the <code class="language-plaintext highlighter-rouge">msg.sender</code> (function caller) has the necessary permissions to transfer the given <code class="language-plaintext highlighter-rouge">tokenId</code>. Once it is verified, the internal call to the <code class="language-plaintext highlighter-rouge">_transferFrom()</code> function transfers the token from the owner’s account to the recipient’s account.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">safeTransferFrom()</code> function is used to safely transfer the NFT from the owner’s account to the recipient’s account:</p>
+
+    <div class="language-solidity highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">safeTransferFroom</span><span class="p">(</span><span class="kt">address</span> <span class="n">from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">tokenId</span><span class="p">,</span> <span class="kt">bytes</span> <span class="k">memory</span> <span class="n">_data</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span>
+	<span class="n">transferFrom</span><span class="p">(</span><span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">tokenId</span><span class="p">);</span>
+	<span class="nb">require</span><span class="p">(</span><span class="n">_checkOnERC721Received</span><span class="p">(</span><span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">tokenId</span><span class="p">,</span> <span class="n">_data</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <p>Safely transfer here means that if the recipient is a contract, you must ensure that the “recipient contract” has registered callbacks so that the “receiver contract” gets a notification when the ERC721 token transfer is successful.</p>
+  </li>
+  <li>
+    <p>There is another function <code class="language-plaintext highlighter-rouge">safeTransferFrom()</code> which is used when the recipient of the NFT is an <strong>Externally Owned Account (EOA)</strong> and not a contract account:</p>
+
+    <div class="language-solidity highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">safeTransferFrom</span><span class="p">(</span><span class="kt">address</span> <span class="n">from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">tokenId</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span>
+	<span class="n">safeTransferFrom</span><span class="p">(</span><span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">tokenId</span><span class="p">,</span> <span class="s">""</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>The standard interface discussed is taken from the EIP standard document at <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md">https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md</a>.</p>
+
+<hr>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Non-fungible_token">Non-fungible token</a></li>
+  <li><a href="https://eips.ethereum.org">Ethereum Improvement Proposals</a></li>
+  <li>
+<a href="https://nonfungible.com">nonfungible.com</a> - 2022 NFT Market report Q2</li>
+  <li>
+<a href="https://atelier.net/news/report-17.6-billion-in-nft-trades-during-2021">Report: $17.6 billion in NFT trades during 2021</a> - L’Atelier</li>
+  <li>
+<a href="https://opensea.io/blog/guides/non-fungible-tokens/">The Non-Fungible Token Bible: Everything you need to know about NFTs</a> - Devin Finzer</li>
+  <li>
+<a href="https://www.amazon.com/Mastering-Blockchain-Programming-Solidity-production-ready/dp/1839218266">Mastering Blockchain Programming with Solidity</a> - Jitendra Chittoda</li>
+  <li>
+<a href="https://www.amazon.com/Learn-Ethereum-decentralized-applications-contracts/dp/1789954118/ref=sr_1_1?crid=1R4FU0HKYPRVR&keywords=learn+ethereum&amp;qid=1665334863&amp;qu=eyJxc2MiOiIwLjYyIiwicXNhIjoiMC41NyIsInFzcCI6IjAuNzcifQ%3D%3D&amp;s=books&amp;sprefix=learn+ethereum%2Cstripbooks-intl-ship%2C263&amp;sr=1-1">Learn Ethereum</a> - Xun Wu, Zhihong Zou and Dongying Song</li>
+</ul>
+
+  </div>
+<a class="u-url" href="/nfts/erc721/2022/10/10/nfts-explained.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Davide Di Francesco</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Davide Di Francesco</li>
+<li><a class="u-email" href="mailto:info@davdifr.com">info@davdifr.com</a></li>
+</ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+<ul class="social-media-list">
+<li><a href="https://github.com/davdifr"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">davdifr</span></a></li>
+<li><a href="https://www.twitter.com/davdifr"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">davdifr</span></a></li>
+</ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Student @ University of L'Aquila, Italy.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

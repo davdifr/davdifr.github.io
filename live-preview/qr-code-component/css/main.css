@@ -1,0 +1,54 @@
+:root {
+  /* Colors */
+  --white: hsl(0, 0%, 100%);
+  --light-gray: hsl(212, 45%, 89%);
+  --grayish-blue: hsl(220, 15%, 55%);
+  --dark-blue: hsl(218, 44%, 22%);
+
+  /* General */
+  --component-width: 325px;
+  --whitespace: 1.6rem;
+  --shadow: 0 2rem 4rem rgba(0, 0, 0, 0.1);
+}
+
+.wrapper,
+.qr-code-component,
+.info {
+  display: flex;
+  flex-direction: column;
+  padding: var(--whitespace);
+}
+
+.wrapper {
+  height: 100vh;
+  background: var(--light-gray);
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-code-component {
+  max-width: var(--component-width);
+  background: var(--white);
+  box-shadow: var(--shadow);
+  border-radius: 2rem;
+}
+
+.info {
+  gap: var(--whitespace);
+}
+
+.qr-code {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--dark-blue);
+}
+
+.title,
+.description {
+  text-align: center;
+}
