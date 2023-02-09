@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A possible web interface"
+title: "Creating an NFT Credential"
 date: 2023-02-09 12:38:26 +0200
 categories: digitalcredentials nfts smartcontract
 ---
@@ -13,6 +13,16 @@ The creation of a new digital credential through Etherscan appears as follows:
 
 At this point, it is not necessary to have any coding experience to proceed.
 All you need to do is **connect the contract owner's wallet** and fill out the form to **create and send** the recipient their digital credential.
+
+Once the token is released, the recipient can **share their wallet address**, allowing it to be easily found using **various blockchain exploration tools**, including Etherscan, where information about the token can be viewed.
+
+Sharing the transaction details can also be sufficient to view the attributes of the issued NFT.
+
+![transaction](https://davdifr.com/assets/images/demo/transaction.png){:style="display:block; margin-left:auto; margin-right:auto"}
+
+Of course, this is not a practical way to share the credential. It is **recommended to use the OpenSea** platform instead, which in addition to providing an address for viewing on their site, also provides an embed code.
+
+![transaction](https://davdifr.com/assets/images/demo/share.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
 Moreover, it is possible to **build various web applications** using the **web3js library**, which allows interaction with smart contracts.
 
