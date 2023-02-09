@@ -9,14 +9,14 @@ The NFTs created in the proposed solution are compliant with the ERC721 standard
 Additionally, like any other NFT of this standard, they can be viewed and read on **any platform** that interacts with these smart contracts.
 The creation of a new digital credential through Etherscan appears as follows:
 
-![etherscan-mint](https://davdifr.com/assets/images/demo/etherscan-mint.png)
+![etherscan-mint](https://davdifr.com/assets/images/demo/etherscan-mint.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
 At this point, it is not necessary to have any coding experience to proceed.
 All you need to do is **connect the contract owner's wallet** and fill out the form to **create and send** the recipient their digital credential.
 
 Moreover, it is possible to **build various web applications** using the **web3js library**, which allows interaction with smart contracts.
 
-![dapp-mint](https://davdifr.com/assets/images/demo/mint.png)
+![dapp-mint](https://davdifr.com/assets/images/demo/mint.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
 A possible example, which will be demonstrated in the form of a demo, is the potential use of these credentials as a form of login to a platform.
 
@@ -60,7 +60,7 @@ Upon opening the page, **the user will be prompted to connect their wallet** fir
 
 We manage a login interface that handles **two scenarios**: the wallet owner **doesn't have any tokens** issued by our contract, and the owner **has one or multiple tokens**, the details of which are also displayed.
 
-![login](https://davdifr.com/assets/images/demo/login.png)
+![login](https://davdifr.com/assets/images/demo/login.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
 When the button is clicked, it performs the following actions:
 
@@ -84,7 +84,7 @@ btn.addEventListener('click', async () => {
 
 If the balance is equal to or less than 0, the "msg" element is set to "There are no NFTs in your wallet created by this contract".
 
-![not-owner](https://davdifr.com/assets/images/demo/not-owner.png)
+![not-owner](https://davdifr.com/assets/images/demo/not-owner.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
 If the balance is greater than 0, the "msg" element is set to "There is at least one NFT in your wallet from this contract".
 
@@ -107,7 +107,7 @@ tokenMetadatas.forEach(metadata => {
 3. Waits for all metadata requests to complete and stores the results in an array.
 4. Iterates over the array of metadata, creating HTML elements for the owner name, title, and description of each token and appending them to the "details" element.
 
-![owner](https://davdifr.com/assets/images/demo/owner.png)
+![owner](https://davdifr.com/assets/images/demo/owner.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
 ## Creating a Graphic Appearance
 
@@ -129,4 +129,4 @@ The JSON file will in turn have the IPFS link that has been assigned to the imag
 
 The final step is to call the `setBaseURI` function of the contract, providing the IPFS address of the JSON file as input. From this moment on, the graphical representation of the token will be visible on any platform. Here is an example on OpenSea:
 
-![etherscan-mind](https://davdifr.com/assets/images/demo/opensea.png)
+![etherscan-mind](https://davdifr.com/assets/images/demo/opensea.png){:style="display:block; margin-left:auto; margin-right:auto"}
