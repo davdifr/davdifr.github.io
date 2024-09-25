@@ -61,7 +61,7 @@ analytics:
   google:
     id: G-Q3KNEK30ZF # fill in your Google Analytics ID
   goatcounter:
-    id: # fill in your GoatCounter ID
+    id: davdifr # fill in your GoatCounter ID
   umami:
     id: # fill in your Umami ID
     domain: # fill in your Umami domain
@@ -119,7 +119,7 @@ comments:
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: # <gh-username>/<repo>
+    repo: davdifr/davdifr.github.io # <gh-username>/<repo>
     repo_id:
     category:
     category_id:
