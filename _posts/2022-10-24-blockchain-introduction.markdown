@@ -3,6 +3,7 @@ layout: post
 title: "Blockchain introduction"
 date: 2022-10-24 18:36:00 +0200
 categories: 
+ - Tech Research
  - Blockchain
 tags:
  - ethereum

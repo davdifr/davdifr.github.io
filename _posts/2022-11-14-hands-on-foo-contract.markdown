@@ -3,6 +3,7 @@ layout: post
 title: "Hands-on Foo contract"
 date: 2022-11-14 19:50:26 +0200
 categories: 
+ - Tech Research
  - Blockchain
 tags:
  - ethereum

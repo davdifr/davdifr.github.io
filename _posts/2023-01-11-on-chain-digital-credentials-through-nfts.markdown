@@ -3,6 +3,7 @@ layout: post
 title: "On-chain Digital Credentials through NFTs"
 date: 2023-01-11 12:57:26 +0200
 categories:
+ - Tech Research
  - Digital Credentials
 tags:
  - NFT

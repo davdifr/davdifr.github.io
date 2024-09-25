@@ -3,6 +3,7 @@ layout: post
 title: "Exploring digital credentials"
 date: 2022-09-22 12:38:26 +0200
 categories: 
+  - Tech Research
   - Digital Credentials
 tags:
   - blockchain

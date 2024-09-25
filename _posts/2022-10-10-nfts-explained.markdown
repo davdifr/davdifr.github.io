@@ -3,6 +3,7 @@ layout: post
 title: "Non-Fungible Tokens explained"
 date: 2022-10-10 18:01:00 +0200
 categories: 
+ - Tech Research
  - Blockchain
 tags:
  - NFT

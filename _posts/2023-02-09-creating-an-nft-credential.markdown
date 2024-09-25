@@ -3,6 +3,7 @@ layout: post
 title: "Creating an NFT Credential"
 date: 2023-02-09 12:38:26 +0200
 categories:
+ - Tech Research
  - Digital Credentials
 tags:
  - NFT

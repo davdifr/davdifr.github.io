@@ -3,6 +3,7 @@ layout: post
 title: "NFTs as credentials (?)"
 date: 2022-10-07 19:00:00 +0200
 categories: 
+ - Tech Research
  - Digital Credentials
 tags:
  - NFT
