@@ -120,14 +120,14 @@ comments:
   # Giscus options › https://giscus.app
   giscus:
     repo: davdifr/davdifr.github.io # <gh-username>/<repo>
-    repo_id: 860477927
-    category:
-    category_id:
-    mapping: # optional, default to 'pathname'
-    strict: # optional, default to '0'
-    input_position: # optional, default to 'bottom'
+    repo_id: R_kgDOM0nZ5w
+    category: General
+    category_id: DIC_kwDOM0nZ584Cixdb
+    mapping: pathname # optional, default to 'pathname'
+    strict: 0 # optional, default to '0'
+    input_position: bottom # optional, default to 'bottom'
     lang: en # optional, default to the value of `site.lang`
-    reactions_enabled: # optional, default to the value of `1`
+    reactions_enabled: 1 # optional, default to the value of `1`
 
 # Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets
 assets:
