@@ -120,7 +120,7 @@ comments:
   # Giscus options › https://giscus.app
   giscus:
     repo: davdifr/davdifr.github.io # <gh-username>/<repo>
-    repo_id:
+    repo_id: 860477927
     category:
     category_id:
     mapping: # optional, default to 'pathname'
