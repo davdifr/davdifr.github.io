@@ -25,7 +25,3 @@ package-lock.json
 # Misc
 _sass/vendors
 assets/js/dist
-
-# MacOS
-# Ignore system files
-.DS_Store
