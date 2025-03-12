@@ -127,8 +127,6 @@ This worked, but introduced a weird bug—**player colors changed on collision**
 
 > Keep player colors static. Ensure color consistency across all clients.
 
-![Collision Bug](/assets/posts/vibecoding-let-ai-code-for-me/player-missing-after-chat-fix.gif)
-
 ### Debugging AI Mistakes
 
 AI sometimes introduced syntax errors. At one point, I encountered this:
