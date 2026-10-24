@@ -33,6 +33,11 @@ _`02/2022 - 08/2022` Istanbul, Turkey · Remote_
 
 ### Projects
 
+#### [OrdiClick](https://ordiclick.it)
+An online ordering and management platform for restaurants. Venues publish daily menus on their own subdomain with a QR code, collect pickup and delivery orders, and follow each order from the kitchen to completion. Optional modules such as reservations, table ordering, loyalty cards, multilingual menus and analytics can be switched on and off from the admin panel, each with its own monthly subscription. The admin panel is designed for non-technical staff working mid-service, with WCAG 2.2 AA accessibility as a baseline.
+
+_Technologies used: Angular, TypeScript, Supabase (PostgreSQL), Stripe, Vercel._
+
 #### On-chain Digital Credentials through NFTs
 This project explores the application of blockchain technology to create digital credentials similar to Verified Credentials (VC) or OpenBadges, represented as Non-Fungible Tokens (NFTs). By leveraging NFTs, the project offers a unique, tamper-proof solution for verifying digital identities. This approach presents promising opportunities for enhancing online authentication and ensuring the integrity of digital credentials.
 
