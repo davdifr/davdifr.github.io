@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<section class="listing">
+  <header class="listing__head">
+    <p class="label">[ Blog / {{ site.posts | size }} posts ]</p>
+    <h1 class="listing__title">Writing</h1>
+    <p class="listing__lede">
+      Notes on Angular, TypeScript and front-end architecture, and lately on building
+      software with AI.
+    </p>
+    <label class="filter">
+      <span class="visually-hidden">Filter posts</span>
+      <input type="search" placeholder="Filter by title or tag…" autocomplete="off" data-filter>
+    </label>
+  </header>
+
+  {%- assign years = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" -%}
+  {%- for year in years %}
+    <section class="year" data-year>
+      <h2 class="year__label">{{ year.name }}</h2>
+      <ol class="rows">
+        {%- for post in year.items %}
+          {% include post-row.html post=post full=true %}
+        {%- endfor %}
+      </ol>
+    </section>
+  {%- endfor %}
+  <p class="empty" data-empty hidden>No posts match that filter.</p>
+</section>

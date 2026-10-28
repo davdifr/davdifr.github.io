@@ -1,0 +1,19 @@
+<!doctype html>
+{%- comment -%}
+  A page that moved: sends visitors (and search engines) to `redirect_to`.
+  GitHub Pages can't send HTTP redirects, so this is the next best thing.
+{%- endcomment -%}
+{%- assign target = page.redirect_to | relative_url -%}
+<html lang="{{ site.lang }}">
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting…</title>
+    <link rel="canonical" href="{{ page.redirect_to | absolute_url }}">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="refresh" content="0; url={{ target }}">
+    <script>location.replace({{ target | jsonify }});</script>
+  </head>
+  <body>
+    <p>This page moved to <a href="{{ target }}">{{ page.redirect_to | absolute_url }}</a>.</p>
+  </body>
+</html>

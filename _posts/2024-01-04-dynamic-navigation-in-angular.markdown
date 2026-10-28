@@ -9,6 +9,8 @@ tags:
   - angular
   - typescript
   - routes
+# The Angular templates in the code use {{ }}: show them as written.
+render_with_liquid: false
 ---
 
 ## Introduction

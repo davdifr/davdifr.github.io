@@ -1,5 +1,5 @@
 ---
-layout: compress
+layout: null
 ---
 
 {% assign favicon_path = "/assets/img/favicons" | relative_url %}

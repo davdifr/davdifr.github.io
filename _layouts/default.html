@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+  <head>
+    {% include head.html %}
+    <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+    {%- if page.layout == 'post' or page.layout == 'page' %}
+      <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
+    {%- endif %}
+    <script defer src="{{ '/assets/js/blog.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/stars.js' | relative_url }}"></script>
+  </head>
+  <body data-layout="{{ page.layout }}">
+    <canvas class="sky" data-sky aria-hidden="true"></canvas>
+    <a class="skip" href="#main">Skip to content</a>
+    {% include header.html %}
+    <main id="main" class="main">
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

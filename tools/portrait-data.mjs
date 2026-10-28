@@ -1,6 +1,6 @@
 // Builds the portrait data texture for the landing page:
-//   R = luminance, G/B = depth as 16 bits (G high byte; z in model units, stored
-//   over Z_RANGE), A = portrait matte.
+//   R = luminance, G/B = depth as 16 bits (G high byte, 12 significant bits; z in
+//   model units, stored over Z_RANGE), A = portrait matte.
 // The texture is 2 model units tall; the page turns each texel into particles.
 //
 // Regenerate with:
@@ -161,12 +161,26 @@ console.log(`depth scale ${k.toFixed(3)} · nose ${((noseZ - earZ) * k).toFixed(
 
 /* Output ---------------------------------------------------------------------- */
 
+// The page only reads texels inside the matte, plus a couple of neighbours when
+// it interpolates depth at the edge: blank everything else so the PNG compresses.
+const nearMatte = new Uint8Array(N);
+for (let i = 0; i < N; i++) {
+  if (!inMatte[i]) continue;
+  const x = i % W, y = (i / W) | 0;
+  for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) {
+    const nx = x + dx, ny = y + dy;
+    if (nx >= 0 && ny >= 0 && nx < W && ny < H) nearMatte[ny * W + nx] = 1;
+  }
+}
+
 const out = Buffer.alloc(N * 4);
 let clipped = 0;
 for (let i = 0; i < N; i++) {
+  if (!nearMatte[i]) continue;
   const t = (z[i] - Z_RANGE[0]) / (Z_RANGE[1] - Z_RANGE[0]);
   if (inMatte[i] && (t < 0 || t > 1)) clipped++;
-  const q = Math.round(Math.min(1, Math.max(0, t)) * 65535);
+  // 12 significant bits (1/4096 of Z_RANGE) are plenty and compress far better.
+  const q = Math.round(Math.min(1, Math.max(0, t)) * 4095) << 4;
   out[i * 4] = lum[i];
   out[i * 4 + 1] = q >> 8;
   out[i * 4 + 2] = q & 255;

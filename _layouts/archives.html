@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<section class="listing">
+  <header class="listing__head">
+    <p class="label">[ Archive ]</p>
+    <h1 class="listing__title">Every post, by year</h1>
+  </header>
+  {%- assign years = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" -%}
+  {%- for year in years %}
+    <section class="year">
+      <h2 class="year__label">{{ year.name }} <span class="dim">/ {{ year.items | size }}</span></h2>
+      <ol class="rows">
+        {%- for post in year.items %}
+          {% include post-row.html post=post %}
+        {%- endfor %}
+      </ol>
+    </section>
+  {%- endfor %}
+</section>

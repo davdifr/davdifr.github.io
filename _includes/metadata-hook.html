@@ -8,7 +8,7 @@
   <link rel="me" href="{{ link }}">
 {% endfor %}
 
-{% if page.url == '/' or page.url == '/about/' %}
+{% if page.url == '/' %}
   <!-- Person entity for the site owner. jekyll-seo-tag only emits a WebSite /
        BlogPosting node, so this is what connects the domain to the name. -->
   <script type="application/ld+json">
@@ -21,7 +21,7 @@
       "givenName": "Davide",
       "familyName": "Di Francesco",
       "url": {{ '/' | absolute_url | jsonify }},
-      "mainEntityOfPage": {{ '/about/' | absolute_url | jsonify }},
+      "mainEntityOfPage": {{ '/' | absolute_url | jsonify }},
       "image": {{ site.avatar | absolute_url | jsonify }},
       "jobTitle": "Frontend Developer",
       "description": {{ site.description | strip_newlines | strip | jsonify }},

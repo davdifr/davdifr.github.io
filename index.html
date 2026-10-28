@@ -18,15 +18,7 @@ layout: null
     <link rel="preload" href="{{ '/assets/home/portrait-data.png' | relative_url }}" as="image">
     <script type="module" src="{{ '/assets/home/home.js' | relative_url }}"></script>
 
-    {% if jekyll.environment == 'production' %}
-      {% for analytics in site.analytics %}
-        {% capture str %}{{ analytics }}{% endcapture %}
-        {% assign platform = str | split: '{' | first %}
-        {% if site.analytics[platform].id and site.analytics[platform].id != empty %}
-          {% include analytics/{{ platform }}.html %}
-        {% endif %}
-      {% endfor %}
-    {% endif %}
+    {% include analytics.html %}
 
     {% include metadata-hook.html %}
   </head>
@@ -44,7 +36,7 @@ layout: null
         <a href="#writing">Writing</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a class="bar__blog" href="{{ '/blog/' | relative_url }}">Blog <span aria-hidden="true">↗</span></a>
+      <a class="bar__blog" href="{{ '/blog/' | relative_url }}">Blog</a>
     </header>
 
     <main>
@@ -78,14 +70,22 @@ layout: null
             like one product.
           </p>
           <p>
-            I keep studying: courses on Angular, JavaScript, React and front-end development
-            from Udemy, Coursera and Frontend Masters, all listed in the
-            <a class="inline-link" href="{{ '/about/' | relative_url }}">full CV</a>.
-          </p>
-          <p>
             When I'm not coding I read technical books, skateboard, and play board games,
             card games most of all.
           </p>
+          <h3 class="block__sub">Courses &amp; certificates</h3>
+          <ul class="courses">
+            <li><a href="https://www.udemy.com/certificate/UC-e4dda295-9c78-441b-aae1-451db0c1ad44/">Angular — The Complete Guide</a><span>Udemy</span></li>
+            <li><a href="https://www.udemy.com/certificate/UC-cd23a732-be62-4d21-857a-4799f2bfba2a/">The Complete JavaScript Course</a><span>Udemy</span></li>
+            <li><a href="https://www.udemy.com/certificate/UC-2bec81d8-67ef-468e-97d8-07ad6bb58936/">Responsive Real-World Websites with HTML and CSS</a><span>Udemy</span></li>
+            <li><a href="https://www.udemy.com/certificate/UC-1566c965-c264-48f5-b70a-8916b6ca1aba/">Tailwind CSS From Scratch</a><span>Udemy</span></li>
+            <li><a href="https://www.udemy.com/certificate/UC-9430aefe-8fd0-4451-b134-643ee7bc9aa/">Vim Masterclass</a><span>Udemy</span></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/certificate/SYJU6KW9JSTV">Introduction to Front-End Development</a><span>Coursera</span></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/certificate/T7TKX3G397KY">Programming with JavaScript</a><span>Coursera</span></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/certificate/AUBFJHX6QJMY">Developing Front-End Apps with React</a><span>Coursera</span></li>
+            <li><a href="https://www.coursera.org/account/accomplishments/certificate/PBQXXA2MK9JH">Version Control</a><span>Coursera</span></li>
+            <li><a href="https://frontendmasters.com/courses/algorithms/">The Last Algorithms Course You'll Need</a><span>Frontend Masters</span></li>
+          </ul>
         </div>
       </section>
 
@@ -189,7 +189,7 @@ layout: null
             <li><a href="https://github.com/{{ site.github.username }}">GitHub ↗</a></li>
             <li><a href="https://www.linkedin.com/in/davdifr">LinkedIn ↗</a></li>
             <li><a href="https://twitter.com/{{ site.twitter.username }}">X ↗</a></li>
-            <li><a href="{{ '/about/' | relative_url }}">Full CV →</a></li>
+            <li><a href="{{ '/blog/' | relative_url }}">Blog →</a></li>
           </ul>
         </div>
       </section>

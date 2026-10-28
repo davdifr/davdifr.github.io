@@ -9,6 +9,8 @@ tags:
   - angular
   - typescript
   - forms
+# The Angular templates in the code use {{ }}: show them as written.
+render_with_liquid: false
 ---
 
 Creating dynamic forms in Angular can be a powerful way to handle flexible data structures, especially when working with APIs that return complex or nested JSON objects. In this article, I will show you how to create dynamic forms in Angular using a Dictionary interface and a dynamic form generator service.

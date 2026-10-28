@@ -1,0 +1,24 @@
+{%- comment -%}
+  One post in a list. Pass `post`; `full` also shows the summary and tags.
+  The summary is the post's description, or else its first paragraph (posts
+  often open with a heading, which the default excerpt would glue to the text).
+{%- endcomment -%}
+{%- assign post = include.post -%}
+{%- assign paragraphs = post.content | split: '<p>' -%}
+{%- assign first_paragraph = paragraphs[1] | split: '</p>' | first | strip_html | strip_newlines -%}
+{%- assign summary = post.description | default: first_paragraph | truncate: 170 -%}
+<li class="row" data-search="{{ post.title | downcase | escape }} {{ summary | downcase | escape }} {{ post.tags | join: ' ' | downcase | escape }}">
+  <a class="row__link" href="{{ post.url | relative_url }}">
+    <time class="row__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>
+    <span class="row__body">
+      <span class="row__title">{{ post.title }}</span>
+      {%- if include.full and summary != '' %}
+        <span class="row__desc">{{ summary }}</span>
+      {%- endif %}
+      {%- if include.full and post.tags.size > 0 %}
+        <span class="row__tags">{{ post.tags | join: ' · ' }}</span>
+      {%- endif %}
+    </span>
+    <span class="row__arrow" aria-hidden="true">→</span>
+  </a>
+</li>

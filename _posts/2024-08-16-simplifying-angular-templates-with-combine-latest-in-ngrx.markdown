@@ -9,6 +9,8 @@ tags:
   - angular
   - typescript
   - NgRx
+# The Angular templates in the code use {{ }}: show them as written.
+render_with_liquid: false
 ---
 
 When working with Angular and NgRx, a common challenge is effectively managing and combining state selectors in a clean and readable way. The `combineLatest` function offers a powerful solution to this problem, especially when paired with Angular's `async` pipe and `ng-container`. This approach allows you to create more streamlined and maintainable templates, improving both readability and performance.

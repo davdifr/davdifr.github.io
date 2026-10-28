@@ -1,0 +1,13 @@
+---
+layout: default
+---
+{%- comment -%} Standalone pages (About). `description` is for search engines only. {%- endcomment -%}
+<article class="article">
+  <header class="article__head">
+    <p class="label">[ {{ page.title }} ]</p>
+    <h1 class="article__title">{{ page.heading | default: page.title }}</h1>
+  </header>
+  <div class="prose">
+    {{ content }}
+  </div>
+</article>

@@ -1,0 +1,10 @@
+{%- assign url = page.url -%}
+<header class="bar">
+  <a class="bar__mark" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}, home">DDF<span>/</span></a>
+  <nav class="bar__nav" aria-label="Site">
+    <a href="{{ '/blog/' | relative_url }}"{% if url == '/blog/' or page.layout == 'post' %} aria-current="page"{% endif %}>Blog</a>
+    <a href="{{ '/archives/' | relative_url }}"{% if url == '/archives/' %} aria-current="page"{% endif %}>Archive</a>
+    <a href="{{ '/tags/' | relative_url }}"{% if url contains '/tags/' %} aria-current="page"{% endif %}>Tags</a>
+    <a href="{{ '/#info' | relative_url }}">About</a>
+  </nav>
+</header>

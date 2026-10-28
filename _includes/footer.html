@@ -1,0 +1,9 @@
+<footer class="foot">
+  <span>© {{ site.time | date: '%Y' }} {{ site.social.name }}</span>
+  <nav class="foot__links" aria-label="Elsewhere">
+    <a href="https://github.com/{{ site.github.username }}">GitHub ↗</a>
+    <a href="https://www.linkedin.com/in/davdifr">LinkedIn ↗</a>
+    <a href="https://twitter.com/{{ site.twitter.username }}">X ↗</a>
+    <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+  </nav>
+</footer>

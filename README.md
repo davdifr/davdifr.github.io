@@ -1,43 +1,30 @@
-# Chirpy Starter
+# davdifr.com
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
-[![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+Personal site of Davide Di Francesco: a landing page and a blog, built with
+Jekyll and deployed to GitHub Pages by `.github/workflows/pages-deploy.yml`.
 
-When installing the [**Chirpy**][chirpy] theme through [RubyGems.org][gem], Jekyll can only read files in the folders
-`_data`, `_layouts`, `_includes`, `_sass` and `assets`, as well as a small part of options of the `_config.yml` file
-from the theme's gem. If you have ever installed this theme gem, you can use the command
-`bundle info --path jekyll-theme-chirpy` to locate these files.
+## Structure
 
-The Jekyll team claims that this is to leave the ball in the user’s court, but this also results in users not being
-able to enjoy the out-of-the-box experience when using feature-rich themes.
+- `index.html` + `assets/home/`: the landing page and its WebGL particle
+  portrait. `tools/portrait-data.mjs` regenerates the portrait texture from a
+  photo.
+- `_layouts/`, `_includes/`, `assets/css/`, `assets/js/`: the site's own theme
+  for the blog (`/blog/`), posts, archive, tags and categories, with a light
+  particle sky (`assets/js/stars.js`).
+- `_posts/`: articles, served at `/posts/:title/`. Comments come from Giscus,
+  keyed on that path.
+- `_tabs/`: Archive, Tags and Categories. `about.md` only redirects old links to
+  the landing page, which now holds the About content.
+- `feed.xml`, `robots.txt`, `404.html`: generated at the site root.
+- `sw.min.js`: removes the service worker the previous theme installed for
+  returning visitors.
 
-To fully use all the features of **Chirpy**, you need to copy the other critical files from the theme's gem to your
-Jekyll site. The following is a list of targets:
+## Local development
 
-```shell
-.
-├── _config.yml
-├── _plugins
-├── _tabs
-└── index.html
+```bash
+bundle install
+bundle exec jekyll serve
 ```
 
-To save you time, and also in case you lose some files while copying, we extract those files/configurations of the
-latest version of the **Chirpy** theme and the [CD][CD] workflow to here, so that you can start writing in minutes.
-
-## Usage
-
-Check out the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy/wiki).
-
-## Contributing
-
-This repository is automatically updated with new releases from the theme repository. If you encounter any issues or want to contribute to its improvement, please visit the [theme repository][chirpy] to provide feedback.
-
-## License
-
-This work is published under [MIT][mit] License.
-
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
-[CD]: https://en.wikipedia.org/wiki/Continuous_deployment
-[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
+`bash tools/test.sh` builds the site for production and checks it with
+html-proofer, as CI does.

@@ -1,0 +1,65 @@
+---
+layout: default
+---
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 200 | at_least: 1 -%}
+<article class="article">
+  <header class="article__head">
+    <p class="label">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time>
+      <span aria-hidden="true">·</span> {{ minutes }} min read
+      {%- for category in page.categories %}
+        <span aria-hidden="true">·</span>
+        <a href="{{ category | slugify | prepend: '/categories/' | append: '/' | relative_url }}">{{ category }}</a>
+      {%- endfor %}
+    </p>
+    <h1 class="article__title">{{ page.title }}</h1>
+    {%- if page.description %}
+      <p class="article__lede">{{ page.description }}</p>
+    {%- endif %}
+  </header>
+
+  {%- if page.toc %}
+    <nav class="toc" aria-label="On this page" data-toc hidden>
+      <div class="toc__inner">
+        <p class="toc__title">On this page</p>
+        <ol class="toc__list"></ol>
+      </div>
+    </nav>
+  {%- endif %}
+
+  <div class="prose" data-prose>
+    {{ content }}
+  </div>
+
+  <footer class="article__foot">
+    {%- if page.tags.size > 0 %}
+      <ul class="chips" aria-label="Tags">
+        {%- for tag in page.tags %}
+          <li><a class="chip" href="{{ tag | slugify | prepend: '/tags/' | append: '/' | relative_url }}">{{ tag }}</a></li>
+        {%- endfor %}
+      </ul>
+    {%- endif %}
+
+    <nav class="pager" aria-label="More posts">
+      {%- if page.previous %}
+        <a class="pager__link" href="{{ page.previous.url | relative_url }}">
+          <span class="pager__dir">← Older</span>
+          <span class="pager__title">{{ page.previous.title }}</span>
+        </a>
+      {%- else %}
+        <span></span>
+      {%- endif %}
+      {%- if page.next %}
+        <a class="pager__link pager__link--next" href="{{ page.next.url | relative_url }}">
+          <span class="pager__dir">Newer →</span>
+          <span class="pager__title">{{ page.next.title }}</span>
+        </a>
+      {%- endif %}
+    </nav>
+  </footer>
+
+  {%- if page.comments and site.comments.provider == 'giscus' %}
+    {% include comments.html %}
+  {%- endif %}
+</article>

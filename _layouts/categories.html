@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<section class="listing">
+  <header class="listing__head">
+    <p class="label">[ Categories ]</p>
+    <h1 class="listing__title">Categories</h1>
+  </header>
+  {%- comment -%} Alphabetical, ignoring case. {%- endcomment -%}
+  {%- assign names = '' | split: '' -%}
+  {%- for item in site.categories %}{% assign names = names | push: item[0] %}{% endfor -%}
+  {%- assign names = names | sort_natural -%}
+  <ul class="chips chips--large">
+    {%- for name in names %}
+      <li>
+        <a class="chip" href="{{ name | slugify | prepend: '/categories/' | append: '/' | relative_url }}">
+          {{ name }} <span class="chip__count">{{ site.categories[name] | size }}</span>
+        </a>
+      </li>
+    {%- endfor %}
+  </ul>
+</section>
