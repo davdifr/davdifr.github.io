@@ -1,4 +1,205 @@
 ---
-layout: home
-# Index page
+layout: null
+# Landing page. The Chirpy blog index lives at /blog/ (see blog/index.html).
 ---
+<!doctype html>
+<html lang="{{ site.lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050506">
+    {% seo %}
+    {% include favicons.html %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="{{ '/assets/home/home.css' | relative_url }}">
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="preload" href="{{ '/assets/home/portrait-data.png' | relative_url }}" as="image">
+    <script type="module" src="{{ '/assets/home/home.js' | relative_url }}"></script>
+
+    {% if jekyll.environment == 'production' %}
+      {% for analytics in site.analytics %}
+        {% capture str %}{{ analytics }}{% endcapture %}
+        {% assign platform = str | split: '{' | first %}
+        {% if site.analytics[platform].id and site.analytics[platform].id != empty %}
+          {% include analytics/{{ platform }}.html %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% include metadata-hook.html %}
+  </head>
+
+  <body>
+    <canvas class="portrait" data-portrait data-src="{{ '/assets/home/portrait-data.png' | relative_url }}" aria-hidden="true"></canvas>
+    <img class="portrait-fallback" src="{{ '/assets/home/portrait-fallback.webp' | relative_url }}" alt="Portrait of {{ site.social.name }}" width="500" height="700">
+
+    <header class="bar">
+      <a class="bar__mark" href="#top" aria-label="Back to top">DDF<span>/</span></a>
+      <nav class="bar__nav" aria-label="Sections">
+        <a href="#info">Info</a>
+        <a href="#work">Work</a>
+        <a href="#projects">Projects</a>
+        <a href="#writing">Writing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="bar__blog" href="{{ '/blog/' | relative_url }}">Blog <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <p class="label" data-scramble>[ Portfolio / {{ site.time | date: '%Y' }} ]</p>
+        <h1 class="hero__name">
+          <span class="hero__line">Davide</span>
+          <span class="hero__line">Di Francesco</span>
+        </h1>
+        <p class="hero__lede">
+          Frontend developer building web applications with Angular and TypeScript,
+          and writing about what I learn along the way.
+        </p>
+        <dl class="specs">
+          <div><dt>Role</dt><dd>Frontend developer</dd></div>
+          <div><dt>Base</dt><dd>L'Aquila, IT <span class="dim">42.35°N 13.40°E</span></dd></div>
+          <div><dt>Stack</dt><dd>Angular · TypeScript · RxJS · NgRx</dd></div>
+          <div><dt>Now</dt><dd>Gunpowder S.r.l · <a href="https://ordiclick.it">OrdiClick</a></dd></div>
+        </dl>
+        <p class="hero__cue" aria-hidden="true"><span class="hero__cue-dot"></span>Scroll to take me apart</p>
+      </section>
+
+      <section class="block" id="info" aria-labelledby="info-title">
+        <p class="label" data-scramble>[ 01 / Info ]</p>
+        <div class="block__body reveal">
+          <h2 id="info-title" class="block__title">I build interfaces people use while they are busy doing something else.</h2>
+          <p>
+            I'm a frontend developer based in L'Aquila, Italy. Most of my work happens in
+            Angular and TypeScript: customer-facing applications, responsive layouts that hold up
+            on every device, and the integration work that makes a front end and a back end feel
+            like one product.
+          </p>
+          <p>
+            I keep studying: courses on Angular, JavaScript, React and front-end development
+            from Udemy, Coursera and Frontend Masters, all listed in the
+            <a class="inline-link" href="{{ '/about/' | relative_url }}">full CV</a>.
+          </p>
+          <p>
+            When I'm not coding I read technical books, skateboard, and play board games,
+            card games most of all.
+          </p>
+        </div>
+      </section>
+
+      <section class="block" id="work" aria-labelledby="work-title">
+        <p class="label" data-scramble>[ 02 / Experience ]</p>
+        <div class="block__body">
+          <h2 id="work-title" class="visually-hidden">Experience</h2>
+          <ol class="entries">
+            <li class="entry reveal">
+              <p class="entry__meta"><span>05/2023 — Present</span><span>L'Aquila · On-site</span></p>
+              <h3 class="entry__title">Frontend Developer <span class="dim">@ Gunpowder S.r.l</span></h3>
+              <ul class="entry__points">
+                <li>Lead the development of customer-facing applications in Angular and TypeScript, built around each client's requirements.</li>
+                <li>Responsive design across devices, and close integration work with the backend team.</li>
+                <li>Run Angular training sessions for the rest of the team.</li>
+              </ul>
+            </li>
+            <li class="entry reveal">
+              <p class="entry__meta"><span>02/2022 — 08/2022</span><span>Istanbul · Remote</span></p>
+              <h3 class="entry__title">Community Manager <span class="dim">@ VR Future</span></h3>
+              <ul class="entry__points">
+                <li>Grew engagement in VR enthusiast communities through social media.</li>
+                <li>Designed online events and campaigns that fed user feedback back into the product.</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="block" id="projects" aria-labelledby="projects-title">
+        <p class="label" data-scramble>[ 03 / Projects ]</p>
+        <div class="block__body">
+          <h2 id="projects-title" class="visually-hidden">Projects</h2>
+          <ol class="projects">
+            <li class="project reveal">
+              <span class="project__index">01</span>
+              <div>
+                <h3 class="project__title"><a href="https://ordiclick.it">OrdiClick <span aria-hidden="true">↗</span></a></h3>
+                <p>
+                  Online ordering and management for restaurants. Venues publish daily menus on
+                  their own subdomain with a QR code, take pickup and delivery orders and follow
+                  each one from the kitchen to the door. Reservations, table ordering, loyalty
+                  cards and analytics switch on and off from an admin panel built for staff
+                  working mid-service.
+                </p>
+                <p class="tags">Angular · TypeScript · Supabase · Stripe · Vercel</p>
+              </div>
+            </li>
+            <li class="project reveal">
+              <span class="project__index">02</span>
+              <div>
+                <h3 class="project__title">AI-Powered Document Generation</h3>
+                <p>
+                  Pick a template and a knowledge base, fill in the form it generates, and the
+                  model writes the specific sections of the document from your answers. Faster
+                  documents that stay accurate and consistent.
+                </p>
+                <p class="tags">Angular · NgRx · OpenAI GPT-4</p>
+              </div>
+            </li>
+            <li class="project reveal">
+              <span class="project__index">03</span>
+              <div>
+                <h3 class="project__title"><a href="{{ '/posts/on-chain-digital-credentials-through-nfts/' | relative_url }}">On-chain Digital Credentials through NFTs</a></h3>
+                <p>
+                  Verifiable credentials in the spirit of VC and OpenBadges, issued as NFTs:
+                  tamper-proof records that anyone can check without trusting the issuer's server.
+                </p>
+                <p class="tags">JavaScript · Solidity</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="block" id="writing" aria-labelledby="writing-title">
+        <p class="label" data-scramble>[ 04 / Writing ]</p>
+        <div class="block__body">
+          <h2 id="writing-title" class="visually-hidden">Latest posts</h2>
+          <ul class="posts">
+            {% for post in site.posts limit: 6 %}
+              <li class="reveal">
+                <a class="post" href="{{ post.url | relative_url }}">
+                  <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>
+                  <span class="post__title">{{ post.title }}</span>
+                  <span class="post__arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+          <a class="more reveal" href="{{ '/blog/' | relative_url }}">All {{ site.posts | size }} posts on the blog <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <section class="block block--contact" id="contact" aria-labelledby="contact-title">
+        <p class="label" data-scramble>[ 05 / Contact ]</p>
+        <div class="block__body reveal">
+          <h2 id="contact-title" class="contact__title">Let's build<br>something.</h2>
+          <a class="contact__mail" href="mailto:{{ site.social.email }}">{{ site.social.email }}</a>
+          <ul class="contact__links">
+            <li><a href="https://github.com/{{ site.github.username }}">GitHub ↗</a></li>
+            <li><a href="https://www.linkedin.com/in/davdifr">LinkedIn ↗</a></li>
+            <li><a href="https://twitter.com/{{ site.twitter.username }}">X ↗</a></li>
+            <li><a href="{{ '/about/' | relative_url }}">Full CV →</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>© {{ site.time | date: '%Y' }} {{ site.social.name }}</span>
+      <span>Portrait rebuilt in WebGL from a single photo</span>
+    </footer>
+
+    <p class="hud" aria-hidden="true" data-hud></p>
+  </body>
+</html>

@@ -161,6 +161,8 @@ pwa:
       # - "/example"  # URLs match `<SITE_URL>/example/*` will not be cached by the PWA
 
 paginate: 10
+# The root is the animated landing page (index.html); the post list lives at /blog/.
+paginate_path: /blog/page:num/
 
 # The base URL of your site
 baseurl: ""

@@ -8,7 +8,7 @@
   <link rel="me" href="{{ link }}">
 {% endfor %}
 
-{% if page.layout == 'home' or page.url == '/about/' %}
+{% if page.url == '/' or page.url == '/about/' %}
   <!-- Person entity for the site owner. jekyll-seo-tag only emits a WebSite /
        BlogPosting node, so this is what connects the domain to the name. -->
   <script type="application/ld+json">
