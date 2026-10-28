@@ -320,6 +320,7 @@ async function startPortrait(canvas) {
   document.documentElement.addEventListener('pointerleave', () => (pointer.targetOn = 0));
 
   const contact = document.getElementById('contact');
+  const contactLinks = contact.querySelector('.contact__links');
   const hud = document.querySelector('[data-hud]');
   const fmt = new Intl.NumberFormat('en-US');
   let disperse = 0;
@@ -329,11 +330,10 @@ async function startPortrait(canvas) {
   // through the content, back together on the contact section. It never goes
   // fully to zero, so a few particles always drift off around the head.
   const REST = 0.15;
+  const nearContact = () => smooth((window.scrollY + window.innerHeight - contact.offsetTop) / (window.innerHeight * 0.8));
   function targetDisperse() {
-    const vh = window.innerHeight;
-    const out = smooth(window.scrollY / (vh * 0.9));
-    const back = smooth((window.scrollY + vh - contact.offsetTop) / (vh * 0.8));
-    return REST + (1 - REST) * out * (1 - back);
+    const out = smooth(window.scrollY / (window.innerHeight * 0.9));
+    return REST + (1 - REST) * out * (1 - nearContact());
   }
 
   function frame(now) {
@@ -351,16 +351,23 @@ async function startPortrait(canvas) {
     look.pitch = 0;
 
     // Desktop: portrait on the right of the hero, drifting to the centre when it
-    // scatters. Mobile: centred and pushed up, behind the name.
+    // scatters. Mobile: centred above the name, clear of the top bar; on the
+    // contact section it moves below the links instead of behind the title.
     const offX = isNarrow ? 0 : lerp(0.42, 0, scatter);
-    const offY = isNarrow ? 0.44 : -0.04;
+    let offY = -0.04;
+    if (isNarrow) {
+      // Hang the top of the hair (about 0.43 above offY at this scale, halo
+      // included) just below the contact links, wherever the scroll put them.
+      const below = contactLinks.getBoundingClientRect().bottom + 36;
+      offY = lerp(0.41, 1 - (2 * below) / window.innerHeight - 0.43, nearContact());
+    }
 
     gl.uniform1f(u.uTime, reduceMotion ? 0 : t);
     gl.uniform1f(u.uYaw, look.yaw);
     gl.uniform1f(u.uPitch, look.pitch);
     gl.uniform1f(u.uDisperse, disperse);
     gl.uniform2f(u.uOffset, offX, offY);
-    gl.uniform1f(u.uScale, isNarrow ? 0.84 : 1.12);
+    gl.uniform1f(u.uScale, isNarrow ? 0.72 : 1.12);
     gl.uniform2f(u.uMouse, pointer.x, pointer.y);
     gl.uniform1f(u.uMouseOn, pointer.on);
     gl.uniform1f(u.uPointSize, (isNarrow ? 2.1 : 1.7) * dpr);

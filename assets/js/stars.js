@@ -61,12 +61,17 @@ if (ctx) {
     requestAnimationFrame(loop);
   };
 
-  seed();
-  centre();
-  window.addEventListener('resize', () => {
+  // Size the canvas from its laid-out box, and again whenever that box changes.
+  // Safari can run this before the stylesheet applies, when the canvas is still
+  // its default 300×150: sizing only once stretched the dots into dashes.
+  new ResizeObserver(() => {
+    if (canvas.clientWidth === w && canvas.clientHeight === h) return;
     seed();
     if (still) draw(0);
-  });
+  }).observe(canvas);
+
+  seed();
+  centre();
   window.addEventListener('scroll', () => {
     centre();
     if (still) draw(0);
