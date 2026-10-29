@@ -5,9 +5,8 @@ Jekyll and deployed to GitHub Pages by `.github/workflows/pages-deploy.yml`.
 
 ## Structure
 
-- `index.html` + `assets/home/`: the landing page and its WebGL particle
-  portrait. `tools/portrait-data.mjs` regenerates the portrait texture from a
-  photo.
+- `index.html` + `assets/home/`: the landing page and its WebGL dot grid,
+  laid out on the page's own columns.
 - `_layouts/`, `_includes/`, `assets/css/`, `assets/js/`: the site's own theme
   for the blog (`/blog/`), posts, archive, tags and categories, with a light
   particle sky (`assets/js/stars.js`).

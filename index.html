@@ -15,7 +15,6 @@ layout: null
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="{{ '/assets/home/home.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="preload" href="{{ '/assets/home/portrait-data.png' | relative_url }}" as="image">
     <script type="module" src="{{ '/assets/home/home.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 
     {% include analytics.html %}
@@ -24,8 +23,7 @@ layout: null
   </head>
 
   <body>
-    <canvas class="portrait" data-portrait data-src="{{ '/assets/home/portrait-data.png' | relative_url }}" aria-hidden="true"></canvas>
-    <img class="portrait-fallback" src="{{ '/assets/home/portrait-fallback.webp' | relative_url }}" alt="Portrait of {{ site.social.name }}" width="500" height="700">
+    <canvas class="field" data-field aria-hidden="true"></canvas>
 
     <header class="bar">
       <a class="bar__mark" href="#top" aria-label="Back to top">DDF<span>/</span></a>
@@ -47,16 +45,16 @@ layout: null
           <span class="hero__line">Di Francesco</span>
         </h1>
         <p class="hero__lede">
-          Frontend developer building web applications with Angular and TypeScript,
-          and writing about what I learn along the way.
+          Frontend developer building customer-facing web applications with Angular
+          and TypeScript. I follow AI tooling closely and build it into the way I work.
         </p>
         <dl class="specs">
           <div><dt>Role</dt><dd>Frontend developer</dd></div>
           <div><dt>Base</dt><dd>L'Aquila, IT <span class="dim">42.35°N 13.40°E</span></dd></div>
           <div><dt>Stack</dt><dd>Angular · TypeScript · RxJS · NgRx</dd></div>
-          <div><dt>Now</dt><dd>Gunpowder S.r.l · <a href="https://ordiclick.it">OrdiClick</a></dd></div>
+          <div><dt>Now</dt><dd>Gunpowder S.r.l</dd></div>
         </dl>
-        <p class="hero__cue" aria-hidden="true"><span class="hero__cue-dot"></span>Scroll to take me apart</p>
+        <p class="hero__cue" aria-hidden="true"><span class="hero__cue-dot"></span>Scroll to raise the grid</p>
       </section>
 
       <section class="block" id="info" aria-labelledby="info-title">
@@ -70,22 +68,30 @@ layout: null
             like one product.
           </p>
           <p>
+            I pick up new tools quickly, and AI is the one that has changed my work the most.
+            I keep trying new models and agents, keep what actually improves my results and
+            refine how I use it from one project to the next. Today most of it runs through
+            Claude Code.
+          </p>
+          <p>
             When I'm not coding I read technical books, skateboard, and play board games,
             card games most of all.
           </p>
-          <h3 class="block__sub">Courses &amp; certificates</h3>
-          <ul class="courses">
-            <li><a href="https://www.udemy.com/certificate/UC-e4dda295-9c78-441b-aae1-451db0c1ad44/">Angular — The Complete Guide</a><span>Udemy</span></li>
-            <li><a href="https://www.udemy.com/certificate/UC-cd23a732-be62-4d21-857a-4799f2bfba2a/">The Complete JavaScript Course</a><span>Udemy</span></li>
-            <li><a href="https://www.udemy.com/certificate/UC-2bec81d8-67ef-468e-97d8-07ad6bb58936/">Responsive Real-World Websites with HTML and CSS</a><span>Udemy</span></li>
-            <li><a href="https://www.udemy.com/certificate/UC-1566c965-c264-48f5-b70a-8916b6ca1aba/">Tailwind CSS From Scratch</a><span>Udemy</span></li>
-            <li><a href="https://www.udemy.com/certificate/UC-9430aefe-8fd0-4451-b134-643ee7bc9aa/">Vim Masterclass</a><span>Udemy</span></li>
-            <li><a href="https://www.coursera.org/account/accomplishments/certificate/SYJU6KW9JSTV">Introduction to Front-End Development</a><span>Coursera</span></li>
-            <li><a href="https://www.coursera.org/account/accomplishments/certificate/T7TKX3G397KY">Programming with JavaScript</a><span>Coursera</span></li>
-            <li><a href="https://www.coursera.org/account/accomplishments/certificate/AUBFJHX6QJMY">Developing Front-End Apps with React</a><span>Coursera</span></li>
-            <li><a href="https://www.coursera.org/account/accomplishments/certificate/PBQXXA2MK9JH">Version Control</a><span>Coursera</span></li>
-            <li><a href="https://frontendmasters.com/courses/algorithms/">The Last Algorithms Course You'll Need</a><span>Frontend Masters</span></li>
-          </ul>
+          <details class="courses-toggle">
+            <summary class="block__sub">Courses &amp; certificates <span>(10)</span></summary>
+            <ul class="courses">
+              <li><a href="https://www.udemy.com/certificate/UC-e4dda295-9c78-441b-aae1-451db0c1ad44/">Angular — The Complete Guide</a><span>Udemy</span></li>
+              <li><a href="https://www.udemy.com/certificate/UC-cd23a732-be62-4d21-857a-4799f2bfba2a/">The Complete JavaScript Course</a><span>Udemy</span></li>
+              <li><a href="https://www.udemy.com/certificate/UC-2bec81d8-67ef-468e-97d8-07ad6bb58936/">Responsive Real-World Websites with HTML and CSS</a><span>Udemy</span></li>
+              <li><a href="https://www.udemy.com/certificate/UC-1566c965-c264-48f5-b70a-8916b6ca1aba/">Tailwind CSS From Scratch</a><span>Udemy</span></li>
+              <li><a href="https://www.udemy.com/certificate/UC-9430aefe-8fd0-4451-b134-643ee7bc9aa/">Vim Masterclass</a><span>Udemy</span></li>
+              <li><a href="https://www.coursera.org/account/accomplishments/certificate/SYJU6KW9JSTV">Introduction to Front-End Development</a><span>Coursera</span></li>
+              <li><a href="https://www.coursera.org/account/accomplishments/certificate/T7TKX3G397KY">Programming with JavaScript</a><span>Coursera</span></li>
+              <li><a href="https://www.coursera.org/account/accomplishments/certificate/AUBFJHX6QJMY">Developing Front-End Apps with React</a><span>Coursera</span></li>
+              <li><a href="https://www.coursera.org/account/accomplishments/certificate/PBQXXA2MK9JH">Version Control</a><span>Coursera</span></li>
+              <li><a href="https://frontendmasters.com/courses/algorithms/">The Last Algorithms Course You'll Need</a><span>Frontend Masters</span></li>
+            </ul>
+          </details>
         </div>
       </section>
 
@@ -98,9 +104,9 @@ layout: null
               <p class="entry__meta"><span>05/2023 — Present</span><span>L'Aquila · On-site</span></p>
               <h3 class="entry__title">Frontend Developer <span class="dim">@ Gunpowder S.r.l</span></h3>
               <ul class="entry__points">
-                <li>Lead the development of customer-facing applications in Angular and TypeScript, built around each client's requirements.</li>
-                <li>Responsive design across devices, and close integration work with the backend team.</li>
-                <li>Run Angular training sessions for the rest of the team.</li>
+                <li>Front end of client applications in small teams: a case-management portal for Regione Abruzzo staff, a fitness app with live video calls, and an AI platform that turns documents into a knowledge base you can chat with.</li>
+                <li>Responsive interfaces across devices, and close integration work with the backend team.</li>
+                <li>Taught Angular to half a dozen colleagues.</li>
               </ul>
             </li>
             <li class="entry reveal">
@@ -125,6 +131,7 @@ layout: null
               <div>
                 <h3 class="project__title"><a href="https://ordiclick.it">OrdiClick <span aria-hidden="true">↗</span></a></h3>
                 <p>
+                  My own product.
                   Online ordering and management for restaurants. Venues publish daily menus on
                   their own subdomain with a QR code, take pickup and delivery orders and follow
                   each one from the kitchen to the door. Reservations, table ordering, loyalty
@@ -197,9 +204,6 @@ layout: null
 
     <footer class="foot">
       <span>© {{ site.time | date: '%Y' }} {{ site.social.name }}</span>
-      <span>Portrait rebuilt in WebGL from a single photo</span>
     </footer>
-
-    <p class="hud" aria-hidden="true" data-hud></p>
   </body>
 </html>

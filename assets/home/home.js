@@ -1,9 +1,10 @@
-// Landing page: the portrait as a WebGL point cloud, plus the small bits of
-// scroll choreography around it. No dependencies.
+// Landing page: a WebGL field of dots laid out like a layout grid, plus the
+// small bits of scroll choreography around it. No dependencies.
 //
-// portrait-data.png packs everything the cloud needs per texel:
-//   R = luminance, G/B = depth as 16 bits over Z_RANGE, A = portrait matte.
-// It is generated from the photo by tools/portrait-data.mjs.
+// On the hero the grid lies back as a floor and rolls in slow waves. Through
+// the content it stands up flat behind the text and lights the page's own
+// column lines, like a grid overlay in the dev tools. The pointer sends ripples
+// through it, and scrolling makes it shimmer faintly with the scroll speed.
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const narrow = matchMedia('(max-width: 720px)');
@@ -44,74 +45,79 @@ const io = new IntersectionObserver(
 );
 document.querySelectorAll('.reveal, [data-scramble]').forEach((el) => io.observe(el));
 
-/* Point cloud ------------------------------------------------------------ */
+/* Dot field -------------------------------------------------------------- */
 
 const VERT = `
-attribute vec3 aPos;
-attribute vec3 aDir;
-attribute vec3 aInfo; // luminance, seed, fade
+attribute vec3 aGrid; // x, y on the plane (world units), seed
 
 uniform mat4 uProj;
 uniform float uCamDist;
 uniform float uTime;
-uniform float uYaw;
+uniform float uWave;    // 1 on the hero (floor, waves), 0 in the content (flat)
 uniform float uPitch;
-uniform float uDisperse;
 uniform vec2 uOffset;
-uniform float uScale;
+uniform vec2 uExtent;   // half size of the grid, for the fade at its edges
+uniform float uSpacing;
+uniform vec4 uEdges;    // column lines, world x
+uniform float uVel;     // scroll speed, -1..1
 uniform vec2 uMouse;
 uniform float uMouseOn;
 uniform float uAspect;
-uniform float uPointSize;
-uniform float uMaxPointSize;
-uniform float uScatterDim;
+uniform float uDot;
 
 varying float vAlpha;
 varying float vGlow;
+varying float vSize;
+
+float wave(vec2 q, float t) {
+  return 0.26 * sin(q.x * 1.5 + t * 0.55) * cos(q.y * 1.2 - t * 0.4)
+       + 0.09 * sin(q.x * 3.1 - q.y * 2.3 + t * 0.8);
+}
 
 void main() {
-  float lum = aInfo.x;
-  float seed = aInfo.y;
+  vec2 q = aGrid.xy;
+  float seed = aGrid.z;
 
-  vec3 p = aPos;
+  // Waves on the floor only: the flat grid stays still, so the scroll never
+  // makes it swim sideways.
+  float z = wave(q, uTime) * uWave;
 
-  // Idle breathing, a hair of movement so it never looks like a still.
-  p += aDir * 0.004 * sin(uTime * 1.4 + seed * 6.2831);
-
-  // Scroll dispersion: particles leave in a staggered wave, drift, and come back.
-  float leave = smoothstep(0.0, 1.0, uDisperse * 1.7 - seed * 0.7);
-  p += aDir * leave * (0.9 + seed * 2.6);
-  p += vec3(
-    sin(uTime * 0.21 + seed * 41.0),
-    cos(uTime * 0.17 + seed * 29.0),
-    sin(uTime * 0.13 + seed * 17.0)
-  ) * 0.22 * leave;
-
-  float cy = cos(uYaw), sy = sin(uYaw);
-  p = vec3(cy * p.x + sy * p.z, p.y, -sy * p.x + cy * p.z);
   float cp = cos(uPitch), sp = sin(uPitch);
-  p = vec3(p.x, cp * p.y - sp * p.z, sp * p.y + cp * p.z);
-  p *= uScale;
+  vec3 p = vec3(q.x, cp * q.y - sp * z, sp * q.y + cp * z);
 
   vec4 clip = uProj * vec4(p.x, p.y, p.z - uCamDist, 1.0);
   vec2 ndc = clip.xy / clip.w + uOffset;
 
-  // Push particles away from the pointer.
+  // Pointer ripples: rings that swell the dots as they pass.
   vec2 d = ndc - uMouse;
   d.x *= uAspect;
   float dist = length(d);
-  float force = uMouseOn * (1.0 - smoothstep(0.0, 0.32, dist));
-  vec2 push = d / max(dist, 1e-4) * force * force * 0.11;
+  float near = uMouseOn * exp(-dist * 4.5);
+  float ring = 0.5 + 0.5 * sin(dist * 38.0 - uTime * 5.0);
+  vec2 push = d / max(dist, 1e-4) * near * 0.01;
   push.x /= uAspect;
   ndc += push;
 
-  gl_Position = vec4(ndc * clip.w, clip.z, clip.w);
-  // Scattered particles stay small: they drift behind the text, and the ones
-  // that fly close to the camera would otherwise turn into big blurry blobs.
-  gl_PointSize = min(uPointSize * (0.55 + 0.9 * lum) * (uCamDist / clip.w) * (1.0 + leave * 0.15), uMaxPointSize);
+  // Scrolling runs a faint shimmer down the grid in bands, light only.
+  float shimmer = abs(uVel) * (0.5 + 0.5 * sin(q.y * 5.0 + uTime * 3.0));
 
-  vGlow = force;
-  vAlpha = (0.16 + 0.84 * lum) * aInfo.z * (1.0 - uScatterDim * leave);
+  // The column lines of the page, lit up when the grid stands flat.
+  float onEdge = 0.0;
+  for (int i = 0; i < 4; i++) onEdge = max(onEdge, 1.0 - step(uSpacing * 0.5, abs(q.x - uEdges[i])));
+
+  // Fade out towards the ends of the grid, and into the distance on the floor.
+  vec2 e = abs(q) / uExtent;
+  float edgeFade = (1.0 - smoothstep(0.7, 1.0, e.x)) * (1.0 - smoothstep(0.6, 1.0, e.y));
+  float fog = clamp(1.4 - (clip.w - uCamDist) * 0.45, 0.0, 1.0);
+
+  float size = uDot * (uCamDist / clip.w) * (1.0 + 1.3 * near * ring + 0.15 * shimmer + 0.5 * onEdge * (1.0 - uWave));
+  gl_Position = vec4(ndc * clip.w, clip.z, clip.w);
+  gl_PointSize = size;
+
+  vSize = size;
+  vGlow = near * (0.4 + 0.6 * ring);
+  float alpha = mix(0.16 + 0.34 * onEdge, 0.62, uWave) + 0.12 * shimmer;
+  vAlpha = alpha * edgeFade * mix(1.0, fog, uWave) * (0.85 + 0.15 * seed);
 }
 `;
 
@@ -120,12 +126,14 @@ precision mediump float;
 uniform vec3 uAccent;
 varying float vAlpha;
 varying float vGlow;
+varying float vSize;
 
 void main() {
   float r = length(gl_PointCoord - 0.5);
-  if (r > 0.5) discard;
-  float a = vAlpha * smoothstep(0.5, 0.1, r);
-  vec3 color = mix(vec3(0.95, 0.95, 0.93), uAccent, clamp(vGlow * 1.4, 0.0, 1.0));
+  float aa = clamp(1.2 / vSize, 0.05, 0.5);
+  float a = vAlpha * (1.0 - smoothstep(0.5 - aa, 0.5, r));
+  if (a <= 0.0) discard;
+  vec3 color = mix(vec3(0.95, 0.95, 0.93), uAccent, clamp(vGlow * 1.5, 0.0, 1.0));
   gl_FragColor = vec4(color * a, a);
 }
 `;
@@ -136,104 +144,6 @@ function compile(gl, type, source) {
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(shader));
   return shader;
-}
-
-async function readPixels(url) {
-  const img = new Image();
-  img.src = url;
-  await img.decode();
-  const c = document.createElement('canvas');
-  c.width = img.naturalWidth;
-  c.height = img.naturalHeight;
-  const ctx = c.getContext('2d', { willReadFrequently: true });
-  ctx.drawImage(img, 0, 0);
-  return ctx.getImageData(0, 0, c.width, c.height);
-}
-
-// Turns the data texture into particles. Bright areas get more particles than
-// dark ones; edges and the silhouette only a little more, so the face stays soft
-// instead of looking traced.
-const Z_RANGE = [-0.6, 0.6]; // must match tools/portrait-data.mjs
-
-// The photo is cropped at the bottom and both sides (and has a bit of arm and
-// railing in the bottom-left corner): thin the particles out and fade them
-// towards those edges, so the bust dissolves instead of ending in a cut.
-function vignette(u, v) {
-  const s = (a, b, t) => {
-    const c = Math.min(1, Math.max(0, (t - a) / (b - a)));
-    return c * c * (3 - 2 * c);
-  };
-  const bottom = s(1, 0.62, v);
-  const sides = s(0, 0.16, u) * s(1, 0.84, u);
-  return bottom * (0.25 + 0.75 * sides) * s(0.82, 0.55, v + (1 - sides) * 0.3);
-}
-
-function buildCloud({ data, width: W, height: H }, target) {
-  const at = (x, y, c) => data[(Math.min(H - 1, Math.max(0, y)) * W + Math.min(W - 1, Math.max(0, x))) * 4 + c] / 255;
-  const zTexel = (x, y) => {
-    const i = (Math.min(H - 1, Math.max(0, y)) * W + Math.min(W - 1, Math.max(0, x))) * 4;
-    return Z_RANGE[0] + ((data[i + 1] * 256 + data[i + 2]) / 65535) * (Z_RANGE[1] - Z_RANGE[0]);
-  };
-  // Depth interpolated between texels, so the relief is smooth instead of stepped.
-  const zAt = (u, v) => {
-    const x = u - 0.5, y = v - 0.5, x0 = Math.floor(x), y0 = Math.floor(y), fx = x - x0, fy = y - y0;
-    return (zTexel(x0, y0) * (1 - fx) + zTexel(x0 + 1, y0) * fx) * (1 - fy) + (zTexel(x0, y0 + 1) * (1 - fx) + zTexel(x0 + 1, y0 + 1) * fx) * fy;
-  };
-  const weights = new Float32Array(W * H);
-  let total = 0;
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const a = at(x, y, 3);
-      if (a < 0.5) continue;
-      const lum = at(x, y, 0);
-      const edge = Math.abs(at(x + 1, y, 0) - at(x - 1, y, 0)) + Math.abs(at(x, y + 1, 0) - at(x, y - 1, 0));
-      const rim = Math.abs(at(x + 2, y, 3) - at(x - 2, y, 3)) + Math.abs(at(x, y + 2, 3) - at(x, y - 2, 3));
-      const w = (0.3 + 0.5 * lum ** 1.3 + 0.4 * Math.min(1, edge * 5) + 0.5 * Math.min(1, rim)) * vignette(x / W, y / H);
-      weights[y * W + x] = w;
-      total += w;
-    }
-  }
-
-  const k = target / total;
-  const pos = [];
-  const dir = [];
-  const info = [];
-  const aspect = W / H;
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const w = weights[y * W + x];
-      if (!w) continue;
-      let n = w * k;
-      while (n > 0) {
-        if (n < 1 && Math.random() > n) break;
-        n -= 1;
-        const tu = x + Math.random(), tv = y + Math.random();
-        const u = tu / W;
-        const v = tv / H;
-        const px = (u - 0.5) * 2 * aspect;
-        const py = (0.5 - v) * 2;
-        const pz = zAt(tu, tv);
-        pos.push(px, py, pz);
-
-        const rx = Math.random() * 2 - 1;
-        const ry = Math.random() * 2 - 1;
-        const rz = Math.random() * 2 - 1;
-        const dx = px * 0.7 + rx;
-        const dy = py * 0.5 + ry;
-        const dz = rz * 1.4;
-        const len = Math.hypot(dx, dy, dz) || 1;
-        dir.push(dx / len, dy / len, dz / len);
-
-        info.push(at(x, y, 0), Math.random(), vignette(u, v));
-      }
-    }
-  }
-  return {
-    count: pos.length / 3,
-    pos: new Float32Array(pos),
-    dir: new Float32Array(dir),
-    info: new Float32Array(info),
-  };
 }
 
 function perspective(fovY, aspect, near, far) {
@@ -254,7 +164,7 @@ const smooth = (t) => {
 };
 const lerp = (a, b, t) => a + (b - a) * t;
 
-async function startPortrait(canvas) {
+function startField(canvas) {
   const gl = canvas.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'high-performance' });
   if (!gl) throw new Error('WebGL unavailable');
 
@@ -265,23 +175,14 @@ async function startPortrait(canvas) {
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));
   gl.useProgram(program);
 
-  const pixels = await readPixels(canvas.dataset.src);
-  const cloud = buildCloud(pixels, narrow.matches ? 36000 : 72000);
-
-  for (const [name, array] of [['aPos', cloud.pos], ['aDir', cloud.dir], ['aInfo', cloud.info]]) {
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, array, gl.STATIC_DRAW);
-    const loc = gl.getAttribLocation(program, name);
-    gl.enableVertexAttribArray(loc);
-    gl.vertexAttribPointer(loc, 3, gl.FLOAT, false, 0, 0);
-  }
-
   const u = {};
-  for (const name of ['uProj', 'uCamDist', 'uTime', 'uYaw', 'uPitch', 'uDisperse', 'uOffset', 'uScale', 'uMouse', 'uMouseOn', 'uAspect', 'uPointSize', 'uMaxPointSize', 'uScatterDim', 'uAccent']) {
+  for (const name of ['uProj', 'uCamDist', 'uTime', 'uWave', 'uPitch', 'uOffset', 'uExtent', 'uSpacing', 'uEdges', 'uVel', 'uMouse', 'uMouseOn', 'uAspect', 'uDot', 'uAccent']) {
     u[name] = gl.getUniformLocation(program, name);
   }
   const CAM = 4.4;
+  const FOV = (34 * Math.PI) / 180;
+  // World units per half viewport height at z = 0.
+  const HALF_H = Math.tan(FOV / 2) * CAM;
   gl.uniform1f(u.uCamDist, CAM);
   gl.uniform3f(u.uAccent, 1.0, 0.3, 0.3);
 
@@ -290,8 +191,56 @@ async function startPortrait(canvas) {
   gl.blendFunc(gl.ONE, gl.ONE);
   gl.clearColor(0.0196, 0.0196, 0.0235, 1);
 
+  const buffer = gl.createBuffer();
+  const loc = gl.getAttribLocation(program, 'aGrid');
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 3, gl.FLOAT, false, 0, 0);
+
+  const body = document.querySelector('.block__body');
+  const label = document.querySelector('.block > .label');
   let dpr = 1;
   let aspect = 1;
+  let count = 0;
+  let worldPerPx = 1;
+
+  // The grid's pitch is in CSS pixels, so it matches the page at any size. The
+  // lit lines run half a gap outside the columns, clear of the text; a column
+  // of dots falls exactly on the one left of the text, the others light the
+  // dots nearest to them.
+  function build() {
+    const W = window.innerWidth, H = window.innerHeight;
+    worldPerPx = (2 * HALF_H) / H;
+    const step = (narrow.matches ? 16 : 18) * worldPerPx;
+    const toWorld = (px) => (px - W / 2) * worldPerPx;
+    const b = body.getBoundingClientRect();
+    const l = label.getBoundingClientRect().left;
+    const pad = narrow.matches ? l / 2 : 16;
+    const anchor = toWorld(b.left - pad);
+    // Wide enough for the tilted floor, deep enough to reach its horizon.
+    const ex = HALF_H * aspect * 1.6, ey = HALF_H * 2.2;
+    const x0 = anchor - Math.ceil((anchor + ex) / step) * step;
+    const cols = Math.floor((2 * ex) / step), rows = Math.floor((2 * ey) / step);
+    const data = new Float32Array(cols * rows * 3);
+    let i = 0;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        data.set([x0 + c * step, -ey + r * step, Math.random()], i);
+        i += 3;
+      }
+    }
+    count = cols * rows;
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
+    gl.uniform2f(u.uExtent, ex, ey);
+    gl.uniform1f(u.uSpacing, step);
+
+    const edges = narrow.matches ? [b.left - pad, b.right + pad] : [l - pad, b.left - pad, b.right + pad, W - l + pad];
+    const w = edges.map(toWorld);
+    while (w.length < 4) w.push(1e3);
+    gl.uniform4f(u.uEdges, w[0], w[1], w[2], w[3]);
+  }
+
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     const w = canvas.clientWidth;
@@ -300,15 +249,15 @@ async function startPortrait(canvas) {
     canvas.height = Math.round(h * dpr);
     aspect = w / h;
     gl.viewport(0, 0, canvas.width, canvas.height);
-    gl.uniformMatrix4fv(u.uProj, false, perspective((34 * Math.PI) / 180, aspect, 0.1, 50));
+    gl.uniformMatrix4fv(u.uProj, false, perspective(FOV, aspect, 0.1, 50));
     gl.uniform1f(u.uAspect, aspect);
+    build();
   }
   resize();
   window.addEventListener('resize', resize);
 
   // Pointer state, in normalised device coordinates.
   const pointer = { x: 0, y: 0, on: 0, targetOn: 0, seen: 0 };
-  const look = { yaw: 0, pitch: 0 };
   const onMove = (e) => {
     pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
     pointer.y = 1 - (e.clientY / window.innerHeight) * 2;
@@ -320,69 +269,47 @@ async function startPortrait(canvas) {
   document.documentElement.addEventListener('pointerleave', () => (pointer.targetOn = 0));
 
   const contact = document.getElementById('contact');
-  const contactLinks = contact.querySelector('.contact__links');
-  const hud = document.querySelector('[data-hud]');
-  const fmt = new Intl.NumberFormat('en-US');
-  let disperse = 0;
-  let lastHud = 0;
+  let waveMix = 1;
+  let vel = 0;
+  let lastY = window.scrollY;
+  let lastT = performance.now();
 
-  // Dispersion follows the scroll: nearly assembled on the hero, scattered
-  // through the content, back together on the contact section. It never goes
-  // fully to zero, so a few particles always drift off around the head.
-  const REST = 0.15;
+  // The floor on the hero and again on the contact section, the flat grid in
+  // between.
   const nearContact = () => smooth((window.scrollY + window.innerHeight - contact.offsetTop) / (window.innerHeight * 0.8));
-  function targetDisperse() {
-    const out = smooth(window.scrollY / (window.innerHeight * 0.9));
-    return REST + (1 - REST) * out * (1 - nearContact());
-  }
+  const targetWave = () => Math.max(1 - smooth(window.scrollY / (window.innerHeight * 0.8)), nearContact());
 
   function frame(now) {
     const t = now / 1000;
     const isNarrow = narrow.matches;
 
-    disperse = reduceMotion ? 0 : lerp(disperse, targetDisperse(), 0.06);
+    waveMix = reduceMotion ? targetWave() : lerp(waveMix, targetWave(), 0.06);
+    const dt = Math.max(1, now - lastT);
+    const speed = Math.max(-1, Math.min(1, ((window.scrollY - lastY) / dt) * 0.25));
+    vel = reduceMotion ? 0 : lerp(vel, speed, 0.08);
+    lastY = window.scrollY;
+    lastT = now;
     if (now - pointer.seen > 2200 && pointer.targetOn) pointer.targetOn = 0;
     pointer.on = lerp(pointer.on, reduceMotion ? 0 : pointer.targetOn, 0.08);
 
-    // The portrait faces the camera, flat: no sway and no turning with the
-    // pointer. Only the scattered cloud turns, as it flies apart on scroll.
-    const scatter = Math.max(0, (disperse - REST) / (1 - REST));
-    look.yaw = scatter * scatter * 0.9;
-    look.pitch = 0;
-
-    // Desktop: portrait on the right of the hero, drifting to the centre when it
-    // scatters. Mobile: centred above the name, clear of the top bar; on the
-    // contact section it moves below the links instead of behind the title.
-    const offX = isNarrow ? 0 : lerp(0.42, 0, scatter);
-    let offY = -0.04;
-    if (isNarrow) {
-      // Hang the top of the hair (about 0.43 above offY at this scale, halo
-      // included) just below the contact links, wherever the scroll put them.
-      const below = contactLinks.getBoundingClientRect().bottom + 36;
-      offY = lerp(0.41, 1 - (2 * below) / window.innerHeight - 0.43, nearContact());
-    }
+    const k = smooth(waveMix);
+    // The floor lies back and sits low, its horizon a little above the middle
+    // of the screen; on phones it stays under the top bar, above the name. On
+    // the contact section it drops below the links.
+    const pitch = -1.12 * k;
+    const offY = k * (isNarrow ? lerp(0.05, -0.55, nearContact()) : lerp(-0.42, -0.66, nearContact()));
 
     gl.uniform1f(u.uTime, reduceMotion ? 0 : t);
-    gl.uniform1f(u.uYaw, look.yaw);
-    gl.uniform1f(u.uPitch, look.pitch);
-    gl.uniform1f(u.uDisperse, disperse);
-    gl.uniform2f(u.uOffset, offX, offY);
-    gl.uniform1f(u.uScale, isNarrow ? 0.72 : 1.12);
+    gl.uniform1f(u.uWave, k);
+    gl.uniform1f(u.uPitch, pitch);
+    gl.uniform2f(u.uOffset, 0, offY);
+    gl.uniform1f(u.uVel, vel);
     gl.uniform2f(u.uMouse, pointer.x, pointer.y);
     gl.uniform1f(u.uMouseOn, pointer.on);
-    gl.uniform1f(u.uPointSize, (isNarrow ? 2.1 : 1.7) * dpr);
-    gl.uniform1f(u.uMaxPointSize, (isNarrow ? 2.6 : 3) * dpr);
-    // On phones the text column is the whole screen, so dim the scattered cloud more.
-    gl.uniform1f(u.uScatterDim, isNarrow ? 0.8 : 0.66);
+    gl.uniform1f(u.uDot, (isNarrow ? 2.2 : 2.4) * dpr);
 
     gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.drawArrays(gl.POINTS, 0, cloud.count);
-
-    if (hud && now - lastHud > 120) {
-      lastHud = now;
-      const scrolled = Math.round((window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight)) * 100);
-      hud.textContent = `pts ${fmt.format(cloud.count)}   scatter ${disperse.toFixed(2)}   ${String(scrolled).padStart(3, '0')}%`;
-    }
+    gl.drawArrays(gl.POINTS, 0, count);
 
     if (!reduceMotion) requestAnimationFrame(frame);
   }
@@ -390,6 +317,7 @@ async function startPortrait(canvas) {
   if (reduceMotion) {
     const redraw = () => requestAnimationFrame(frame);
     window.addEventListener('resize', redraw);
+    window.addEventListener('scroll', redraw, { passive: true });
   }
   requestAnimationFrame(frame);
   canvas.classList.add('is-ready');
@@ -400,8 +328,10 @@ async function startPortrait(canvas) {
   });
 }
 
-const canvas = document.querySelector('[data-portrait]');
-startPortrait(canvas).catch((err) => {
-  console.warn('Portrait disabled:', err);
+const canvas = document.querySelector('[data-field]');
+try {
+  startField(canvas);
+} catch (err) {
+  console.warn('Dot field disabled:', err);
   document.documentElement.classList.add('no-webgl');
-});
+}

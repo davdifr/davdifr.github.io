@@ -58,9 +58,9 @@ a:focus-visible {
   color: var(--muted);
 }
 
-/* Portrait ------------------------------------------------------------- */
+/* Dot field ------------------------------------------------------------ */
 
-.portrait {
+.field {
   position: fixed;
   inset: 0;
   width: 100%;
@@ -70,27 +70,19 @@ a:focus-visible {
   transition: opacity 1.6s ease;
 }
 
-.portrait.is-ready {
+.field.is-ready {
   opacity: 1;
 }
 
-.portrait-fallback {
-  display: none;
-  position: fixed;
-  right: 4vw;
-  bottom: 0;
-  height: 86vh;
-  width: auto;
-  filter: grayscale(1) contrast(1.15) brightness(0.9);
-  opacity: 0.5;
-}
-
-.no-webgl .portrait {
+.no-webgl .field {
   display: none;
 }
 
-.no-webgl .portrait-fallback {
-  display: block;
+/* Without WebGL, the flat grid stands still behind the page. */
+.no-webgl body {
+  background-image: radial-gradient(circle, rgba(242, 242, 239, 0.14) 1.2px, transparent 1.6px);
+  background-size: 18px 18px;
+  background-attachment: fixed;
 }
 
 /* Top bar -------------------------------------------------------------- */
@@ -186,8 +178,10 @@ main {
   justify-content: flex-end;
   gap: 28px;
   padding: 120px var(--gutter) 48px;
-  /* Leave the right side of the viewport to the portrait. */
+  /* Keep the name and specs to a column on the left, over the dot floor,
+     with a soft dark pool under them so the dots never cross the text. */
   max-width: min(760px, 56vw);
+  background: radial-gradient(ellipse 75% 55% at 30% 74%, rgba(5, 5, 6, 0.92) 30%, rgba(5, 5, 6, 0) 72%);
 }
 
 .hero__name {
@@ -219,7 +213,7 @@ main {
 
 .hero__lede {
   margin: 0;
-  max-width: 34ch;
+  max-width: 42ch;
   font-size: clamp(17px, 1.6vw, 20px);
   line-height: 1.45;
   color: #cfcfcc;
@@ -488,7 +482,7 @@ main {
   color: var(--fg);
 }
 
-/* Footer & HUD --------------------------------------------------------- */
+/* Footer --------------------------------------------------------------- */
 
 .foot {
   position: relative;
@@ -503,20 +497,6 @@ main {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
-}
-
-.hud {
-  position: fixed;
-  right: var(--gutter);
-  bottom: 18px;
-  z-index: 5;
-  margin: 0;
-  font: 400 10px/1 var(--mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  white-space: pre;
-  pointer-events: none;
 }
 
 /* Small screens -------------------------------------------------------- */
@@ -553,7 +533,7 @@ main {
     margin-left: auto;
   }
 
-  /* The portrait sits behind the name here, so give the text a dark floor. */
+  /* The dot floor runs behind the name here, so give the text a dark base. */
   .hero {
     padding-bottom: 32px;
     gap: 22px;
@@ -579,16 +559,6 @@ main {
     flex-direction: column;
     gap: 4px;
   }
-
-  .hud {
-    display: none;
-  }
-
-  .portrait-fallback {
-    right: -10vw;
-    height: 70vh;
-    opacity: 0.35;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -597,7 +567,7 @@ main {
   }
 
   .js .reveal,
-  .portrait {
+  .field {
     opacity: 1;
     transform: none;
     transition: none;
@@ -621,6 +591,35 @@ main {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+/* Collapsed by default: there if someone looks for it, out of the way of a
+   first read. */
+.courses-toggle > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.2s;
+}
+
+.courses-toggle > summary::-webkit-details-marker {
+  display: none;
+}
+
+.courses-toggle > summary::after {
+  content: '+';
+  color: var(--accent);
+}
+
+.courses-toggle[open] > summary::after {
+  content: '−';
+}
+
+.courses-toggle > summary:hover {
+  color: var(--fg);
 }
 
 .courses {

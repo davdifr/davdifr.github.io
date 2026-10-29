@@ -1,6 +1,5 @@
-// A faint, slowly drifting field of particles behind the blog: the same sky the
-// landing page's portrait scatters into, so moving from one to the other feels
-// continuous. Plain 2D canvas, a couple of hundred dots. The CSS mask on the
+// A faint, slowly drifting field of particles behind the blog, so moving from
+// the landing page's dot grid to the posts keeps a little of the same texture. Plain 2D canvas, a couple of hundred dots. The CSS mask on the
 // canvas keeps the reading column clear; --sky-centre opens it a little at the
 // top of the page, behind the big titles, and closes it as you scroll.
 
