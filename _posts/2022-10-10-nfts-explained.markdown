@@ -2,14 +2,14 @@
 layout: post
 title: "Non-Fungible Tokens explained"
 date: 2022-10-10 18:01:00 +0200
-categories: 
- - Tech Research
- - Blockchain
+categories:
+  - Tech Research
+  - Blockchain
 tags:
- - NFT
- - ERC721
- - ethereum
- - smart contract
+  - NFT
+  - ERC721
+  - ethereum
+  - smart contract
 ---
 
 A **non-fungible token** (NFT) refers to a class of blockchain-based tokens that are intended to be **unique**, as opposed to cryptocurrencies where all tokens are exchangeable. NFTs are typically used to **prove ownership** and can represent virtually any asset, whether physical or digital. However, the most common NFT assets are digital art, digital collectibles, content such as video or audio, and event tickets.
@@ -24,13 +24,13 @@ Some collections, such as the [Bored Ape Yacht Club](https://opensea.io/collecti
 
 The following table provides some information on 5 of the most profitable NFTs sold in Q2 2022:
 
-|                                                NFT                                                |                                 Project                                 | Days since purchase | Purchase Price (USD) | Resale Price (USD) | Profit (USD) | Profit (%) |
-| :-----------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------: | :-----------------: | :------------------: | :----------------: | :----------: | :--------: |
+|                                      NFT                                      |                                 Project                                 | Days since purchase | Purchase Price (USD) | Resale Price (USD) | Profit (USD) | Profit (%) |
+| :---------------------------------------------------------------------------: | :---------------------------------------------------------------------: | :-----------------: | :------------------: | :----------------: | :----------: | :--------: |
 | ![CryptoPunk #7756](/assets/posts/nfts-explained/cryptopunk.png?fit=max&w=80) |        [CryptoPunks](https://opensea.io/collection/cryptopunks)         |         583         |        $9,337        |     $3,261,857     |  3,252,519   |  34,833%   |
-| ![OtherSide #59906](/assets/posts/nfts-explained/otherside.png?fit=max&w=80) |   [Otherdeed for Otherside](https://opensea.io/collection/otherdeed)    |          7          |        $5,905        |     $1,647,788     |  1,641,883   |  27,806%   |
-|    ![Ape #6388](/assets/posts/nfts-explained/ape.png?fit=max&w=80)     | [Bored Ape Yacht Club](https://opensea.io/collection/boredapeyachtclub) |         377         |       $107,000       |     $1,083,512     |   $976,512   |    913%    |
-|    ![Ape #7537](/assets/posts/nfts-explained/ape2.png?fit=max&w=80)     | [Bored Ape Yacht Club](https://opensea.io/collection/boredapeyachtclub) |         85          |       $298,001       |     $1,222,922     |   $924,921   |    310%    |
-| ![Moonbirds #3904](/assets/posts/nfts-explained/moonbirds.png?fit=max&w=80)  |       [Moonbirds](https://opensea.io/collection/proof-moonbirds)        |          7          |        $7,554        |      $902,498      |   $894,944   |  11,847%   |
+| ![OtherSide #59906](/assets/posts/nfts-explained/otherside.png?fit=max&w=80)  |   [Otherdeed for Otherside](https://opensea.io/collection/otherdeed)    |          7          |        $5,905        |     $1,647,788     |  1,641,883   |  27,806%   |
+|        ![Ape #6388](/assets/posts/nfts-explained/ape.png?fit=max&w=80)        | [Bored Ape Yacht Club](https://opensea.io/collection/boredapeyachtclub) |         377         |       $107,000       |     $1,083,512     |   $976,512   |    913%    |
+|       ![Ape #7537](/assets/posts/nfts-explained/ape2.png?fit=max&w=80)        | [Bored Ape Yacht Club](https://opensea.io/collection/boredapeyachtclub) |         85          |       $298,001       |     $1,222,922     |   $924,921   |    310%    |
+|  ![Moonbirds #3904](/assets/posts/nfts-explained/moonbirds.png?fit=max&w=80)  |       [Moonbirds](https://opensea.io/collection/proof-moonbirds)        |          7          |        $7,554        |      $902,498      |   $894,944   |  11,847%   |
 
 This kind of value enhancement is possible thanks to the great interest that NFTs experience on the Internet.
 Every day, more and more companies are trying to incorporate NFTs into their marketing strategies, and this has also happened in the fashion industry. Luxury brands such as Dolce & Gabbana, Gucci, Louis Vuitton and Burberry have actively ventured into the digital space, looking for ways to incorporate NFTs into their product range and marketing efforts.

@@ -283,7 +283,7 @@ async function startPortrait(canvas) {
   }
   const CAM = 4.4;
   gl.uniform1f(u.uCamDist, CAM);
-  gl.uniform3f(u.uAccent, 0.37, 0.78, 1.0);
+  gl.uniform3f(u.uAccent, 1.0, 0.3, 0.3);
 
   gl.disable(gl.DEPTH_TEST);
   gl.enable(gl.BLEND);

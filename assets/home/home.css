@@ -3,7 +3,7 @@
   --fg: #f2f2ef;
   --muted: #8d8d93;
   --line: rgba(255, 255, 255, 0.12);
-  --accent: #5ec8ff;
+  --accent: #ff4d4d;
   --sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   --gutter: clamp(16px, 4vw, 48px);
@@ -137,6 +137,9 @@ a:focus-visible {
 }
 
 .bar__blog {
+  /* Pill overflows into the bar's padding, so the bar stays as tall as the
+     blog's (assets/css/blog.css) and the logo doesn't jump between them. */
+  margin: -9px 0;
   padding: 8px 12px;
   border: 1px solid var(--line);
   border-radius: 999px;

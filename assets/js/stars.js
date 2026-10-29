@@ -44,7 +44,7 @@ if (ctx) {
       const y = (((s.y - t * 0.004 * (0.3 + s.depth) - scroll * 0.06 * s.depth) % h) + h) % h;
       const twinkle = still ? 1 : 0.75 + 0.25 * Math.sin(t * 0.0012 + s.phase);
       ctx.globalAlpha = s.a * twinkle;
-      ctx.fillStyle = s.accent ? '#5ec8ff' : '#f2f2ef';
+      ctx.fillStyle = s.accent ? '#ff4d4d' : '#f2f2ef';
       ctx.beginPath();
       ctx.arc(s.x, y, s.r, 0, Math.PI * 2);
       ctx.fill();

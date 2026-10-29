@@ -9,7 +9,7 @@
   --text: #cfcfcc;
   --muted: #8d8d93;
   --line: rgba(255, 255, 255, 0.1);
-  --accent: #5ec8ff;
+  --accent: #ff4d4d;
   --sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   --gutter: clamp(16px, 4vw, 48px);
@@ -30,9 +30,9 @@ html {
 
 body {
   margin: 0;
-  /* A faint blue glow at the top of every page, under the particles. */
+  /* A faint red glow at the top of every page, under the particles. */
   background:
-    radial-gradient(1100px 520px at 50% -160px, rgba(94, 200, 255, 0.07), transparent 70%),
+    radial-gradient(1100px 520px at 50% -160px, rgba(255, 77, 77, 0.07), transparent 70%),
     var(--bg);
   color: var(--text);
   font: 400 17px/1.7 var(--sans);
@@ -590,7 +590,7 @@ input:focus-visible {
 
 .prose a {
   color: var(--fg);
-  border-bottom: 1px solid rgba(94, 200, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 77, 77, 0.5);
   transition: border-color 0.2s, color 0.2s;
   overflow-wrap: anywhere;
 }
@@ -641,6 +641,23 @@ input:focus-visible {
   height: auto;
   margin: 2em auto;
   border-radius: 10px;
+}
+
+/* Images linking to their full-size file: no underline, a zoom cursor. */
+.prose a:has(> img) {
+  border-bottom: 0;
+  cursor: zoom-in;
+}
+
+/* An italic line right after an image is its caption. */
+.prose img + em,
+.prose a:has(> img) + em {
+  display: block;
+  margin-top: -1.2em;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  color: var(--muted);
 }
 
 .prose img[src$='.svg'] {
