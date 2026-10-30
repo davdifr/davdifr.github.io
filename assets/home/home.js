@@ -45,6 +45,79 @@ const io = new IntersectionObserver(
 );
 document.querySelectorAll('.reveal, [data-scramble]').forEach((el) => io.observe(el));
 
+/* Top bar: an underline under the section in view ---------------------- */
+
+// The blog underlines the current page the same way (_includes/header.html).
+// After a click the line goes straight to the link and stays there until the
+// smooth scroll settles, instead of stepping through every section on the way.
+
+const nav = document.querySelector('.bar__nav');
+const navLinks = [...nav.querySelectorAll('a[href^="#"]')];
+const sections = navLinks.map((a) => document.getElementById(a.hash.slice(1)));
+const ink = document.createElement('span');
+ink.className = 'bar__ink';
+ink.setAttribute('aria-hidden', 'true');
+nav.append(ink);
+
+let current = null;
+let held; // a link, or null for the top; undefined when following the scroll
+let settle = 0;
+
+function place(link) {
+  const track = parseFloat(getComputedStyle(link).letterSpacing) || 0;
+  ink.style.setProperty('--x', `${link.offsetLeft}px`);
+  ink.style.setProperty('--w', `${link.offsetWidth - track}px`);
+}
+
+function mark(link) {
+  if (link === current) return;
+  current?.removeAttribute('aria-current');
+  if (link) {
+    link.setAttribute('aria-current', 'location');
+    // Coming from the hero the line appears in place, rather than sliding in.
+    if (!current) {
+      ink.style.transition = 'none';
+      place(link);
+      ink.getBoundingClientRect();
+      ink.style.transition = '';
+    } else {
+      place(link);
+    }
+  }
+  ink.classList.toggle('is-on', !!link);
+  current = link;
+}
+
+function spy() {
+  if (held !== undefined) return mark(held);
+  const line = window.innerHeight * 0.4;
+  let link = null;
+  sections.forEach((s, i) => {
+    if (s.getBoundingClientRect().top < line) link = navLinks[i];
+  });
+  mark(link);
+}
+
+function hold(link) {
+  held = link;
+  mark(link);
+  release();
+}
+
+function release() {
+  clearTimeout(settle);
+  settle = setTimeout(() => {
+    held = undefined;
+    spy();
+  }, 160);
+}
+
+navLinks.forEach((a) => a.addEventListener('click', () => hold(a)));
+document.querySelector('.bar__mark').addEventListener('click', () => hold(null));
+window.addEventListener('scroll', () => (held !== undefined ? release() : spy()), { passive: true });
+window.addEventListener('resize', () => current && place(current));
+spy();
+
 /* Dot field -------------------------------------------------------------- */
 
 const VERT = `

@@ -18,6 +18,7 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -112,6 +113,7 @@ a:focus-visible {
 }
 
 .bar__nav {
+  position: relative;
   display: flex;
   gap: 24px;
   margin-left: auto;
@@ -124,8 +126,33 @@ a:focus-visible {
 }
 
 .bar__nav a:hover,
+.bar__nav a[aria-current],
 .bar__blog:hover {
   color: var(--fg);
+}
+
+/* The underline under the section in view (assets/home/home.js). The blog
+   draws the same line under the current page, and the two morph into each
+   other across pages. */
+.bar__ink {
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: var(--w, 0);
+  height: 1px;
+  background: var(--accent);
+  transform: translateX(var(--x, 0));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    width 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.25s ease;
+}
+
+.bar__ink.is-on {
+  opacity: 1;
+  view-transition-name: bar-ink;
 }
 
 .bar__blog {
@@ -136,6 +163,25 @@ a:focus-visible {
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--fg);
+}
+
+/* Page transitions (same as assets/css/blog.css) -------------------------
+   Moving between the landing page and the blog, the top bar stays put, its
+   underline slides to the new link and the pages cross-fade. The opt-in
+   itself is inline in <head> (_includes/view-transitions.html). */
+
+.bar {
+  view-transition-name: bar;
+}
+
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 0.3s;
+}
+
+::view-transition-group(bar-ink) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 /* Shared --------------------------------------------------------------- */
@@ -564,6 +610,10 @@ main {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .bar__ink {
+    transition: none;
   }
 
   .js .reveal,

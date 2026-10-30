@@ -24,6 +24,10 @@
 }
 
 html {
+  scroll-behavior: smooth;
+  /* Keep the width the same on pages too short to scroll, so nothing shifts
+     sideways between them. */
+  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: 88px;
 }
@@ -196,6 +200,7 @@ input:focus-visible {
 }
 
 .bar__nav a {
+  position: relative;
   color: var(--muted);
   transition: color 0.2s;
 }
@@ -205,8 +210,50 @@ input:focus-visible {
   color: var(--fg);
 }
 
-.bar__nav a[aria-current='page'] {
-  box-shadow: 0 1px 0 var(--accent);
+/* The underline under the current page. It stops short of the trailing
+   letter-spacing so it sits under the word, and it slides from link to link
+   across pages (see the page transitions below). */
+.bar__ink {
+  position: absolute;
+  left: 0;
+  right: 0.08em;
+  bottom: -5px;
+  height: 1px;
+  background: var(--accent);
+  pointer-events: none;
+  view-transition-name: bar-ink;
+}
+
+/* Page transitions (same as assets/home/home.css) ----------------------------
+   The old and new page cross-fade on the same curve, so whatever is the same
+   on both (the background, the glow, the particles) holds still. Only the
+   content moves: it rises into place, started from _layouts/default.html.
+   The opt-in itself is inline in <head> (_includes/view-transitions.html). */
+
+.bar {
+  view-transition-name: bar;
+}
+
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 0.3s;
+}
+
+::view-transition-group(bar-ink) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Fill backwards only: a transform left on .main after the animation would
+   change how fixed and sticky things inside it behave. */
+.is-arriving .main {
+  animation: rise-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+@keyframes rise-in {
+  from {
+    transform: translateY(14px);
+  }
 }
 
 .main {
@@ -796,6 +843,10 @@ input:focus-visible {
     letter-spacing: 0.06em;
   }
 
+  .bar__ink {
+    right: 0.06em;
+  }
+
   .listing {
     padding-top: 6vh;
   }
@@ -849,6 +900,10 @@ input:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .row__link,
   .row__arrow {
     transition: none;

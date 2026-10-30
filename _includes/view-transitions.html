@@ -1,0 +1,17 @@
+<style>
+  /* Page transitions between the landing page and the blog. The opt-in lives
+     here, inline at the top of <head>, rather than in the stylesheets: Chrome
+     decides whether the incoming page takes part at its first style update,
+     which can come before an external stylesheet has arrived, and then skips
+     the transition. The animations are in assets/home/home.css and
+     assets/css/blog.css. */
+  @view-transition {
+    navigation: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    @view-transition {
+      navigation: none;
+    }
+  }
+</style>

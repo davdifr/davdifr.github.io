@@ -6,6 +6,17 @@
     {%- if page.layout == 'post' or page.layout == 'page' %}
       <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     {%- endif %}
+    <script>
+      // Arriving through a page transition, the content rises into place
+      // (assets/css/blog.css). Inline, so it is listening before the first
+      // frame; after the stylesheets, so it doesn't hold up their discovery.
+      addEventListener('pagereveal', (e) => {
+        if (e.viewTransition) document.documentElement.classList.add('is-arriving');
+      });
+      addEventListener('animationend', (e) => {
+        if (e.animationName === 'rise-in') document.documentElement.classList.remove('is-arriving');
+      });
+    </script>
     <script defer src="{{ '/assets/js/blog.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
     <script defer src="{{ '/assets/js/stars.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
   </head>

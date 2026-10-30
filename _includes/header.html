@@ -1,10 +1,17 @@
 {%- assign url = page.url -%}
+{%- capture ink -%}<span class="bar__ink" aria-hidden="true"></span>{%- endcapture -%}
+{%- assign on_blog = false -%}
+{%- if url == '/blog/' or page.layout == 'post' -%}{%- assign on_blog = true -%}{%- endif -%}
+{%- assign on_archive = false -%}
+{%- if url == '/archives/' -%}{%- assign on_archive = true -%}{%- endif -%}
+{%- assign on_tags = false -%}
+{%- if url contains '/tags/' -%}{%- assign on_tags = true -%}{%- endif -%}
 <header class="bar">
   <a class="bar__mark" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}, home">DDF<span>/</span></a>
   <nav class="bar__nav" aria-label="Site">
-    <a href="{{ '/blog/' | relative_url }}"{% if url == '/blog/' or page.layout == 'post' %} aria-current="page"{% endif %}>Blog</a>
-    <a href="{{ '/archives/' | relative_url }}"{% if url == '/archives/' %} aria-current="page"{% endif %}>Archive</a>
-    <a href="{{ '/tags/' | relative_url }}"{% if url contains '/tags/' %} aria-current="page"{% endif %}>Tags</a>
+    <a href="{{ '/blog/' | relative_url }}"{% if on_blog %} aria-current="page"{% endif %}>Blog{% if on_blog %}{{ ink }}{% endif %}</a>
+    <a href="{{ '/archives/' | relative_url }}"{% if on_archive %} aria-current="page"{% endif %}>Archive{% if on_archive %}{{ ink }}{% endif %}</a>
+    <a href="{{ '/tags/' | relative_url }}"{% if on_tags %} aria-current="page"{% endif %}>Tags{% if on_tags %}{{ ink }}{% endif %}</a>
     <a href="{{ '/#info' | relative_url }}">About</a>
   </nav>
 </header>

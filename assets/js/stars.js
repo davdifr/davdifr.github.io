@@ -7,6 +7,30 @@ const canvas = document.querySelector('[data-sky]');
 const ctx = canvas?.getContext('2d');
 const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// The same sky on every page, carrying on where the last page left it, so the
+// cross-fade between pages (assets/css/blog.css) doesn't reshuffle it: a fixed
+// seed, the wall clock for the drift, and the scroll parallax handed over in
+// sessionStorage.
+
+const KEY = 'sky-scroll';
+let carried = 0;
+// Measured against the page's own scroll, which going back restores.
+const pickUp = () => {
+  try {
+    carried = (Number(sessionStorage.getItem(KEY)) || 0) - window.scrollY;
+  } catch {}
+};
+pickUp();
+window.addEventListener('pageshow', (e) => e.persisted && pickUp());
+
+// mulberry32
+const random = (seed) => () => {
+  seed = (seed + 0x6d2b79f5) | 0;
+  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+
 if (ctx) {
   let stars = [];
   let w = 0;
@@ -20,25 +44,27 @@ if (ctx) {
     canvas.width = Math.round(w * dpr);
     canvas.height = Math.round(h * dpr);
     const count = Math.min(260, Math.round((w * h) / 7000));
+    const rand = random(7);
     stars = Array.from({ length: count }, () => {
-      const depth = Math.random();
+      const depth = rand();
       return {
-        x: Math.random() * w,
-        y: Math.random() * h,
+        x: rand() * w,
+        y: rand() * h,
         r: 0.35 + depth * 0.9,
         a: 0.12 + depth * 0.45,
         depth,
-        phase: Math.random() * Math.PI * 2,
-        accent: Math.random() < 0.06,
+        phase: rand() * Math.PI * 2,
+        accent: rand() < 0.06,
       };
     });
   };
 
-  const draw = (t) => {
+  const draw = (now) => {
+    const t = performance.timeOrigin + now;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, w, h);
     // Nearer stars drift and scroll a little faster: a hint of depth.
-    const scroll = window.scrollY;
+    const scroll = carried + window.scrollY;
     for (const s of stars) {
       const y = (((s.y - t * 0.004 * (0.3 + s.depth) - scroll * 0.06 * s.depth) % h) + h) % h;
       const twinkle = still ? 1 : 0.75 + 0.25 * Math.sin(t * 0.0012 + s.phase);
@@ -75,7 +101,13 @@ if (ctx) {
     centre();
     if (still) draw(0);
   }, { passive: true });
+  window.addEventListener('pagehide', () => {
+    try {
+      sessionStorage.setItem(KEY, String(carried + window.scrollY));
+    } catch {}
+  });
 
-  if (still) draw(0);
-  else requestAnimationFrame(loop);
+  // Draw once straight away, so the first frame of the page already has its sky.
+  draw(still ? 0 : performance.now());
+  if (!still) requestAnimationFrame(loop);
 }
