@@ -3,8 +3,8 @@
 //
 // On the hero the grid lies back as a floor and rolls in slow waves. Through
 // the content it stands up flat behind the text and lights the page's own
-// column lines, like a grid overlay in the dev tools. The pointer sends ripples
-// through it, and scrolling makes it shimmer faintly with the scroll speed.
+// column lines, like a grid overlay in the dev tools. Dots swell softly around
+// the pointer, and scrolling makes the grid shimmer faintly with its speed.
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const narrow = matchMedia('(max-width: 720px)');
@@ -139,7 +139,6 @@ uniform float uAspect;
 uniform float uDot;
 
 varying float vAlpha;
-varying float vGlow;
 varying float vSize;
 
 float wave(vec2 q, float t) {
@@ -161,12 +160,11 @@ void main() {
   vec4 clip = uProj * vec4(p.x, p.y, p.z - uCamDist, 1.0);
   vec2 ndc = clip.xy / clip.w + uOffset;
 
-  // Pointer ripples: rings that swell the dots as they pass.
+  // Around the pointer the dots swell and brighten a little, and lean away.
   vec2 d = ndc - uMouse;
   d.x *= uAspect;
   float dist = length(d);
-  float near = uMouseOn * exp(-dist * 4.5);
-  float ring = 0.5 + 0.5 * sin(dist * 38.0 - uTime * 5.0);
+  float near = uMouseOn * exp(-dist * 6.0);
   vec2 push = d / max(dist, 1e-4) * near * 0.01;
   push.x /= uAspect;
   ndc += push;
@@ -183,22 +181,19 @@ void main() {
   float edgeFade = (1.0 - smoothstep(0.7, 1.0, e.x)) * (1.0 - smoothstep(0.6, 1.0, e.y));
   float fog = clamp(1.4 - (clip.w - uCamDist) * 0.45, 0.0, 1.0);
 
-  float size = uDot * (uCamDist / clip.w) * (1.0 + 1.3 * near * ring + 0.15 * shimmer + 0.5 * onEdge * (1.0 - uWave));
+  float size = uDot * (uCamDist / clip.w) * (1.0 + 0.6 * near + 0.15 * shimmer + 0.5 * onEdge * (1.0 - uWave));
   gl_Position = vec4(ndc * clip.w, clip.z, clip.w);
   gl_PointSize = size;
 
   vSize = size;
-  vGlow = near * (0.4 + 0.6 * ring);
-  float alpha = mix(0.16 + 0.34 * onEdge, 0.62, uWave) + 0.12 * shimmer;
+  float alpha = mix(0.16 + 0.34 * onEdge, 0.62, uWave) + 0.12 * shimmer + 0.3 * near;
   vAlpha = alpha * edgeFade * mix(1.0, fog, uWave) * (0.85 + 0.15 * seed);
 }
 `;
 
 const FRAG = `
 precision mediump float;
-uniform vec3 uAccent;
 varying float vAlpha;
-varying float vGlow;
 varying float vSize;
 
 void main() {
@@ -206,8 +201,7 @@ void main() {
   float aa = clamp(1.2 / vSize, 0.05, 0.5);
   float a = vAlpha * (1.0 - smoothstep(0.5 - aa, 0.5, r));
   if (a <= 0.0) discard;
-  vec3 color = mix(vec3(0.95, 0.95, 0.93), uAccent, clamp(vGlow * 1.5, 0.0, 1.0));
-  gl_FragColor = vec4(color * a, a);
+  gl_FragColor = vec4(vec3(0.95, 0.95, 0.93) * a, a);
 }
 `;
 
@@ -249,7 +243,7 @@ function startField(canvas) {
   gl.useProgram(program);
 
   const u = {};
-  for (const name of ['uProj', 'uCamDist', 'uTime', 'uWave', 'uPitch', 'uOffset', 'uExtent', 'uSpacing', 'uEdges', 'uVel', 'uMouse', 'uMouseOn', 'uAspect', 'uDot', 'uAccent']) {
+  for (const name of ['uProj', 'uCamDist', 'uTime', 'uWave', 'uPitch', 'uOffset', 'uExtent', 'uSpacing', 'uEdges', 'uVel', 'uMouse', 'uMouseOn', 'uAspect', 'uDot']) {
     u[name] = gl.getUniformLocation(program, name);
   }
   const CAM = 4.4;
@@ -257,7 +251,6 @@ function startField(canvas) {
   // World units per half viewport height at z = 0.
   const HALF_H = Math.tan(FOV / 2) * CAM;
   gl.uniform1f(u.uCamDist, CAM);
-  gl.uniform3f(u.uAccent, 1.0, 0.3, 0.3);
 
   gl.disable(gl.DEPTH_TEST);
   gl.enable(gl.BLEND);
