@@ -25,6 +25,11 @@ layout: null
         const root = document.documentElement;
         root.classList.add('skip-intro', 'is-arriving');
         e.viewTransition.finished.finally(() => root.classList.remove('is-arriving'));
+        // Safari only jumps to #info after the transition has started, so the
+        // hero fades in and then the page snaps down. Jump before the first frame.
+        if (location.hash) {
+          document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'instant' });
+        }
       });
     </script>
     <script type="module" src="{{ '/assets/home/home.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>

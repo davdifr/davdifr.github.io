@@ -239,6 +239,7 @@ function startField(canvas) {
   // preserveDrawingBuffer: the page transition to the blog snapshots this page
   // after the last frame has been presented, and without it the snapshot finds
   // the buffer already cleared and fades out a flat pale sheet, not the page.
+  // It also lets the pageswap handler below copy the grid at any time.
   const gl = canvas.getContext('webgl', { antialias: false, alpha: false, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
   if (!gl) throw new Error('WebGL unavailable');
 
@@ -394,6 +395,29 @@ function startField(canvas) {
   }
   requestAnimationFrame(frame);
   canvas.classList.add('is-ready');
+
+  // Leaving for the blog, the page transition snapshots this page, and some
+  // Chrome versions (151) snapshot a WebGL canvas as a white sheet. So the grid
+  // is copied onto a plain 2D canvas for the snapshot, and put back if the page
+  // comes back from the back/forward cache.
+  let still = null;
+  window.addEventListener('pageswap', (e) => {
+    if (!e.viewTransition) return;
+    still = document.createElement('canvas');
+    still.className = canvas.className;
+    still.setAttribute('aria-hidden', 'true');
+    still.width = canvas.width;
+    still.height = canvas.height;
+    still.getContext('2d').drawImage(canvas, 0, 0);
+    canvas.before(still);
+    // Not `hidden`: .field sets display: block.
+    canvas.style.display = 'none';
+  });
+  window.addEventListener('pageshow', () => {
+    still?.remove();
+    still = null;
+    canvas.style.display = '';
+  });
 
   canvas.addEventListener('webglcontextlost', (e) => {
     e.preventDefault();
