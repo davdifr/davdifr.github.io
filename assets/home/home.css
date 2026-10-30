@@ -75,6 +75,12 @@ a:focus-visible {
   opacity: 1;
 }
 
+/* Coming from the blog through a page transition (index.html), the grid is
+   there from the first frame instead of fading in. */
+.skip-intro .field {
+  transition: none;
+}
+
 .no-webgl .field {
   display: none;
 }
@@ -248,6 +254,11 @@ main {
 
 .hero__line + .hero__line {
   animation-delay: 0.12s;
+}
+
+/* The name only rises on a first visit, not when coming back from the blog. */
+.skip-intro .hero__line {
+  animation: none;
 }
 
 @keyframes rise {

@@ -34,10 +34,14 @@ function scramble(el) {
 
 const io = new IntersectionObserver(
   (entries) => {
+    // During the page transition from the blog (index.html), what comes into
+    // view shows as it is, without its intro.
+    const instant = document.documentElement.classList.contains('is-arriving');
     for (const entry of entries) {
       if (!entry.isIntersecting) continue;
+      if (instant) entry.target.style.transition = 'none';
       entry.target.classList.add('is-in');
-      if (entry.target.hasAttribute('data-scramble')) scramble(entry.target);
+      if (!instant && entry.target.hasAttribute('data-scramble')) scramble(entry.target);
       io.unobserve(entry.target);
     }
   },
@@ -232,7 +236,10 @@ const smooth = (t) => {
 const lerp = (a, b, t) => a + (b - a) * t;
 
 function startField(canvas) {
-  const gl = canvas.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'high-performance' });
+  // preserveDrawingBuffer: the page transition to the blog snapshots this page
+  // after the last frame has been presented, and without it the snapshot finds
+  // the buffer already cleared and fades out a flat pale sheet, not the page.
+  const gl = canvas.getContext('webgl', { antialias: false, alpha: false, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
   if (!gl) throw new Error('WebGL unavailable');
 
   const program = gl.createProgram();

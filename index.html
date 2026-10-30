@@ -13,7 +13,20 @@ layout: null
     {% include favicons.html %}
     {% include fonts.html %}
     <link rel="stylesheet" href="{{ '/assets/home/home.css' | relative_url }}?v={{ site.time | date: '%s' }}">
-    <script>document.documentElement.classList.add('js');</script>
+    <script>
+      document.documentElement.classList.add('js');
+      // Arriving from the blog through a page transition, the page should
+      // already be in place while the transition fades it in: no first-visit
+      // intro (skip-intro, assets/home/home.css), and whatever comes into view
+      // before the transition ends, after the jump to #info say, shows as it
+      // is (is-arriving, assets/home/home.js).
+      addEventListener('pagereveal', (e) => {
+        if (!e.viewTransition) return;
+        const root = document.documentElement;
+        root.classList.add('skip-intro', 'is-arriving');
+        e.viewTransition.finished.finally(() => root.classList.remove('is-arriving'));
+      });
+    </script>
     <script type="module" src="{{ '/assets/home/home.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 
     {% include analytics.html %}
