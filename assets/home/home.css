@@ -291,31 +291,6 @@ main {
   border-bottom: 1px solid var(--accent);
 }
 
-.hero__cue {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 12px 0 0;
-  font: 500 11px/1 var(--mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.hero__cue-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  animation: pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  50% {
-    opacity: 0.2;
-  }
-}
-
 /* Blocks --------------------------------------------------------------- */
 
 .block {
@@ -623,8 +598,7 @@ main {
     transition: none;
   }
 
-  .hero__line,
-  .hero__cue-dot {
+  .hero__line {
     animation: none;
   }
 }
